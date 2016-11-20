@@ -17,7 +17,7 @@ public class Program {
     public static void main(String[] args) throws Exception {
         
         // Create components
-        Loader loader = new BufferedLoader(new FileLoader("res/", DefaultLoader.INSTANCE));
+        Loader loader = new BufferedLoader(new FileLoader("resources/", DefaultLoader.INSTANCE));
         Display display = new SwingDisplay();
         display.setBackground(Color.WHITE);
         try {
