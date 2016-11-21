@@ -1,14 +1,20 @@
 package platform.game.actors.basic;
 
-import platform.util.*;
+import platform.game.data.ActorFactory;
+import platform.util.Input;
+import platform.util.Sprite;
+import platform.util.Vector;
 
 /**
  * @author zyuiop
- *
- * This class defines a common base for different actors that can move
+ *         <p>
+ *         This class defines a common base for different actors that can move
  */
 public abstract class MovableActor extends PositionedActor {
 	private Vector velocity;
+
+	protected MovableActor() {
+	}
 
 	public MovableActor(String spriteName, double size, Vector position, Vector velocity) {
 		super(spriteName, size, position);
@@ -35,5 +41,19 @@ public abstract class MovableActor extends PositionedActor {
 
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		velocity = factory.getDataMap().get("velocity").getAsVector();
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("velocity", velocity);
 	}
 }

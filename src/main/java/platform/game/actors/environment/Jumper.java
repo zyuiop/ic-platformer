@@ -3,6 +3,7 @@ package platform.game.actors.environment;
 import platform.game.Effect;
 import platform.game.actors.basic.InteractableBlock;
 import platform.game.actors.basic.MovableActor;
+import platform.game.data.ActorFactory;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -76,4 +77,13 @@ public class Jumper extends InteractableBlock {
 		return 100;
 	}
 
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+	}
 }

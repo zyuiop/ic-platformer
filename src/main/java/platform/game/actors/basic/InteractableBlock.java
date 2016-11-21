@@ -8,6 +8,9 @@ import platform.util.Vector;
  * @author zyuiop
  */
 public abstract class InteractableBlock extends OrientedActor {
+	protected InteractableBlock() {
+	}
+
 	public InteractableBlock(String spriteName, double size, Vector position, Direction direction) {
 		super(spriteName, size, position, direction);
 	}

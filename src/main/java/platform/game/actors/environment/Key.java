@@ -4,7 +4,6 @@ import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.entities.Player;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**

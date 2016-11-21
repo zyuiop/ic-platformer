@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import platform.game.data.ActorFactory;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -12,6 +13,9 @@ import platform.util.Vector;
  */
 public abstract class OrientedActor extends PositionedActor {
 	private Direction direction;
+
+	protected OrientedActor() {
+	}
 
 	public OrientedActor(String spriteName, double size, Vector position, Direction direction) {
 		super(spriteName, size, position);
@@ -71,5 +75,19 @@ public abstract class OrientedActor extends PositionedActor {
 		public double getRotation() {
 			return rotation;
 		}
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		direction = Direction.values()[factory.getDataMap().get("direction").getAsInt()];
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("direction", direction.ordinal());
 	}
 }

@@ -1,28 +1,20 @@
 package platform.game.actors.environment;
 
-import platform.game.Actor;
-import platform.util.*;
+import platform.game.actors.basic.DisplayableActor;
+import platform.game.data.ActorFactory;
+import platform.util.Box;
 
 /**
  * Simple solid actor that does nothing.
  */
-public class Block extends Actor {
-	private final Box box;
-	private final String spriteName;
-	private Sprite sprite;
+public class Block extends DisplayableActor {
+	private Box box;
+
+	protected Block() {}
 
 	public Block(Box box, String sprite) {
+		super(sprite);
 		this.box = box;
-		this.spriteName = sprite;
-	}
-
-	@Override
-	public void draw(Input input, Output output) {
-		if (sprite == null && spriteName != null)
-			sprite = getSprite(spriteName);
-
-		if (sprite != null)
-			output.drawSprite(sprite, getBox());
 	}
 
 	@Override
@@ -38,5 +30,19 @@ public class Block extends Actor {
 	@Override
 	public Box getBox() {
 		return box;
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		box = factory.getDataMap().get("box").getAsBox();
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("box", box);
 	}
 }

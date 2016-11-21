@@ -1,13 +1,14 @@
 package platform.game.actors.environment;
 
 import platform.game.Signal;
+import platform.game.actors.MutableActor;
 import platform.util.Box;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public abstract class MovingPlatform extends Block {
+public abstract class MovingPlatform extends Block implements MutableActor {
 	private final Vector first;
 	private final Vector second;
 	private double current = 0;

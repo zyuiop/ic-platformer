@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import platform.game.data.ActorFactory;
 import platform.util.Box;
 import platform.util.Sprite;
 import platform.util.Vector;
@@ -10,9 +11,12 @@ import platform.util.Vector;
  * An actor defined by its position and sprite
  */
 public abstract class PositionedActor extends DisplayableActor {
-	protected final double sizeX;
-	protected final double sizeY;
+	protected double sizeX;
+	protected double sizeY;
 	protected Vector position;
+
+	protected PositionedActor() {
+	}
 
 	public PositionedActor(String spriteName, double size, Vector position) {
 		super(spriteName);
@@ -60,5 +64,23 @@ public abstract class PositionedActor extends DisplayableActor {
 
 	public double getSizeY() {
 		return sizeY;
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		sizeX = factory.getDataMap().get("sizeX").getAsDouble();
+		sizeY = factory.getDataMap().get("sizeY").getAsDouble();
+		position = factory.getDataMap().get("position").getAsVector();
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("sizeX", sizeX);
+		factory.getDataMap().put("sizeX", sizeY);
+		factory.getDataMap().put("position", position);
 	}
 }

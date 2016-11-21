@@ -64,4 +64,6 @@ public class Lever extends PositionedActor implements Signal {
 		} else
 			setSpriteName("lever.right");
 	}
+
+
 }
