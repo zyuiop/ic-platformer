@@ -1,8 +1,9 @@
-package platform.game.actors;
+package platform.game.actors.entities;
 
 import java.awt.event.KeyEvent;
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.basic.LivingActor;
 import platform.util.Input;
 import platform.util.Vector;

@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.Effect;

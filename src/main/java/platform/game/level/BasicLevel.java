@@ -1,14 +1,14 @@
 package platform.game.level;
 
-import platform.game.actors.Block;
-import platform.game.actors.Heart;
-import platform.game.actors.Jumper;
-import platform.game.actors.Limits;
-import platform.game.actors.Overlay;
-import platform.game.actors.Player;
+import platform.game.actors.environment.Block;
+import platform.game.actors.environment.Heart;
+import platform.game.actors.environment.Jumper;
+import platform.game.actors.environment.Limits;
+import platform.game.actors.animations.Overlay;
+import platform.game.actors.entities.Player;
 import platform.game.World;
-import platform.game.actors.Spikes;
-import platform.game.actors.Torch;
+import platform.game.actors.environment.Spikes;
+import platform.game.actors.environment.Torch;
 import platform.game.actors.basic.DirectedActor;
 import platform.util.Box;
 import platform.util.Vector;

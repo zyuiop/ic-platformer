@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game.actors.environment;
 
 import platform.game.Effect;
 import platform.game.actors.basic.InteractableBlock;

@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game.actors.animations;
 
 import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
