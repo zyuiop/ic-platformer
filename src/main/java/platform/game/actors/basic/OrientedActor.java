@@ -1,7 +1,5 @@
 package platform.game.actors.basic;
 
-import platform.game.Actor;
-import platform.game.Effect;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -10,16 +8,17 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ * An actor defined by its position, size, direction and sprite
  */
-public abstract class DirectedActor extends PositionedActor {
+public abstract class OrientedActor extends PositionedActor {
 	private Direction direction;
 
-	public DirectedActor(String spriteName, double size, Vector position, Direction direction) {
+	public OrientedActor(String spriteName, double size, Vector position, Direction direction) {
 		super(spriteName, size, position);
 		this.direction = direction;
 	}
 
-	public DirectedActor(Sprite sprite, double size, Vector position, Direction direction) {
+	public OrientedActor(Sprite sprite, double size, Vector position, Direction direction) {
 		super(sprite, size, position);
 		this.direction = direction;
 	}
@@ -39,7 +38,9 @@ public abstract class DirectedActor extends PositionedActor {
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
-		if (sprite != null) { output.drawSprite(sprite, super.getBox(), getDirection().getRotation()); }
+		if (sprite != null) {
+			output.drawSprite(sprite, super.getBox(), getDirection().getRotation());
+		}
 	}
 
 	protected double getHitboxXRatio() {

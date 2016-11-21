@@ -8,6 +8,7 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ * An actor which has a life and which can loose it.
  */
 public abstract class LivingActor extends MovableActor {
 	private double maxHealth;

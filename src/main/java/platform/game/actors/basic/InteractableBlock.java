@@ -7,7 +7,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public abstract class InteractableBlock extends DirectedActor {
+public abstract class InteractableBlock extends OrientedActor {
 	public InteractableBlock(String spriteName, double size, Vector position, Direction direction) {
 		super(spriteName, size, position, direction);
 	}
