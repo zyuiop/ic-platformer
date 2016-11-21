@@ -1,18 +1,20 @@
-package platform.game;
-
-import platform.util.Input;
-import platform.util.Vector;
+package platform.game.actors;
 
 import java.awt.event.KeyEvent;
+import platform.game.Actor;
+import platform.game.Effect;
+import platform.game.actors.basic.LivingActor;
+import platform.util.Input;
+import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public class Player extends Entity {
+public class Player extends LivingActor {
 	private boolean isColliding = false;
 
 	public Player(Vector position, Vector velocity) {
-		super(position, velocity, "blocker.happy", .5);
+		super("blocker.happy", .5, position, velocity, 10);
 	}
 
 	@Override
@@ -32,28 +34,31 @@ public class Player extends Entity {
 			if (getVelocity().getX() < maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
 				double speed = getVelocity().getX() + increase;
-				if (speed > maxSpeed)
-					speed = maxSpeed;
+				if (speed > maxSpeed) { speed = maxSpeed; }
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
 		} else if (input.getKeyboardButton(KeyEvent.VK_LEFT).isDown()) {
 			if (getVelocity().getX() > -maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
 				double speed = getVelocity().getX() - increase;
-				if (speed < -maxSpeed)
-					speed = -maxSpeed;
+				if (speed < -maxSpeed) { speed = -maxSpeed; }
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
 		}
 
-		if (input.getKeyboardButton(KeyEvent.VK_UP).isPressed() && isColliding)
+		if (input.getKeyboardButton(KeyEvent.VK_UP).isPressed() && isColliding) {
 			setVelocity(new Vector(getVelocity().getX(), 7D));
+		}
 
 		if (input.getKeyboardButton(KeyEvent.VK_SPACE).isPressed()) {
 			Vector fireballSpeed = getVelocity().add(getVelocity().resized(2.0));
 			getWorld().register(new Fireball(getPosition(), fireballSpeed, this));
 		}
 
+		if (input.getKeyboardButton(KeyEvent.VK_B).isPressed()) {
+			getWorld().hurt(getBox(), this, Effect.AIR, 1.0, getPosition());
+			getWorld().register(new BlowAnimation(getPosition()));
+		}
 
 		super.update(input);
 	}
@@ -66,10 +71,8 @@ public class Player extends Entity {
 			if (delta != null) {
 				setPosition(getPosition().add(delta));
 
-				if (delta.getX() != 0D)
-					setVelocity(new Vector(0D, getVelocity().getY()));
-				if (delta.getY() != 0D)
-					setVelocity(new Vector(getVelocity().getX(), 0D));
+				if (delta.getX() != 0D) { setVelocity(new Vector(0D, getVelocity().getY())); }
+				if (delta.getY() != 0D) { setVelocity(new Vector(getVelocity().getX(), 0D)); }
 
 				this.isColliding = true;
 			}
@@ -84,8 +87,8 @@ public class Player extends Entity {
 
 	@Override
 	public void postUpdate(Input input) {
-		super.postUpdate(input);
 		getWorld().setView(getPosition(), 8D);
+		super.postUpdate(input);
 	}
 
 	@Override
@@ -97,5 +100,11 @@ public class Player extends Entity {
 			default:
 				return super.hurt(damageFrom, damageType, amount, location);
 		}
+	}
+
+	@Override
+	public void die() {
+		getWorld().nextLevel();
+		super.die();
 	}
 }

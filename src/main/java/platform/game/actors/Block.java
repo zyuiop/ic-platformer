@@ -1,5 +1,6 @@
-package platform.game;
+package platform.game.actors;
 
+import platform.game.Actor;
 import platform.util.*;
 
 /**
@@ -7,15 +8,19 @@ import platform.util.*;
  */
 public class Block extends Actor {
 	private final Box box;
-	private final Sprite sprite;
+	private final String spriteName;
+	private Sprite sprite;
 
-	public Block(Box box, Sprite sprite) {
+	public Block(Box box, String sprite) {
 		this.box = box;
-		this.sprite = sprite;
+		this.spriteName = sprite;
 	}
 
 	@Override
 	public void draw(Input input, Output output) {
+		if (sprite == null && spriteName != null)
+			sprite = getSprite(spriteName);
+
 		if (sprite != null)
 			output.drawSprite(sprite, box);
 	}

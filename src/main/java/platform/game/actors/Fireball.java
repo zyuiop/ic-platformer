@@ -1,5 +1,8 @@
-package platform.game;
+package platform.game.actors;
 
+import platform.game.Actor;
+import platform.game.Effect;
+import platform.game.actors.basic.MovableActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -7,7 +10,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Fireball extends Entity {
+public class Fireball extends MovableActor {
 	private Actor sender;
 
 	public Fireball(Vector position, Vector velocity, Actor sender) {
@@ -15,7 +18,7 @@ public class Fireball extends Entity {
 	}
 
 	public Fireball(Vector position, Vector velocity, Actor sender, double size) {
-		super(position, velocity, "fireball", size);
+		super("fireball", size, position, velocity);
 		this.sender = sender;
 	}
 
@@ -26,8 +29,8 @@ public class Fireball extends Entity {
 
 	@Override
 	public void draw(Input input, Output output) {
-		if (getSprite() != null)
-			output.drawSprite(getSprite(), getBox(), input.getTime());
+		if (getCurrentSprite() != null)
+			output.drawSprite(getCurrentSprite(), getBox(), input.getTime());
 	}
 
 	@Override
