@@ -3,6 +3,7 @@ package platform.game.actors.environment;
 import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.entities.Player;
 import platform.game.level.Level;
 import platform.util.Box;
 import platform.util.Input;
@@ -38,6 +39,13 @@ public class Exit extends DisplayableActor {
 	@Override
 	public void interact(Actor other) {
 		super.interact(other);
+
+		if (other instanceof Player && signal.isActive()) {
+			if (getBox().isColliding(other.getBox())) {
+				getWorld().setNextLevel(targetLevel);
+				getWorld().nextLevel();
+			}
+		}
 	}
 
 	@Override
