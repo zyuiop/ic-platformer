@@ -201,5 +201,5 @@ public final class Vector {
     public Vector mixed(Vector other, double factor) {
         return new Vector(x * (1.0 - factor) + other.x * factor, y * (1.0 - factor) + other.y * factor);
     }
-	
+
 }

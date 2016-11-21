@@ -36,14 +36,14 @@ public class Fireball extends MovableActor {
 	@Override
 	public void interact(Actor other) {
 		super.interact(other);
-		if (other.getBox().isColliding(getBox()) && !other.equals(sender)) {
+		if (getBox().isColliding(other.getBox()) && !other.equals(sender)) {
 			if (other.hurt(this, Effect.FIRE, 1D, getPosition())) {
 				getWorld().unregister(this);
 				return; // don't change velocity or anything
 			}
 		}
 
-		if (other.isSolid()) {
+		if (other.isSolid() && other.getBox() != null) {
 			Vector delta = other.getBox().getCollision(getPosition());
 			if (delta != null) {
 				setPosition(getPosition().add(delta));

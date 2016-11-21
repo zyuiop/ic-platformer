@@ -22,7 +22,7 @@ public class Block extends Actor {
 			sprite = getSprite(spriteName);
 
 		if (sprite != null)
-			output.drawSprite(sprite, box);
+			output.drawSprite(sprite, getBox());
 	}
 
 	@Override

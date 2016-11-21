@@ -61,6 +61,10 @@ public class Player extends LivingActor {
 			getWorld().register(new BlowAnimation(getPosition()));
 		}
 
+		if (input.getKeyboardButton(KeyEvent.VK_E).isPressed()) {
+			getWorld().hurt(getBox(), this, Effect.ACTIVATION, 1.0, getPosition());
+		}
+
 		super.update(input);
 	}
 
