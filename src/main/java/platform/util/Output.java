@@ -1,5 +1,7 @@
 package platform.util;
 
+import java.awt.*;
+
 /**
  * Provides a rendering context, with its own coordinate system (i.e. unit is not guaranteed to be the pixel, the implementation is free to scale objects).
  */
@@ -31,7 +33,6 @@ public interface Output {
      * @param transparency transparency multiplier, between 0.0 and 1.0
      */
     public void drawSprite(Sprite sprite, Box location, double angle, double transparency);
-	
-    
-    
+
+	void drawText(String text, Vector position, Font font, Color color);
 }

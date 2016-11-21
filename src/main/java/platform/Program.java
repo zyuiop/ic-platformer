@@ -1,7 +1,10 @@
 package platform;
 
 import java.awt.Color;
+import java.io.File;
+
 import platform.game.Simulator;
+import platform.game.settings.KeyBindings;
 import platform.util.BufferedLoader;
 import platform.util.DefaultLoader;
 import platform.util.Display;
@@ -18,6 +21,9 @@ public class Program {
         
         // Create components
         Loader loader = new BufferedLoader(new FileLoader("resources/", DefaultLoader.INSTANCE));
+        KeyBindings bindings = new KeyBindings(new File("keyboard.properties"));
+        bindings.load();
+
         Display display = new SwingDisplay();
         display.setBackground(Color.WHITE);
         try {

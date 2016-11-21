@@ -47,7 +47,7 @@ public class Simulator implements World {
 	 * @param output output object to use, not null
 	 */
 	public void update(Input input, Output output) {
-		double factor = 0.001;
+		double factor = 0.1;
 		center = center.mul(1.0 - factor).add(expectedCenter.mul(factor));
 		radius = radius * (1.0 - factor) + expectedRadius * factor;
 
@@ -92,6 +92,7 @@ public class Simulator implements World {
 		Level level = nextLevel;
 		passLevel = false;
 		nextLevel = null;
+		actors.forEach(Actor::unregister);
 		actors.clear();
 		toAdd.clear();
 		toRemove.clear();

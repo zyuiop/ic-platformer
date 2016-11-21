@@ -1,5 +1,7 @@
 package platform.util;
 
+import java.awt.*;
+
 /**
  * Applies a simple coordinate transform.
  */
@@ -116,5 +118,9 @@ public abstract class Transform implements Input, Output {
     public void drawSprite(Sprite sprite, Box location, double angle, double transparency) {
         output.drawSprite(sprite, convertFromView(location), angle, transparency);
     }
-    
+
+    @Override
+    public void drawText(String text, Vector position, Font font, Color color) {
+        output.drawText(text, convertFromView(position), font, color);
+    }
 }

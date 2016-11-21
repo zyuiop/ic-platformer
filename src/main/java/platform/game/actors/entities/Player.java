@@ -1,10 +1,13 @@
 package platform.game.actors.entities;
 
-import java.awt.event.KeyEvent;
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.game.World;
 import platform.game.actors.animations.BlowAnimation;
+import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
+import platform.game.settings.KeyBindings;
+import platform.game.settings.KeyBindings.Key;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -12,10 +15,17 @@ import platform.util.Vector;
  * @author zyuiop
  */
 public class Player extends LivingActor {
+	private KeyBindings bindings;
 	private boolean isColliding = false;
 
-	public Player(Vector position, Vector velocity) {
+	public Player(Vector position, Vector velocity, KeyBindings bindings) {
 		super("blocker.happy", .5, position, velocity, 10);
+		this.bindings = bindings;
+	}
+
+	public Player(Vector position, Vector velocity, double maxhealth, double health, KeyBindings bindings) {
+		super("blocker.happy", .5, position, velocity, maxhealth, health);
+		this.bindings = bindings;
 	}
 
 	@Override
@@ -31,37 +41,41 @@ public class Player extends LivingActor {
 		}
 
 		double maxSpeed = 4.0;
-		if (input.getKeyboardButton(KeyEvent.VK_RIGHT).isDown()) {
+		if (bindings.isDown(input, Key.RIGHT)) {
 			if (getVelocity().getX() < maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
 				double speed = getVelocity().getX() + increase;
-				if (speed > maxSpeed) { speed = maxSpeed; }
+				if (speed > maxSpeed) {
+					speed = maxSpeed;
+				}
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
-		} else if (input.getKeyboardButton(KeyEvent.VK_LEFT).isDown()) {
+		} else if (bindings.isDown(input, Key.LEFT)) {
 			if (getVelocity().getX() > -maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
 				double speed = getVelocity().getX() - increase;
-				if (speed < -maxSpeed) { speed = -maxSpeed; }
+				if (speed < -maxSpeed) {
+					speed = -maxSpeed;
+				}
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
 		}
 
-		if (input.getKeyboardButton(KeyEvent.VK_UP).isPressed() && isColliding) {
+		if (bindings.isPressed(input, Key.UP) && isColliding) {
 			setVelocity(new Vector(getVelocity().getX(), 7D));
 		}
 
-		if (input.getKeyboardButton(KeyEvent.VK_SPACE).isPressed()) {
+		if (bindings.isPressed(input, Key.ATTACK)) {
 			Vector fireballSpeed = getVelocity().add(getVelocity().resized(2.0));
 			getWorld().register(new Fireball(getPosition(), fireballSpeed, this));
 		}
 
-		if (input.getKeyboardButton(KeyEvent.VK_B).isPressed()) {
+		if (bindings.isPressed(input, Key.BLOW)) {
 			getWorld().hurt(getBox(), this, Effect.AIR, 1.0, getPosition());
 			getWorld().register(new BlowAnimation(getPosition()));
 		}
 
-		if (input.getKeyboardButton(KeyEvent.VK_E).isPressed()) {
+		if (bindings.isPressed(input, Key.USE)) {
 			getWorld().hurt(getBox(), this, Effect.ACTIVATION, 1.0, getPosition());
 		}
 
@@ -76,8 +90,12 @@ public class Player extends LivingActor {
 			if (delta != null) {
 				setPosition(getPosition().add(delta));
 
-				if (delta.getX() != 0D) { setVelocity(new Vector(0D, getVelocity().getY())); }
-				if (delta.getY() != 0D) { setVelocity(new Vector(getVelocity().getX(), 0D)); }
+				if (delta.getX() != 0D) {
+					setVelocity(new Vector(0D, getVelocity().getY()));
+				}
+				if (delta.getY() != 0D) {
+					setVelocity(new Vector(getVelocity().getX(), 0D));
+				}
 
 				this.isColliding = true;
 			}
@@ -109,7 +127,13 @@ public class Player extends LivingActor {
 
 	@Override
 	public void die() {
-		getWorld().nextLevel();
 		super.die();
+		getWorld().nextLevel();
+	}
+
+	@Override
+	public void register(World world) {
+		super.register(world);
+		world.register(new Overlay(this));
 	}
 }

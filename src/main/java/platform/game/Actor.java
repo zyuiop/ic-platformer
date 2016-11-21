@@ -134,6 +134,8 @@ public abstract class Actor implements Comparable<Actor> {
 	 * @return true if the damage haad an effect on this actor
 	 */
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
+		if (damageType == Effect.VOID && getWorld() != null)
+			getWorld().unregister(this);
 		return false;
 	}
 }

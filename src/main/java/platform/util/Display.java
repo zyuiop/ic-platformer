@@ -26,5 +26,4 @@ public interface Display extends Output, Input {
     
     /** @return whether the user requested to close the window */
     public boolean isCloseRequested();
-    
 }

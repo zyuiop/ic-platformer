@@ -20,11 +20,18 @@ public abstract class LivingActor extends MovableActor {
 		this.health = maxHealth;
 	}
 
+	public LivingActor(String spriteName, double size, Vector position, Vector velocity, double maxHealth, double health) {
+		super(spriteName, size, position, velocity);
+		this.maxHealth = maxHealth;
+		this.health = health;
+	}
+
 	public LivingActor(Sprite sprite, double size, Vector position, Vector velocity, double maxHealth) {
 		super(sprite, size, position, velocity);
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 	}
+
 
 	public double getHealth() {
 		return health;
