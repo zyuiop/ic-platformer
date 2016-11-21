@@ -5,6 +5,7 @@ import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.entities.Player;
+import platform.game.data.ActorFactory;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -65,5 +66,19 @@ public class Lever extends PositionedActor implements Signal {
 			setSpriteName("lever.right");
 	}
 
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
 
+		active = factory.getDataMap().get("active").getAsInt() == 1;
+		duration = factory.getDataMap().get("duration").getAsDouble();
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("active", active ? 1 : 0);
+		factory.getDataMap().put("duration", duration);
+	}
 }

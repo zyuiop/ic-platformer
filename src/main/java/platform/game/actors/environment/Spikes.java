@@ -3,6 +3,7 @@ package platform.game.actors.environment;
 import platform.game.Effect;
 import platform.game.actors.basic.InteractableBlock;
 import platform.game.actors.basic.MovableActor;
+import platform.game.data.ActorFactory;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -12,6 +13,9 @@ import platform.util.Vector;
 public class Spikes extends InteractableBlock {
 	private double damage = 5D;
 	private double cooldown = 0;
+
+	protected Spikes() {
+	}
 
 	public Spikes(Vector position, double size) {
 		this(position, size, Direction.UP, 5D);
@@ -48,5 +52,19 @@ public class Spikes extends InteractableBlock {
 	@Override
 	public boolean isSolid() {
 		return false;
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		damage = factory.getDataMap().get("damage").getAsDouble();
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("damage", damage);
 	}
 }

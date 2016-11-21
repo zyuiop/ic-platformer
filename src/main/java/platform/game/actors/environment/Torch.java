@@ -4,6 +4,7 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
+import platform.game.data.ActorFactory;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -13,6 +14,9 @@ import platform.util.Vector;
 public class Torch extends PositionedActor implements Signal {
 	private boolean lit;
 	private double variation = 0D;
+
+	protected Torch() {
+	}
 
 	public Torch(Vector position) {
 		this(position, false);
@@ -77,5 +81,19 @@ public class Torch extends PositionedActor implements Signal {
 	@Override
 	public boolean isActive() {
 		return lit;
+	}
+
+	@Override
+	public void read(ActorFactory factory) {
+		super.read(factory);
+
+		lit = factory.getDataMap().get("lit").getAsInt() == 1;
+	}
+
+	@Override
+	public void write(ActorFactory factory) {
+		super.write(factory);
+
+		factory.getDataMap().put("lit", lit ? 1 : 0);
 	}
 }
