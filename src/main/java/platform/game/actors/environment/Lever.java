@@ -24,9 +24,9 @@ public class Lever extends PositionedActor implements Signal {
 	}
 
 	public Lever(Vector position, double size, double duration, boolean active) {
-		super("lever.left", size, position);
+		super(active ? "lever.left" : "lever.right", size, position);
 		this.duration = duration;
-		setActive(active);
+		this.active = active;
 	}
 
 	@Override

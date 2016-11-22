@@ -6,8 +6,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
- *
- * An actor defined by its position and sprite
+ *         <p>
+ *         An actor defined by its position and sprite
  */
 public abstract class PositionedActor extends DisplayableActor {
 	protected final double sizeX;
@@ -51,11 +51,13 @@ public abstract class PositionedActor extends DisplayableActor {
 
 	private boolean positionChanged() {
 		Vector currentPosition = getPosition();
-		if (currentPosition != null && lastCalcBase == null || !lastCalcBase.equals(currentPosition)) {
-			lastCalcBase = currentPosition;
-			return true;
-		}
-		return false;
+		if (lastCalcBase == null && currentPosition == null)
+			return false;
+		if (lastCalcBase != null && currentPosition != null && currentPosition.equals(lastCalcBase))
+			return false;
+
+		lastCalcBase = currentPosition;
+		return true;
 	}
 
 	public Box getBox() {
