@@ -10,14 +10,14 @@ import platform.util.Sprite;
  */
 public class Background extends Actor {
 	private final String spriteName;
-	private final boolean resizeX;
-	private final boolean resizeY;
+	private final boolean repeatX;
+	private final boolean repeatY;
 	private Sprite sprite;
 
-	public Background(String name, boolean resizeX, boolean resizeY) {
+	public Background(String name, boolean repeatX, boolean repeatY) {
 		spriteName = name;
-		this.resizeX = resizeX;
-		this.resizeY = resizeY;
+		this.repeatX = repeatX;
+		this.repeatY = repeatY;
 	}
 
 	public Background(String spriteName) {
@@ -33,6 +33,6 @@ public class Background extends Actor {
 	public void draw(Input input, Output output) {
 		if (sprite == null)
 			sprite = getSprite(spriteName);
-		output.drawBackground(sprite, resizeX, resizeY);
+		output.drawBackground(sprite, repeatX, repeatY);
 	}
 }
