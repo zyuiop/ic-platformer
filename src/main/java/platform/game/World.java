@@ -3,6 +3,7 @@ package platform.game;
 import platform.game.level.Level;
 import platform.util.Box;
 import platform.util.Loader;
+import platform.util.sounds.SoundLoader;
 import platform.util.Vector;
 
 
@@ -15,6 +16,11 @@ public interface World {
 	 * @return associated loader, not null
 	 */
 	Loader getLoader();
+
+	/**
+	 * @return associated sound loader, not null
+	 */
+	SoundLoader getSoundLoader();
 
 	/**
 	 * Set viewport location and size.

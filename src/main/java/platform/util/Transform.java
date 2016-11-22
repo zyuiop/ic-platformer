@@ -1,12 +1,13 @@
 package platform.util;
 
 import java.awt.*;
+import platform.util.sounds.Sound;
 
 /**
  * Applies a simple coordinate transform.
  */
 public abstract class Transform implements Input, Output {
-    
+
     private Input input;
 	private Output output;
 
@@ -31,14 +32,14 @@ public abstract class Transform implements Input, Output {
     public Output getOutput() {
         return output;
     }
-    
+
     /**
      * Transform point to view coordinates.
      * @param x point in underlying system coordinates, not null
      * @return point in view coordinates, not null
      */
     public abstract Vector convertToView(Vector x);
-    
+
     /**
      * Transform box to view coordinates.
      * @param x box in underlying system coordinates, not null
@@ -47,14 +48,14 @@ public abstract class Transform implements Input, Output {
     public Box convertToView(Box x) {
         return new Box(convertToView(x.getMin()), convertToView(x.getMax()));
     }
-    
+
     /**
      * Transform point to underlying system coordinates.
      * @param x point in view coordinates, not null
      * @return point in underlying system coordinates, not null
      */
     public abstract Vector convertFromView(Vector x);
-    
+
     /**
      * Transform box to underlying system coordinates.
      * @param x box in view coordinates, not null
@@ -63,12 +64,12 @@ public abstract class Transform implements Input, Output {
     public Box convertFromView(Box x) {
         return new Box(convertFromView(x.getMin()), convertFromView(x.getMax()));
     }
-    
+
     @Override
 	public Box getBox() {
 		return convertToView(output.getBox());
 	}
-	
+
     @Override
     public double getTime() {
         return input.getTime();
@@ -93,7 +94,7 @@ public abstract class Transform implements Input, Output {
     public int getMouseScroll() {
         return input.getMouseScroll();
     }
-    
+
     @Override
     public Button getKeyboardButton(int code) {
         return input.getKeyboardButton(code);
@@ -103,7 +104,7 @@ public abstract class Transform implements Input, Output {
     public Button getFocus() {
         return input.getFocus();
     }
-    
+
 	@Override
 	public void drawSprite(Sprite sprite, Box location) {
 		output.drawSprite(sprite, convertFromView(location));
@@ -113,7 +114,7 @@ public abstract class Transform implements Input, Output {
     public void drawSprite(Sprite sprite, Box location, double angle) {
         output.drawSprite(sprite, convertFromView(location), angle);
     }
-    
+
     @Override
     public void drawSprite(Sprite sprite, Box location, double angle, double transparency) {
         output.drawSprite(sprite, convertFromView(location), angle, transparency);

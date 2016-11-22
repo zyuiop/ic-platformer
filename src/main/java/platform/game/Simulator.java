@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import platform.game.actors.animations.Overlay;
 import platform.game.level.Level;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Loader;
 import platform.util.Output;
 import platform.util.SortedCollection;
+import platform.util.sounds.SoundLoader;
 import platform.util.Vector;
 import platform.util.View;
 
@@ -22,6 +22,7 @@ public class Simulator implements World {
 	private final List<Actor> toAdd = new ArrayList<>();
 	private final List<Actor> toRemove = new ArrayList<>();
 	private final Loader loader;
+	private final SoundLoader soundLoader;
 	private Level nextLevel = Level.createDefaultLevel();
 	private boolean passLevel = true; // when true, the level must be changed
 	private Vector center = Vector.ZERO;
@@ -33,11 +34,12 @@ public class Simulator implements World {
 
 	/**
 	 * Create a new simulator.
-	 *
-	 * @param loader associated loader, not null
+	 *  @param loader associated loader, not null
+	 * @param soundLoader
 	 * @param args level arguments, not null
 	 */
-	public Simulator(Loader loader, String[] args) {
+	public Simulator(Loader loader, SoundLoader soundLoader, String[] args) {
+		this.soundLoader = soundLoader;
 		if (loader == null) { throw new NullPointerException(); }
 		this.loader = loader;
 		this.center = Vector.ZERO;
@@ -166,5 +168,10 @@ public class Simulator implements World {
 			}
 		}
 		return victims;
+	}
+
+	@Override
+	public SoundLoader getSoundLoader() {
+		return soundLoader;
 	}
 }

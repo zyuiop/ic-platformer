@@ -4,8 +4,9 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
-import platform.game.actors.entities.Player;
 import platform.util.Input;
+import platform.util.Output;
+import platform.util.sounds.Sound;
 import platform.util.Vector;
 
 /**
@@ -13,7 +14,9 @@ import platform.util.Vector;
  */
 public class Lever extends PositionedActor implements Signal {
 	private boolean active = false;
+	private boolean playSound = false;
 	private double duration = 30D;
+	private double transition = 0;
 	private double time;
 
 	public Lever(Vector position, double size, double duration) {
@@ -41,6 +44,24 @@ public class Lever extends PositionedActor implements Signal {
 	}
 
 	@Override
+	public void draw(Input input, Output output) {
+		super.draw(input, output);
+
+		if (playSound) {
+			Sound sound = getWorld().getSoundLoader().getSound("creak2");
+			if (sound != null)
+				sound.play();
+		}
+	}
+
+	@Override
+	public void postUpdate(Input input) {
+		super.postUpdate(input);
+
+		playSound = false;
+	}
+
+	@Override
 	public boolean isActive() {
 		return active;
 	}
@@ -48,6 +69,20 @@ public class Lever extends PositionedActor implements Signal {
 	@Override
 	public void update(Input input) {
 		super.update(input);
+
+		if (transition > 0) {
+			transition -= input.getDeltaTime();
+			if (transition <= 0) {
+				if (this.active) {
+					setSpriteName("lever.left");
+					time = duration;
+				} else {
+					setSpriteName("lever.right");
+				}
+
+				transition = 0;
+			}
+		}
 
 		if (time > 0) {
 			time = Math.max(time - input.getDeltaTime(), 0);
@@ -58,10 +93,8 @@ public class Lever extends PositionedActor implements Signal {
 
 	private void setActive(boolean state) {
 		this.active = state;
-		if (this.active) {
-			setSpriteName("lever.left");
-			time = duration;
-		} else
-			setSpriteName("lever.right");
+		setSpriteName("lever.mid");
+		this.playSound = true;
+		this.transition = 0.3;
 	}
 }

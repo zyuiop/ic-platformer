@@ -1,6 +1,15 @@
 package platform.util;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,13 +20,19 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import platform.util.sounds.Sound;
 
 /**
  * Swing and AWT implementation of Output and Input interfaces.
@@ -339,5 +354,4 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
     public synchronized void mouseWheelMoved(MouseWheelEvent e) {
         mouseScrollBuffer -= e.getWheelRotation();
     }
-
 }

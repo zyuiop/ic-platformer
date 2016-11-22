@@ -29,6 +29,30 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>tinysound</artifactId>
+            <scope>compile</scope>
+            <systemPath>${pom.basedir}/tinysound-1.1.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>jorbis</artifactId>
+            <scope>compile</scope>
+            <systemPath>${pom.basedir}/jorbis-0.0.17.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>tritonus</artifactId>
+            <scope>compile</scope>
+            <systemPath>${pom.basedir}/tritonus_share.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>vorbisspi</artifactId>
+            <scope>compile</scope>
+            <systemPath>${pom.basedir}/vorbisspi1.0.3.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <!-- Build Settings -->
