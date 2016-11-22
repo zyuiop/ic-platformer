@@ -35,8 +35,6 @@ public class SlowWriteLabel extends Label {
 		if (letters >= super.getText().length())
 			return;
 
-		System.out.println(letters);
-
 		time += input.getDeltaTime();
 		if (time >= interval) {
 			letters++;
