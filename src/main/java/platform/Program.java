@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.io.File;
 
 import platform.game.Simulator;
-import platform.game.settings.KeyBindings;
+import platform.game.KeyBindings;
 import platform.util.BufferedLoader;
 import platform.util.DefaultLoader;
 import platform.util.Display;

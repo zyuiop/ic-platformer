@@ -1,4 +1,4 @@
-package platform.game.settings;
+package platform.game.menus;
 
 import platform.game.actors.basic.DisplayableActor;
 import platform.util.*;
@@ -19,8 +19,8 @@ public class ButtonActor extends DisplayableActor {
 	private final String hoverSprite;
 	private double width = 100;
 	private double heigth = 30;
-	private double paddingLeft = 5;
-	private double paddingBot = 5;
+	private double paddingLeft = 10;
+	private double paddingBot = 10;
 
 	public ButtonActor(ClickHandler handler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite) {
 		super(sprite);
@@ -51,7 +51,7 @@ public class ButtonActor extends DisplayableActor {
 	@Override
 	public void draw(Input input, Output output) {
 		super.draw(input, output);
-		output.drawText(text, position.add(new Vector(3, 5)), font, color);
+		output.drawText(text, position, font, color);
 	}
 
 	@Override

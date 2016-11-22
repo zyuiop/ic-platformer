@@ -1,7 +1,7 @@
-package platform.game.settings;
+package platform.game.menus.settings;
 
 import platform.game.Actor;
-import platform.game.settings.KeyBindings.Key;
+import platform.game.KeyBindings.Key;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;

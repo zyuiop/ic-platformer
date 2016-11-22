@@ -6,8 +6,8 @@ import platform.game.World;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
-import platform.game.settings.KeyBindings;
-import platform.game.settings.KeyBindings.Key;
+import platform.game.KeyBindings;
+import platform.game.KeyBindings.Key;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -134,6 +134,7 @@ public class Player extends LivingActor {
 	@Override
 	public void register(World world) {
 		super.register(world);
+		System.out.println("Register / " + getHealth() + " / " + getWorld());
 		world.register(new Overlay(this));
 	}
 }

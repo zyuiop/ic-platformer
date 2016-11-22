@@ -1,4 +1,4 @@
-package platform.game.settings;
+package platform.game;
 
 import platform.util.Input;
 

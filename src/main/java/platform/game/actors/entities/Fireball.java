@@ -12,6 +12,7 @@ import platform.util.Vector;
  */
 public class Fireball extends MovableActor {
 	private Actor sender;
+	private int bounces = 0;
 
 	public Fireball(Vector position, Vector velocity, Actor sender) {
 		this(position, velocity, sender, .4);
@@ -30,7 +31,15 @@ public class Fireball extends MovableActor {
 	@Override
 	public void draw(Input input, Output output) {
 		if (getCurrentSprite() != null)
-			output.drawSprite(getCurrentSprite(), getBox(), input.getTime());
+			output.drawSprite(getCurrentSprite(), getBox(), input.getTime(), 1 - ((double) bounces * 5) / 100);
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
+
+		if (bounces > 7)
+			getWorld().unregister(this);
 	}
 
 	@Override
@@ -48,6 +57,7 @@ public class Fireball extends MovableActor {
 			if (delta != null) {
 				setPosition(getPosition().add(delta));
 				setVelocity(getVelocity().mirrored(delta));
+				bounces++;
 			}
 		}
 	}

@@ -3,6 +3,8 @@ package platform.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import platform.game.actors.animations.Overlay;
 import platform.game.level.Level;
 import platform.util.Box;
 import platform.util.Input;
@@ -106,6 +108,7 @@ public class Simulator implements World {
 		actors.clear();
 		toAdd.clear();
 		toRemove.clear();
+		isRaw = false;
 
 		// register the new level
 		register(level);

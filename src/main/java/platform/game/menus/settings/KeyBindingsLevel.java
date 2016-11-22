@@ -1,10 +1,13 @@
-package platform.game.settings;
+package platform.game.menus.settings;
 
+import platform.game.KeyBindings;
 import platform.game.Simulator;
 import platform.game.World;
 import platform.game.actors.Label;
 import platform.game.level.Level;
-import platform.game.settings.KeyBindings.Key;
+import platform.game.menus.ButtonActor;
+import platform.game.KeyBindings.Key;
+import platform.game.menus.main.MainMenuLevel;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -60,9 +63,9 @@ public class KeyBindingsLevel extends Level {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				getWorld().setNextLevel(new KeyBindingsLevel());
+				getWorld().setNextLevel(new MainMenuLevel());
 				getWorld().nextLevel();
-			}, new Vector(30, 35), font.deriveFont(Font.BOLD, 15), Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 150, 30, 5, 5));
+			}, new Vector(30, 35), font.deriveFont(Font.BOLD, 15), Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 150, 30, 10, 10));
 
 			world.register(new ButtonActor(() -> {
 				try {
@@ -70,9 +73,9 @@ public class KeyBindingsLevel extends Level {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				getWorld().setNextLevel(new KeyBindingsLevel());
+				getWorld().setNextLevel(new MainMenuLevel());
 				getWorld().nextLevel();
-			}, new Vector(200, 35), font.deriveFont(Font.BOLD, 15), Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 150, 30, 5, 5));
+			}, new Vector(200, 35), font.deriveFont(Font.BOLD, 15), Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 150, 30, 10, 10));
 
 			world.register(new Label(100, new Vector(30, pos), "Configuration des touches", font.deriveFont(Font.BOLD, 20), Color.BLACK));
 		} catch (FontFormatException | IOException e) {

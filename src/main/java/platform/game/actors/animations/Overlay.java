@@ -1,6 +1,7 @@
 package platform.game.actors.animations;
 
 import platform.game.Actor;
+import platform.game.World;
 import platform.game.actors.basic.LivingActor;
 import platform.util.Box;
 import platform.util.Input;
@@ -38,7 +39,9 @@ public class Overlay extends Actor {
 	public void postUpdate(Input input) {
 		super.postUpdate(input);
 
-		if (parent.isDead()) { getWorld().unregister(this); }
+		if (parent.isDead()) {
+			getWorld().unregister(this);
+		}
 	}
 
 	public Box getBox(int i) {

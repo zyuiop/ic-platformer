@@ -2,7 +2,7 @@ package platform.game.level;
 
 import platform.game.World;
 import platform.game.actors.entities.Player;
-import platform.game.settings.KeyBindings;
+import platform.game.KeyBindings;
 import platform.util.Vector;
 
 /**

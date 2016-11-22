@@ -1,7 +1,8 @@
-package platform.game.settings;
+package platform.game.menus.settings;
 
+import platform.game.KeyBindings;
 import platform.game.actors.basic.DisplayableActor;
-import platform.game.settings.KeyBindings.Key;
+import platform.game.KeyBindings.Key;
 import platform.util.*;
 
 import java.awt.event.MouseEvent;
@@ -65,7 +66,7 @@ public class AddKeyActor extends DisplayableActor {
 
 	@Override
 	public Box getBox() {
-		return new Box(position.add(new Vector(-5, -5)), position.add(new Vector(30, 30)));
+		return new Box(position.add(new Vector(-10, -10)), position.add(new Vector(30, 30)));
 	}
 
 	@Override
