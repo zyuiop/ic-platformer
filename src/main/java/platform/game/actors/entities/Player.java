@@ -9,6 +9,7 @@ import platform.game.actors.basic.LivingActor;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.menus.main.MainMenuLevel;
+import platform.game.particles.ParticleEffect;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -74,6 +75,7 @@ public class Player extends LivingActor {
 		if (bindings.isPressed(input, Key.BLOW)) {
 			getWorld().hurt(getBox(), this, Effect.AIR, 1.0, getPosition());
 			getWorld().register(new BlowAnimation(getPosition()));
+			ParticleEffect.BLOW.play(getWorld(), getPosition());
 		}
 
 		if (bindings.isPressed(input, Key.USE)) {

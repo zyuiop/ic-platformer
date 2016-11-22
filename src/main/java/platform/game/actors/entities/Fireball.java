@@ -31,7 +31,7 @@ public class Fireball extends MovableActor {
 	@Override
 	public void draw(Input input, Output output) {
 		if (getCurrentSprite() != null)
-			output.drawSprite(getCurrentSprite(), getBox(), input.getTime(), 1 - ((double) bounces * 5) / 100);
+			output.drawSprite(getCurrentSprite(), getBox(), input.getTime(), 1 - ((double) bounces * 8) / 100);
 	}
 
 	@Override

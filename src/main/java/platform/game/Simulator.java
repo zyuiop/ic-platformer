@@ -85,7 +85,7 @@ public class Simulator implements World {
 		toRemove.forEach(Actor::unregister);
 		toRemove.clear();
 
-		// And finally we check if we have to go to the next level
+		// And finally we check if we have to go to the add level
 		if (passLevel) { passLevel(); }
 	}
 

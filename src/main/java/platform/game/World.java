@@ -43,14 +43,14 @@ public interface World {
 	Vector getGravity();
 
 	/**
-	 * Start the previously defined next level.
+	 * Start the previously defined add level.
 	 * @see World#setNextLevel(Level)
 	 */
 	void nextLevel();
 
 	/**
-	 * Set the next level. The next level is started when {@link World#nextLevel()} is called
-	 * @param level the next level to set
+	 * Set the add level. The add level is started when {@link World#nextLevel()} is called
+	 * @param level the add level to set
 	 */
 	void setNextLevel(Level level);
 

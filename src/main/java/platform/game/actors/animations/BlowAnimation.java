@@ -9,7 +9,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class BlowAnimation extends PositionedActor {
+public class BlowAnimation extends ParticleActor {
 	private double time;
 
 	public BlowAnimation(Vector position) {

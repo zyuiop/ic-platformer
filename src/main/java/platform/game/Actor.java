@@ -136,4 +136,8 @@ public abstract class Actor implements Comparable<Actor> {
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
 		return false;
 	}
+
+	public boolean isRegistered() {
+		return getWorld() != null;
+	}
 }
