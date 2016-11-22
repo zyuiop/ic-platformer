@@ -1,21 +1,16 @@
 package platform.game.level;
 
-import platform.game.Actor;
 import platform.game.World;
-import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.OrientedActor;
-import platform.game.actors.entities.Player;
+import platform.game.actors.blocks.AlwaysMovingPlatform;
+import platform.game.actors.blocks.Block;
+import platform.game.actors.blocks.Jumper;
+import platform.game.actors.blocks.Spikes;
 import platform.game.actors.environment.*;
 import platform.game.logic.And;
 import platform.game.logic.Not;
 import platform.util.Box;
-import platform.util.Input;
-import platform.util.Output;
 import platform.util.Vector;
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class BasicLevel extends PlayableLevel {
 	@Override

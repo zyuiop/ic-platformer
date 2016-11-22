@@ -1,4 +1,4 @@
-package platform.game.actors.environment;
+package platform.game.actors.blocks;
 
 import platform.game.Actor;
 import platform.util.*;

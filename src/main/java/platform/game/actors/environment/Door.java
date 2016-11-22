@@ -2,6 +2,7 @@ package platform.game.actors.environment;
 
 import platform.game.Signal;
 import platform.game.actors.animations.BlowAnimation;
+import platform.game.actors.blocks.Block;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
