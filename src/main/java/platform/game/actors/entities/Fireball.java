@@ -2,7 +2,6 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.Effect;
-import platform.game.actors.basic.MovableActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -10,8 +9,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Fireball extends MovableActor {
-	private Actor sender;
+public class Fireball extends Projectile {
 	private int bounces = 0;
 
 	public Fireball(Vector position, Vector velocity, Actor sender) {
@@ -19,13 +17,31 @@ public class Fireball extends MovableActor {
 	}
 
 	public Fireball(Vector position, Vector velocity, Actor sender, double size) {
-		super("fireball", size, position, velocity);
-		this.sender = sender;
+		super("fireball", position, velocity, sender, size);
 	}
 
 	@Override
 	public int getPriority() {
 		return 1000;
+	}
+
+	@Override
+	protected boolean damage(Actor other) {
+		if (other.hurt(this, Effect.FIRE, 1D, getPosition())) {
+			getWorld().unregister(this); // unregister when damage given
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	protected void hitBlock(Actor solidActor, Vector delta) {
+		// change direction on block hit
+
+		setPosition(getPosition().add(delta));
+		setVelocity(getVelocity().mirrored(delta));
+		bounces++;
 	}
 
 	@Override
@@ -40,25 +56,5 @@ public class Fireball extends MovableActor {
 
 		if (bounces > 7)
 			getWorld().unregister(this);
-	}
-
-	@Override
-	public void interact(Actor other) {
-		super.interact(other);
-		if (getBox().isColliding(other.getBox()) && !other.equals(sender)) {
-			if (other.hurt(this, Effect.FIRE, 1D, getPosition())) {
-				getWorld().unregister(this);
-				return; // don't change velocity or anything
-			}
-		}
-
-		if (other.isSolid() && other.getBox() != null) {
-			Vector delta = other.getBox().getCollision(getPosition());
-			if (delta != null) {
-				setPosition(getPosition().add(delta));
-				setVelocity(getVelocity().mirrored(delta));
-				bounces++;
-			}
-		}
 	}
 }

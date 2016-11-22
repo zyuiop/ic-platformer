@@ -2,7 +2,6 @@ package platform.game.actors.animations;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
