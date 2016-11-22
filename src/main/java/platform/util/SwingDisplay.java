@@ -265,18 +265,19 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 	}
 
 	@Override
-	public void drawBackground(Sprite sprite, boolean repeatX, boolean repeatY) {
+	public void drawBackground(Sprite sprite, boolean resizeX, boolean resizeY) {
 		double ratio = (double) sprite.getWidth() / (double) sprite.getHeight();
-		int width = repeatX ? sprite.getWidth() : canvas.getWidth();
-		int height = repeatY ? sprite.getHeight() : canvas.getHeight();
 
-		if (!repeatX && repeatY) {
-			height = (int) (width * ratio);
-		} else if (repeatX && !repeatY) {
-			width = (int) (height / ratio);
+		int width = !resizeX ? canvas.getWidth() : sprite.getWidth();
+		int height = !resizeY ? canvas.getHeight() : sprite.getHeight();
+
+		if (!resizeX && resizeY) {
+			height = (int) (width / ratio);
+		} else if (resizeX && !resizeY) {
+			width = (int) (height * ratio);
 		}
 
-		textGraphics.setPaint(new TexturePaint(sprite.getImage(), new Rectangle(0, 0, height, width)));
+		textGraphics.setPaint(new TexturePaint(sprite.getImage(), new Rectangle(0, 0, width, height)));
 
 		textGraphics.fill(new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight()));
 	}
