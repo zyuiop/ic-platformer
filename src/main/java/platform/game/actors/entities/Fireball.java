@@ -11,13 +11,15 @@ import platform.util.Vector;
  */
 public class Fireball extends Projectile {
 	private int bounces = 0;
+	private double damage = 1D;
 
 	public Fireball(Vector position, Vector velocity, Actor sender) {
-		this(position, velocity, sender, .4);
+		super("fireball", position, velocity, sender, .4);
 	}
 
-	public Fireball(Vector position, Vector velocity, Actor sender, double size) {
-		super("fireball", position, velocity, sender, size);
+	public Fireball(Vector position, Vector velocity, Actor sender, double damage) {
+		super("fireball", position, velocity, sender, .4);
+		this.damage = damage;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class Fireball extends Projectile {
 
 	@Override
 	protected boolean damage(Actor other) {
-		if (other.hurt(this, Effect.FIRE, 1D, getPosition())) {
+		if (other.hurt(this, Effect.FIRE, damage, getPosition())) {
 			getWorld().unregister(this); // unregister when damage given
 			return true;
 		}

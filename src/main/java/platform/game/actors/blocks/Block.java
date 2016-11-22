@@ -1,28 +1,24 @@
 package platform.game.actors.blocks;
 
-import platform.game.Actor;
-import platform.util.*;
+import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.basic.PositionedActor;
+import platform.util.Box;
+import platform.util.Vector;
 
 /**
  * Simple solid actor that does nothing.
  */
-public class Block extends Actor {
-	private final Box box;
-	private final String spriteName;
-	private Sprite sprite;
-
-	public Block(Box box, String sprite) {
-		this.box = box;
-		this.spriteName = sprite;
+public class Block extends PositionedActor {
+	public Block(Box box, String spriteName) {
+		super(spriteName, box.getWidth(), box.getHeight(), box.getCenter());
 	}
 
-	@Override
-	public void draw(Input input, Output output) {
-		if (sprite == null && spriteName != null)
-			sprite = getSprite(spriteName);
+	public Block(String spriteName, double size, Vector position) {
+		super(spriteName, size, position);
+	}
 
-		if (sprite != null)
-			output.drawSprite(sprite, getBox());
+	public Block(String spriteName, double sizeX, double sizeY, Vector position) {
+		super(spriteName, sizeX, sizeY, position);
 	}
 
 	@Override
@@ -33,10 +29,5 @@ public class Block extends Actor {
 	@Override
 	public boolean isSolid() {
 		return true;
-	}
-
-	@Override
-	public Box getBox() {
-		return box;
 	}
 }

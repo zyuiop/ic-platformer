@@ -2,22 +2,77 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.util.Input;
+import platform.util.Output;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
 public class Arrow extends AtachableProjectible {
+	private double damage = 2D;
+	private double baseAttachTime = 45D;
+	private double attachTime = 45D; // expiration time
+	private double blink = 0D;
+
 	public Arrow(Vector position, Vector velocity, Actor sender) {
-		super("arrow", position, velocity, sender, 1, 0.25);
+		super("arrow", position, velocity, sender, .75, 0.1725);
+	}
+
+	public Arrow(Vector position, Vector velocity, Actor sender, double damage) {
+		super("arrow", position, velocity, sender, .75, 0.1725);
+		this.damage = damage;
+	}
+
+	public Arrow(Vector position, Vector velocity, Actor sender, double damage, double attachTime) {
+		super("arrow", position, velocity, sender, .75, 0.1725);
+		this.damage = damage;
+		this.baseAttachTime = attachTime;
+		this.attachTime = attachTime;
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
+
+		if (isAttached()) {
+			attachTime -= input.getDeltaTime();
+
+			if (attachTime < 3) {
+				if (attachTime <= 0) {
+					getWorld().unregister(this);
+				} else {
+					blink += input.getDeltaTime();
+					if (blink > .5)
+						blink = 0;
+				}
+			}
+		}
+	}
+
+	@Override
+	public void draw(Input input, Output output) {
+		if (isAttached()) {
+			if (blink > .25)
+				return;
+		}
+		super.draw(input, output);
+	}
+
+	@Override
+	public void attachTo(Actor attachedTo, Vector positionDifference, double attachAngle) {
+		super.attachTo(attachedTo, positionDifference, attachAngle);
+		attachTime = baseAttachTime; // reset attach
+		blink = 0D;
 	}
 
 	@Override
 	protected boolean damage(Actor other) {
-		if (other.hurt(this, Effect.PHYSICAL, 2D, getPosition())) {
-			Vector delta = other.getBox().getCollision(getPosition());
-			attachTo(other, delta == null ? Vector.ZERO : delta);
-
+		if (other.hurt(this, Effect.PHYSICAL, damage, getPosition())) {
+			if (other.getPosition() != null) {
+				Vector diff = getPosition().sub(other.getPosition());
+				attachTo(other, diff, getVelocity().getAngle());
+			}
 			return true;
 		}
 

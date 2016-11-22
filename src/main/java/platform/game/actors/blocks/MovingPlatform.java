@@ -41,7 +41,7 @@ public abstract class MovingPlatform extends Block {
 	}
 
 	@Override
-	public Box getBox() {
-		return super.getBox().add((getSecond().sub(getFirst()).mul(current)));
+	public Vector getPosition() {
+		return super.getPosition().add((getSecond().sub(getFirst()).mul(current)));
 	}
 }

@@ -47,7 +47,9 @@ public abstract class PositionedActor extends DisplayableActor {
 	}
 
 	public Box getBox() {
-		return new Box(position, sizeX, sizeY);
+		if (getPosition() == null)
+			return null;
+		return new Box(getPosition(), sizeX, sizeY);
 	}
 
 	public void setPosition(Vector position) {

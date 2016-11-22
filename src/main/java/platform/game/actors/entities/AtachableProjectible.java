@@ -49,8 +49,7 @@ public abstract class AtachableProjectible extends Projectile {
 	}
 
 	public void attachTo(Actor attachedTo, Vector positionDifference) {
-		this.attachedTo = attachedTo;
-		this.difference = positionDifference;
+		attachTo(attachedTo, positionDifference, 0D);
 	}
 
 
@@ -64,5 +63,9 @@ public abstract class AtachableProjectible extends Projectile {
 		this.attachedTo = null;
 		this.attachAngle = 0D;
 		setVelocity(velocity);
+	}
+
+	public boolean isAttached() {
+		return attachedTo != null;
 	}
 }

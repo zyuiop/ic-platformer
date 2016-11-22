@@ -3,9 +3,11 @@ package platform.game.actors.environment;
 import platform.game.Signal;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.blocks.Block;
+import platform.game.particles.ParticleEffect;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
+import platform.util.Vector;
 
 /**
  * @author zyuiop
@@ -29,7 +31,7 @@ public class Door extends Block {
 	public void update(Input input) {
 		super.update(input);
 		if (listenSignal.isActive() != lastState)
-			getWorld().register(new BlowAnimation(super.getBox().getCenter()));
+			ParticleEffect.BLOW.play(getWorld(), super.getPosition());
 	}
 
 	@Override
@@ -38,15 +40,15 @@ public class Door extends Block {
 			super.draw(input, output);
 	}
 
-
+	@Override
+	public Vector getPosition() {
+		if (isSolid())
+			return super.getPosition();
+		return null;
+	}
 
 	@Override
 	public boolean isSolid() {
 		return !listenSignal.isActive();
-	}
-
-	@Override
-	public Box getBox() {
-		return listenSignal.isActive() ? null : super.getBox();
 	}
 }
