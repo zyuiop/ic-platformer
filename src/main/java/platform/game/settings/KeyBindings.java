@@ -170,12 +170,12 @@ public class KeyBindings {
 	}
 
 	public enum Key {
-		UP(KeyEvent.VK_UP, KeyEvent.VK_Z),
-		LEFT(KeyEvent.VK_LEFT, KeyEvent.VK_Q),
-		RIGHT(KeyEvent.VK_RIGHT, KeyEvent.VK_D),
-		USE(KeyEvent.VK_E),
-		ATTACK(KeyEvent.VK_SPACE),
-		BLOW(KeyEvent.VK_B);
+		UP("Sauter", KeyEvent.VK_UP, KeyEvent.VK_Z),
+		LEFT("Gauche", KeyEvent.VK_LEFT, KeyEvent.VK_Q),
+		RIGHT("Droite", KeyEvent.VK_RIGHT, KeyEvent.VK_D),
+		USE("Utiliser", KeyEvent.VK_E),
+		ATTACK("Attaquer", KeyEvent.VK_SPACE),
+		BLOW("Souffler", KeyEvent.VK_B);
 
 		private int[] defaultKeys;
 		private String description;

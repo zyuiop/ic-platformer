@@ -11,8 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -40,6 +43,10 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
             if (state == null)
                 return Button.UP;
             return state;
+        }
+
+        public Collection<Integer> getPressed() {
+            return current.entrySet().stream().filter(e -> e.getValue().isPressed()).map(Entry::getKey).collect(Collectors.toList());
         }
 
         public void set(int key, boolean value) {
@@ -275,6 +282,10 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
     @Override
     public Button getMouseButton(int index) {
         return mouseButtons.get(index);
+    }
+
+    public Collection<Integer> getPressedKeys() {
+        return keyboardButtons.getPressed();
     }
 
     @Override

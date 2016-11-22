@@ -26,6 +26,7 @@ public class Simulator implements World {
 	private Vector expectedCenter = Vector.ZERO;
 	private double radius = 10D;
 	private double expectedRadius = 10D;
+	private boolean isRaw = false;
 
 
 	/**
@@ -52,7 +53,8 @@ public class Simulator implements World {
 		radius = radius * (1.0 - factor) + expectedRadius * factor;
 
 		View view = new View(input, output);
-		view.setTarget(center, radius);
+		if (!isRaw)
+			view.setTarget(center, radius);
 
 		// Compute pre-updates
 		actors.descending().forEach(actor -> actor.preUpdate(view));
@@ -83,6 +85,14 @@ public class Simulator implements World {
 
 		// And finally we check if we have to go to the next level
 		if (passLevel) { passLevel(); }
+	}
+
+	public boolean isRaw() {
+		return isRaw;
+	}
+
+	public void setRaw(boolean raw) {
+		isRaw = raw;
 	}
 
 	private void passLevel() {

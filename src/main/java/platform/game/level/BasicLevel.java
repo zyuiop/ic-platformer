@@ -29,25 +29,7 @@ public class BasicLevel extends PlayableLevel {
 
 		// Register a new instance, to restart level automatically
 		world.setNextLevel(new BasicLevel());
-		Font font = null;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenpixel.ttf"));
-			font = font.deriveFont(Font.BOLD, 20);
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
-		Font finalFont = font;
-		world.register(new Actor() {
-			@Override
-			public int getPriority() {
-				return 1000000;
-			}
 
-			@Override
-			public void draw(Input input, Output output) {
-				output.drawText("cc c moua mdr", new Vector(0, 0), finalFont, Color.RED);
-			}
-		});
 
 		// Create blocks
 		world.register(new Block(new Box(new Vector(0, 0), 4, 2), "stone.broken.2"));
