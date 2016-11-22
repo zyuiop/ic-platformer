@@ -40,7 +40,7 @@ public class KeyBindingsLevel extends Level {
 
 		int pos = 80;
 		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenpixel.ttf"));
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenvector_future_thin.ttf"));
 
 			for (Key key : Key.values()) {
 				Vector vector = new Vector(30, pos);

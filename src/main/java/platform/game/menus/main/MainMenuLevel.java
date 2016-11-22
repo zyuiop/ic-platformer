@@ -33,7 +33,7 @@ public class MainMenuLevel extends Level {
 		super.register(world);
 
 		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenpixel.ttf")).deriveFont(Font.BOLD, 20);
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenvector_future_thin.ttf")).deriveFont(Font.BOLD, 20);
 
 			world.register(new ButtonActor(() -> {
 				getWorld().setNextLevel(new BasicLevel());
