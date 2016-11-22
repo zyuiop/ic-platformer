@@ -69,7 +69,7 @@ public class Player extends LivingActor {
 
 		if (bindings.isPressed(input, Key.ATTACK)) {
 			Vector fireballSpeed = getVelocity().add(getVelocity().resized(2.0));
-			getWorld().register(new Fireball(getPosition(), fireballSpeed, this));
+			getWorld().register(new Arrow(getPosition(), fireballSpeed, this));
 		}
 
 		if (bindings.isPressed(input, Key.BLOW)) {

@@ -15,6 +15,11 @@ public abstract class MovableActor extends PositionedActor {
 		this.velocity = velocity;
 	}
 
+	public MovableActor(String spriteName, double sizeX, double sizeY, Vector position, Vector velocity) {
+		super(spriteName, sizeX, sizeY, position);
+		this.velocity = velocity;
+	}
+
 	public MovableActor(Sprite sprite, double size, Vector position, Vector velocity) {
 		super(sprite, size, position);
 		this.velocity = velocity;
