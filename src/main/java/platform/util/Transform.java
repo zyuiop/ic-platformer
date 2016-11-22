@@ -124,4 +124,14 @@ public abstract class Transform implements Input, Output {
     public void drawText(String text, Vector position, Font font, Color color) {
         output.drawText(text, convertFromView(position), font, color);
     }
+
+    @Override
+    public void drawBackground(Sprite sprite) {
+        output.drawBackground(sprite);
+    }
+
+    @Override
+    public void drawBackground(Sprite sprite, boolean repeatX, boolean repeatY) {
+        output.drawBackground(sprite, repeatX, repeatY);
+    }
 }

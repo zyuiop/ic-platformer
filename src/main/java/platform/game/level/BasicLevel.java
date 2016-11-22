@@ -2,6 +2,7 @@ package platform.game.level;
 
 import platform.game.Signal;
 import platform.game.World;
+import platform.game.actors.Background;
 import platform.game.actors.basic.OrientedActor;
 import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
@@ -31,6 +32,7 @@ public class BasicLevel extends PlayableLevel {
 		// Register a new instance, to restart level automatically
 		world.setNextLevel(new BasicLevel());
 
+		world.register(new Background("blocker.dead", true, false));
 
 		// Create blocks
 		world.register(new Block(new Box(new Vector(0, 0), 4, 2), "stone.broken.2"));
