@@ -34,11 +34,15 @@ public class Label extends Actor {
 
 	@Override
 	public void draw(Input input, Output output) {
-		output.drawText(text, position, font, color);
+		output.drawText(getText(), position, font, color);
 	}
 
 	@Override
 	public int getPriority() {
 		return priority;
+	}
+
+	public String getText() {
+		return text;
 	}
 }

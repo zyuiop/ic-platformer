@@ -175,7 +175,8 @@ public class KeyBindings {
 		RIGHT("Droite", KeyEvent.VK_RIGHT, KeyEvent.VK_D),
 		USE("Utiliser", KeyEvent.VK_E),
 		ATTACK("Attaquer", KeyEvent.VK_SPACE),
-		BLOW("Souffler", KeyEvent.VK_B);
+		BLOW("Souffler", KeyEvent.VK_B),
+		MENU("Menu", KeyEvent.VK_ESCAPE);
 
 		private int[] defaultKeys;
 		private String description;

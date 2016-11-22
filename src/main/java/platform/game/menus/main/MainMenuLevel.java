@@ -2,6 +2,7 @@ package platform.game.menus.main;
 
 
 import platform.game.World;
+import platform.game.actors.SlowWriteLabel;
 import platform.game.level.BasicLevel;
 import platform.game.level.Level;
 import platform.game.menus.ButtonActor;
@@ -43,6 +44,8 @@ public class MainMenuLevel extends Level {
 				getWorld().setNextLevel(new KeyBindingsLevel());
 				getWorld().nextLevel();
 			}, new Vector(-2, -2.2), font, Color.BLACK, "Touches", "grey_button14", "grey_button00", 4, 1, .5, .5));
+
+			world.register(new SlowWriteLabel(50, new Vector(-5, 3), "Salut ceci est un texte lent a s'ecrire omg", font));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -109,6 +109,8 @@ public class Simulator implements World {
 		toAdd.clear();
 		toRemove.clear();
 		isRaw = false;
+		center = Vector.ZERO;
+		expectedCenter = Vector.ZERO;
 
 		// register the new level
 		register(level);
