@@ -14,6 +14,9 @@ public abstract class PositionedActor extends DisplayableActor {
 	protected final double sizeY;
 	protected Vector position;
 
+	private Vector lastCalcBase;
+	private Box lastCalcBox;
+
 	public PositionedActor(String spriteName, double size, Vector position) {
 		super(spriteName);
 		this.sizeX = size;
@@ -46,10 +49,25 @@ public abstract class PositionedActor extends DisplayableActor {
 		return position;
 	}
 
+	private boolean positionChanged() {
+		Vector currentPosition = getPosition();
+		if (currentPosition != null && lastCalcBase == null || !lastCalcBase.equals(currentPosition)) {
+			lastCalcBase = currentPosition;
+			return true;
+		}
+		return false;
+	}
+
 	public Box getBox() {
-		if (getPosition() == null)
-			return null;
-		return new Box(getPosition(), sizeX, sizeY);
+		if (!positionChanged())
+			return lastCalcBox;
+
+		if (lastCalcBase == null) {
+			lastCalcBox = null;
+		} else {
+			lastCalcBox = new Box(getPosition(), sizeX, sizeY);
+		}
+		return lastCalcBox;
 	}
 
 	public void setPosition(Vector position) {
