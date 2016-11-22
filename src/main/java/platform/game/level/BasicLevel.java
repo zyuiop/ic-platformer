@@ -32,7 +32,7 @@ public class BasicLevel extends PlayableLevel {
 		// Register a new instance, to restart level automatically
 		world.setNextLevel(new BasicLevel());
 
-		world.register(new Background("blocker.dead", true, false));
+		world.register(new Background("background", true, false));
 
 		// Create blocks
 		world.register(new Block(new Box(new Vector(0, 0), 4, 2), "stone.broken.2"));
