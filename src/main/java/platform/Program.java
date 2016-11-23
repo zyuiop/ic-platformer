@@ -54,7 +54,7 @@ public class Program {
                 avg = avg * 0.95 + display.getDeltaTime() * 0.05;
                 if (display.getTime() - last > 1) {
                     last = display.getTime();
-                    System.out.println(avg);
+                    System.out.println(avg + " // " + (1 / avg) + " frames per sec");
                 }
             }
             
