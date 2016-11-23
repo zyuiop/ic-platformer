@@ -17,10 +17,11 @@ The second Java "mini-project" of the first semester.
 
 I **MUST** do this to get a correct grade.
 
-- [x] Check all todos in code
+- [ ] Check all todos in code
 - [ ] Basic levels (in a chain)
 - [ ] Javadoc
 - [ ] Optimization and bugshooting
+- [ ] Uniformiser l'ordre de traitement des interractions
 
 #### Bonus stuff :
 
@@ -29,6 +30,7 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] Level switcher
 - [ ] Progression saver (level reached)
 - [ ] Level switch animation
+- [ ] Ladder block
 - [ ] Character damage animation 
 - [ ] Compound actor system (i.e. player with multiple body parts)
 - [ ] Weapon System
