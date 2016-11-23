@@ -1,33 +1,25 @@
 package platform.game.actors.blocks;
 
 import platform.game.Signal;
-import platform.game.actors.basic.OrientedActor;
+import platform.game.actors.basic.OrientedBlock;
 import platform.game.actors.entities.Arrow;
 import platform.game.actors.entities.Fireball;
 import platform.game.actors.entities.Projectile;
 import platform.util.Input;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public class ProjectileLauncher extends OrientedActor {
+public class ProjectileLauncher extends OrientedBlock {
 	private final Signal signal;
 	private final LaunchPolicy launchPolicy;
 	private final ProjectileCreator projectileCreator;
 	private boolean lastState = false;
 	private double sinceLastTime = 0D;
 
-	public ProjectileLauncher(String spriteName, double size, Vector position, Direction direction, Signal signal, LaunchPolicy launchPolicy, ProjectileCreator projectileCreator) {
-		super(spriteName, size, position, direction);
-		this.signal = signal;
-		this.launchPolicy = launchPolicy;
-		this.projectileCreator = projectileCreator;
-	}
-
-	public ProjectileLauncher(Sprite sprite, double size, Vector position, Direction direction, Signal signal, LaunchPolicy launchPolicy, ProjectileCreator projectileCreator) {
-		super(sprite, size, position, direction);
+	public ProjectileLauncher(Vector position, double size, String spriteName, Direction direction, Signal signal, LaunchPolicy launchPolicy, ProjectileCreator projectileCreator) {
+		super(position, size, spriteName, direction);
 		this.signal = signal;
 		this.launchPolicy = launchPolicy;
 		this.projectileCreator = projectileCreator;

@@ -34,6 +34,6 @@ public class DisappearingParticleEffect extends SimpleParticleEffect {
 
 	@Override
 	public ParticleActor build(Vector location) {
-		return new DisappearingParticle(this.particle, sizeX, sizeY, location, fadeIn, fadeOut, stay, startTransparency, endTransparency);
+		return new DisappearingParticle(location, sizeX, sizeY, this.particle, fadeIn, fadeOut, stay, startTransparency, endTransparency);
 	}
 }

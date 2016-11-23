@@ -5,13 +5,8 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.World;
-import platform.game.actors.animations.ParticleAnimation;
-import platform.game.actors.basic.LivingActor;
-import platform.game.actors.basic.OrientedActor;
 import platform.game.actors.blocks.Block;
-import platform.game.particles.DisappearingParticleEffect;
 import platform.game.particles.ParticleEffect;
-import platform.game.particles.ParticleEffectAnimation;
 import platform.game.particles.SimpleParticleEffect;
 import platform.util.Box;
 import platform.util.Input;
@@ -78,8 +73,11 @@ public class LaserDoor extends Door {
 
 	private static class LaserPower extends Block {
 		private double angle;
+
+		// TODO : make oriented (when oriented will be rewriten)
+
 		public LaserPower(Vector position, double angle) {
-			super("laserDown", .4, position);
+			super(position, .4, "laserdown");
 			this.angle = angle;
 		}
 
@@ -89,6 +87,16 @@ public class LaserDoor extends Door {
 			if (sprite != null)
 				output.drawSprite(sprite, getBox(), angle + Math.PI / 2);
 		}
+
+		@Override
+		public int getPriority() {
+			return 1; // on the front of the blocks please !
+		}
+	}
+
+	@Override
+	public int getPriority() {
+		return 1; // on the front of the blocks please !
 	}
 
 	@Override

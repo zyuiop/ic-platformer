@@ -17,14 +17,13 @@ public abstract class TextBox extends DisplayableActor {
 		super(spriteName);
 	}
 
-	public TextBox(Sprite sprite) {
-		super(sprite);
-	}
-
 	@Override
 	public void draw(Input input, Output output) {
 		super.draw(input, output); // first we draw the box
 
+		// TODO : finish this
+		// TODO : replace Tooltip with this
+		// TODO : implement as slow and not slow
 		// and now we draw the text
 		// output.drawSprite();
 	}

@@ -1,20 +1,16 @@
 package platform.game.actors.basic;
 
 import platform.game.Actor;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public abstract class InteractableBlock extends OrientedActor {
-	public InteractableBlock(String spriteName, double size, Vector position, Direction direction) {
-		super(spriteName, size, position, direction);
+public abstract class InteractableBlock extends OrientedBlock {
+	public InteractableBlock(Vector position, double size, String spriteName, Direction direction) {
+		super(position, size, spriteName, direction);
 	}
 
-	public InteractableBlock(Sprite sprite, double size, Vector position, Direction direction) {
-		super(sprite, size, position, direction);
-	}
 
 	protected boolean isRightDirection(Vector vector) {
 		switch (getDirection()) {
@@ -35,6 +31,7 @@ public abstract class InteractableBlock extends OrientedActor {
 		return true;
 	}
 
+	// TODO : rework this
 	@Override
 	public void interact(Actor other) {
 		super.interact(other);

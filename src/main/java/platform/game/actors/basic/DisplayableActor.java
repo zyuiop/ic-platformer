@@ -19,10 +19,6 @@ public abstract class DisplayableActor extends Actor {
 		this.spriteName = spriteName;
 	}
 
-	public DisplayableActor(Sprite sprite) {
-		this.sprite = sprite;
-	}
-
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();

@@ -58,6 +58,6 @@ public class SimpleParticleEffect implements ParticleEffect {
 
 	@Override
 	public ParticleActor build(Vector location) {
-		return new SimpleParticle(this.particle, sizeX, sizeY, location, fadeIn, fadeOut, stay, transparency);
+		return new SimpleParticle(location, sizeX, sizeY, this.particle, fadeIn, fadeOut, stay, transparency);
 	}
 }

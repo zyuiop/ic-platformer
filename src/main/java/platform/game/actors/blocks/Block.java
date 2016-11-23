@@ -9,15 +9,15 @@ import platform.util.Vector;
  */
 public class Block extends PositionedActor {
 	public Block(Box box, String spriteName) {
-		super(spriteName, box.getWidth(), box.getHeight(), box.getCenter());
+		super(box.getCenter(), box.getWidth(), box.getHeight(), spriteName);
 	}
 
-	public Block(String spriteName, double size, Vector position) {
-		super(spriteName, size, position);
+	public Block(Vector position, double size, String spriteName) {
+		super(position, size, spriteName);
 	}
 
-	public Block(String spriteName, double sizeX, double sizeY, Vector position) {
-		super(spriteName, sizeX, sizeY, position);
+	public Block(Vector position, double sizeX, double sizeY, String spriteName) {
+		super(position, sizeX, sizeY, spriteName);
 	}
 
 	@Override

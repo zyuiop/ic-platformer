@@ -4,7 +4,6 @@ import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.entities.Player;
-import platform.util.Sprite;
 import platform.util.Vector;
 import platform.util.sounds.Sound;
 
@@ -15,7 +14,7 @@ public class Key extends PositionedActor implements Signal {
 	private boolean taken = false;
 
 	public Key(String color, double size, Vector position) {
-		super("key." + color, size, position);
+		super(position, size, "key." + color);
 	}
 
 	@Override

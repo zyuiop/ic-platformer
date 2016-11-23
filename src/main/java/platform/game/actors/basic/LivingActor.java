@@ -2,8 +2,8 @@ package platform.game.actors.basic;
 
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.util.Box;
 import platform.util.Input;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
@@ -15,24 +15,23 @@ public abstract class LivingActor extends MovableActor {
 	private double health;
 	private double invulnerability = 0D;
 
-	public LivingActor(String spriteName, double size, Vector position, Vector velocity, double maxHealth) {
-		super(spriteName, size, position, velocity);
+	public LivingActor(Box box, String spriteName, Vector velocity, double maxHealth) {
+		super(box, spriteName, velocity);
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 	}
 
-	public LivingActor(String spriteName, double size, Vector position, Vector velocity, double maxHealth, double health) {
-		super(spriteName, size, position, velocity);
+	public LivingActor(Vector position, double size, String spriteName, Vector velocity, double maxHealth) {
+		super(position, size, spriteName, velocity);
+		this.maxHealth = maxHealth;
+		this.health = maxHealth;
+	}
+
+	public LivingActor(Vector position, double size, String spriteName, Vector velocity, double maxHealth, double health) {
+		super(position, size, spriteName, velocity);
 		this.maxHealth = maxHealth;
 		this.health = health;
 	}
-
-	public LivingActor(Sprite sprite, double size, Vector position, Vector velocity, double maxHealth) {
-		super(sprite, size, position, velocity);
-		this.maxHealth = maxHealth;
-		this.health = maxHealth;
-	}
-
 
 	public double getHealth() {
 		return health;

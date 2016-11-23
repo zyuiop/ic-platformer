@@ -14,32 +14,25 @@ public abstract class PositionedActor extends DisplayableActor {
 	protected final double sizeY;
 	protected Vector position;
 
+	// The last position used as a middle
 	private Vector lastCalcBase;
 	private Box lastCalcBox;
 
-	public PositionedActor(String spriteName, double size, Vector position) {
+	public PositionedActor(Box box, String spriteName) {
+		this(box.getCenter(), box.getWidth(), box.getHeight(), spriteName);
+		this.lastCalcBox = box;
+		this.lastCalcBase = box.getCenter();
+	}
+
+	public PositionedActor(Vector position, double size, String spriteName) {
 		super(spriteName);
 		this.sizeX = size;
 		this.sizeY = size;
 		this.position = position;
 	}
 
-	public PositionedActor(Sprite sprite, double size, Vector position) {
-		super(sprite);
-		this.sizeX = size;
-		this.sizeY = size;
-		this.position = position;
-	}
-
-	public PositionedActor(String spriteName, double sizeX, double sizeY, Vector position) {
+	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName) {
 		super(spriteName);
-		this.sizeX = sizeX;
-		this.sizeY = sizeY;
-		this.position = position;
-	}
-
-	public PositionedActor(Sprite sprite, double sizeX, double sizeY, Vector position) {
-		super(sprite);
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
 		this.position = position;

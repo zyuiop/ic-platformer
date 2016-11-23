@@ -1,6 +1,5 @@
 package platform.game.actors.animations;
 
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
@@ -10,26 +9,14 @@ public class DisappearingParticle extends SimpleParticle {
 	private double startTransparency = 1;
 	private double endTransparency = 0;
 
-	public DisappearingParticle(String spriteName, double size, Vector position, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
-		super(spriteName, size, position, fadeIn, fadeOut, stay, startTransparency);
+	public DisappearingParticle(Vector position, double size, String spriteName, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
+		super(position, size, spriteName, fadeIn, fadeOut, stay, startTransparency);
 		this.startTransparency = startTransparency;
 		this.endTransparency = endTransparency;
 	}
 
-	public DisappearingParticle(Sprite sprite, double size, Vector position, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
-		super(sprite, size, position, fadeIn, fadeOut, stay, startTransparency);
-		this.startTransparency = startTransparency;
-		this.endTransparency = endTransparency;
-	}
-
-	public DisappearingParticle(String spriteName, double sizeX, double sizeY, Vector position, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
-		super(spriteName, sizeX, sizeY, position, fadeIn, fadeOut, stay, startTransparency);
-		this.startTransparency = startTransparency;
-		this.endTransparency = endTransparency;
-	}
-
-	public DisappearingParticle(Sprite sprite, double sizeX, double sizeY, Vector position, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
-		super(sprite, sizeX, sizeY, position, fadeIn, fadeOut, stay, startTransparency);
+	public DisappearingParticle(Vector position, double sizeX, double sizeY, String spriteName, double fadeIn, double fadeOut, double stay, double startTransparency, double endTransparency) {
+		super(position, sizeX, sizeY, spriteName, fadeIn, fadeOut, stay, startTransparency);
 		this.startTransparency = startTransparency;
 		this.endTransparency = endTransparency;
 	}

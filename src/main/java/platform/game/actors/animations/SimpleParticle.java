@@ -1,6 +1,5 @@
 package platform.game.actors.animations;
 
-import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;
@@ -16,32 +15,16 @@ public class SimpleParticle extends ParticleActor {
 	private double transparency;
 	private double time = 0;
 
-	public SimpleParticle(String spriteName, double size, Vector position, double fadeIn, double fadeOut, double stay, double transparency) {
-		super(spriteName, size, position);
+	public SimpleParticle(Vector position, double size, String spriteName, double fadeIn, double fadeOut, double stay, double transparency) {
+		super(position, size, spriteName);
 		this.fadeIn = fadeIn;
 		this.fadeOut = fadeOut;
 		this.stay = stay;
 		this.transparency = transparency;
 	}
 
-	public SimpleParticle(Sprite sprite, double size, Vector position, double fadeIn, double fadeOut, double stay, double transparency) {
-		super(sprite, size, position);
-		this.fadeIn = fadeIn;
-		this.fadeOut = fadeOut;
-		this.stay = stay;
-		this.transparency = transparency;
-	}
-
-	public SimpleParticle(String spriteName, double sizeX, double sizeY, Vector position, double fadeIn, double fadeOut, double stay, double transparency) {
-		super(spriteName, sizeX, sizeY, position);
-		this.fadeIn = fadeIn;
-		this.fadeOut = fadeOut;
-		this.stay = stay;
-		this.transparency = transparency;
-	}
-
-	public SimpleParticle(Sprite sprite, double sizeX, double sizeY, Vector position, double fadeIn, double fadeOut, double stay, double transparency) {
-		super(sprite, sizeX, sizeY, position);
+	public SimpleParticle(Vector position, double sizeX, double sizeY, String spriteName, double fadeIn, double fadeOut, double stay, double transparency) {
+		super(position, sizeX, sizeY, spriteName);
 		this.fadeIn = fadeIn;
 		this.fadeOut = fadeOut;
 		this.stay = stay;

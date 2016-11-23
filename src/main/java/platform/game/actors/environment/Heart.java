@@ -15,7 +15,7 @@ public class Heart extends PositionedActor {
 	private double cooldown = 0D;
 
 	public Heart(Vector position, double healthBonus) {
-		super("heart.full", .5, position);
+		super(position, .5, "heart.full");
 		this.healthBonus = healthBonus;
 	}
 

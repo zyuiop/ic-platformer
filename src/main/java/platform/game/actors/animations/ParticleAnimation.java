@@ -14,7 +14,7 @@ public class ParticleAnimation extends ParticleActor {
 	private ParticleActor currentParticle;
 
 	public ParticleAnimation(Vector position) {
-		super((String) null, 0D, position);
+		super(position, 0D, (String) null);
 	}
 
 	@Override

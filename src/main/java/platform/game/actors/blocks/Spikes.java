@@ -18,7 +18,7 @@ public class Spikes extends InteractableBlock {
 	}
 
 	public Spikes(Vector position, double size, Direction direction, double damage) {
-		super("spikes", size, position, direction);
+		super(position, size, "spikes", direction);
 		this.damage = damage;
 	}
 

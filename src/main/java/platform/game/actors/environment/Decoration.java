@@ -12,39 +12,21 @@ import platform.util.Vector;
 public class Decoration extends PositionedActor {
 	private double rotation = 0D;
 
-	public Decoration(String spriteName, double size, Vector position) {
-		super(spriteName, size, position);
+	public Decoration(Vector position, double size, String spriteName) {
+		super(position, size, spriteName);
 	}
 
-	public Decoration(Sprite sprite, double size, Vector position) {
-		super(sprite, size, position);
+	public Decoration(Vector position, double sizeX, double sizeY, String spriteName) {
+		super(position, sizeX, sizeY, spriteName);
 	}
 
-	public Decoration(String spriteName, double sizeX, double sizeY, Vector position) {
-		super(spriteName, sizeX, sizeY, position);
-	}
-
-	public Decoration(Sprite sprite, double sizeX, double sizeY, Vector position) {
-		super(sprite, sizeX, sizeY, position);
-	}
-
-	public Decoration(String spriteName, double size, Vector position, double rotation) {
-		super(spriteName, size, position);
+	public Decoration(Vector position, double size, String spriteName, double rotation) {
+		super(position, size, spriteName);
 		this.rotation = rotation;
 	}
 
-	public Decoration(Sprite sprite, double size, Vector position, double rotation) {
-		super(sprite, size, position);
-		this.rotation = rotation;
-	}
-
-	public Decoration(String spriteName, double sizeX, double sizeY, Vector position, double rotation) {
-		super(spriteName, sizeX, sizeY, position);
-		this.rotation = rotation;
-	}
-
-	public Decoration(Sprite sprite, double sizeX, double sizeY, Vector position, double rotation) {
-		super(sprite, sizeX, sizeY, position);
+	public Decoration(Vector position, double sizeX, double sizeY, String spriteName, double rotation) {
+		super(position, sizeX, sizeY, spriteName);
 		this.rotation = rotation;
 	}
 

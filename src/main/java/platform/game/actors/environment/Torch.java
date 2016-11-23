@@ -19,7 +19,7 @@ public class Torch extends PositionedActor implements Signal {
 	}
 
 	public Torch(Vector position, boolean lit) {
-		super("torch", .8, position);
+		super(position, .8, "torch");
 		this.lit = lit;
 	}
 

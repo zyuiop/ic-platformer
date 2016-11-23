@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import platform.game.actors.blocks.Block;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -10,16 +11,14 @@ import platform.util.Vector;
  * @author zyuiop
  * An actor defined by its position, size, direction and sprite
  */
-public abstract class OrientedActor extends PositionedActor {
+public abstract class OrientedBlock extends Block {
 	private Direction direction;
 
-	public OrientedActor(String spriteName, double size, Vector position, Direction direction) {
-		super(spriteName, size, position);
-		this.direction = direction;
-	}
+	// TODO : rewrite ratio system ? ==> add sizeX sizeY support using cos/sin (see laser)
+	// TODO : move jumper specific methods to the jumper itself
 
-	public OrientedActor(Sprite sprite, double size, Vector position, Direction direction) {
-		super(sprite, size, position);
+	public OrientedBlock(Vector position, double size, String spriteName, Direction direction) {
+		super(position, size, spriteName);
 		this.direction = direction;
 	}
 

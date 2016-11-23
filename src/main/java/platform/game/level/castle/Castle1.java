@@ -39,23 +39,25 @@ public class Castle1 extends PlayableLevel {
 
 		for (double x = -2.5; x <= 2.5; ++x) {
 			for (double y = -15.5; y <= -0.5; ++y) {
-				world.register(new Block("castle.center", 1, new Vector(x, y)));
+				world.register(new Block(new Vector(x, y), 1, "castle.center"));
 			}
 
-			world.register(new Block("castle.middle", 1, new Vector(x, .5)));
+			world.register(new Block(new Vector(x, .5), 1, "castle.middle"));
 		}
 
-		world.register(new Block("castle.left", 1, new Vector(-3.5, .5)));
-		world.register(new Block("castle.right", 1, new Vector(3.5, .5)));
+		world.register(new Block(new Vector(-3.5, .5), 1, "castle.left"));
+		world.register(new Block(new Vector(3.5, .5), 1, "castle.right"));
+
+		world.register(new Block(new Vector(0, 5.5), 3, 1, "stone.3"));
 
 
 		// laser and stuff
 		Lever lever = new Lever(new Vector(-1.5, 1.25), .5, 30D, false, "lever.red.off", "lever.red.on", null);
 		world.register(lever);
-		world.register(new LaserDoor(new Vector(0, 2), 4, LaserDoor.Orientation.VERICAL, "red", lever));
+		world.register(new LaserDoor(new Vector(0, 3), 4, LaserDoor.Orientation.VERICAL, "red", lever));
 		world.register(new Exit(new Vector(3, 1.5)));
 
-		world.register(new Decoration("exit", .5, new Vector(2.2, 1.2), Math.PI / 8));
+		world.register(new Decoration(new Vector(2.2, 1.2), .5, "exit", Math.PI / 8));
 
 		world.register(new Background("background.hills", true, false));
 

@@ -38,7 +38,7 @@ public class Jumper extends InteractableBlock {
 	}
 
 	public Jumper(Vector position, double size, Direction direction, double power) {
-		super("jumper.normal", size, position, direction);
+		super(position, size, "jumper.normal", direction);
 		this.power = power;
 	}
 

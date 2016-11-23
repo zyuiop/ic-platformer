@@ -19,14 +19,17 @@ import platform.util.Vector;
 public class Player extends LivingActor {
 	private KeyBindings bindings;
 	private boolean isColliding = false;
+	private int maxAirJumps = 1;
+	private int remainingAirJumps = 1;
+	private boolean isOnFloor = false;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
-		super("blocker.happy", .5, position, velocity, 10);
+		super(position, .5, "blocker.happy", velocity, 10);
 		this.bindings = bindings;
 	}
 
 	public Player(Vector position, Vector velocity, double maxhealth, double health, KeyBindings bindings) {
-		super("blocker.happy", .5, position, velocity, maxhealth, health);
+		super(position, .5, "blocker.happy", velocity, maxhealth, health);
 		this.bindings = bindings;
 	}
 
@@ -65,8 +68,15 @@ public class Player extends LivingActor {
 			}
 		}
 
-		if (bindings.isPressed(input, Key.UP) && isColliding) {
-			setVelocity(new Vector(getVelocity().getX(), 5D));
+		if (bindings.isPressed(input, Key.UP)) {
+			if (isOnFloor || remainingAirJumps > 0) {
+				setVelocity(new Vector(getVelocity().getX(), 5D));
+
+				if (!isOnFloor) {
+					remainingAirJumps--;
+					ParticleEffect.BLOW.play(getWorld(), getPosition());
+				}
+			}
 		}
 
 		if (bindings.isPressed(input, Key.ATTACK)) {
@@ -104,8 +114,11 @@ public class Player extends LivingActor {
 				if (delta.getX() != 0D) {
 					setVelocity(new Vector(0D, getVelocity().getY()));
 				}
+
 				if (delta.getY() != 0D) {
 					setVelocity(new Vector(getVelocity().getX(), 0D));
+					this.isOnFloor = true;
+					this.remainingAirJumps = this.maxAirJumps;
 				}
 
 				this.isColliding = true;
@@ -117,6 +130,7 @@ public class Player extends LivingActor {
 	public void preUpdate(Input input) {
 		super.preUpdate(input);
 		this.isColliding = false;
+		this.isOnFloor = false;
 	}
 
 	@Override

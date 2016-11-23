@@ -14,11 +14,11 @@ public abstract class Projectile extends MovableActor {
 	private Actor sender;
 
 	public Projectile(String texture, Vector position, Vector velocity, Actor sender, double size) {
-		super(texture, size, position, velocity);
+		super(position, size, texture, velocity);
 		this.sender = sender;
 	}
 	public Projectile(String texture, Vector position, Vector velocity, Actor sender, double sizeX, double sizeY) {
-		super(texture, sizeX, sizeY, position, velocity);
+		super(position, sizeX, sizeY, texture, velocity);
 		this.sender = sender;
 	}
 

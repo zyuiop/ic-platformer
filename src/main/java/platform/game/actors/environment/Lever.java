@@ -5,7 +5,6 @@ import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
-import platform.util.Output;
 import platform.util.sounds.Sound;
 import platform.util.Vector;
 
@@ -27,13 +26,13 @@ public class Lever extends PositionedActor implements Signal {
 	}
 
 	public Lever(Vector position, double size, double duration, boolean active) {
-		super(active ? "lever.right" : "lever.left", size, position);
+		super(position, size, active ? "lever.right" : "lever.left");
 		this.duration = duration;
 		this.active = active;
 	}
 
 	public Lever(Vector position, double size, double duration, boolean active, String disabledSprite, String enabledSprite, String transitionSprite) {
-		super(active ? enabledSprite : disabledSprite, size, position);
+		super(position, size, active ? enabledSprite : disabledSprite);
 		this.duration = duration;
 		this.active = active;
 		this.enabledSprite = enabledSprite;

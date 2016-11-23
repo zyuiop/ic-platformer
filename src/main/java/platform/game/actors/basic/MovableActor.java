@@ -10,18 +10,18 @@ import platform.util.*;
 public abstract class MovableActor extends PositionedActor {
 	private Vector velocity;
 
-	public MovableActor(String spriteName, double size, Vector position, Vector velocity) {
-		super(spriteName, size, position);
+	public MovableActor(Box box, String spriteName, Vector velocity) {
+		super(box, spriteName);
 		this.velocity = velocity;
 	}
 
-	public MovableActor(String spriteName, double sizeX, double sizeY, Vector position, Vector velocity) {
-		super(spriteName, sizeX, sizeY, position);
+	public MovableActor(Vector position, double size, String spriteName, Vector velocity) {
+		super(position, size, spriteName);
 		this.velocity = velocity;
 	}
 
-	public MovableActor(Sprite sprite, double size, Vector position, Vector velocity) {
-		super(sprite, size, position);
+	public MovableActor(Vector position, double sizeX, double sizeY, String spriteName, Vector velocity) {
+		super(position, sizeX, sizeY, spriteName);
 		this.velocity = velocity;
 	}
 

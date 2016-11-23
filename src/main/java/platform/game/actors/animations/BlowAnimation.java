@@ -1,6 +1,5 @@
 package platform.game.actors.animations;
 
-import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;
@@ -13,7 +12,7 @@ public class BlowAnimation extends ParticleActor {
 	private double time;
 
 	public BlowAnimation(Vector position) {
-		super("smoke.gray.1", .8, position);
+		super(position, .8, "smoke.gray.1");
 	}
 
 	@Override

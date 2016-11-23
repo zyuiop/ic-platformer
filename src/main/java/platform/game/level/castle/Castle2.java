@@ -37,29 +37,29 @@ public class Castle2 extends PlayableLevel {
 
 		for (double x = -2.5; x <= 2.5; ++x) {
 			for (double y = -15.5; y <= -0.5; ++y) {
-				world.register(new Block("castle.center", 1, new Vector(x, y)));
+				world.register(new Block(new Vector(x, y), 1, "castle.center"));
 			}
 
-			world.register(new Block("castle.middle", 1, new Vector(x, .5)));
+			world.register(new Block(new Vector(x, .5), 1, "castle.middle"));
 		}
 
-		world.register(new Block("castle.left", 1, new Vector(-3.5, .5)));
-		world.register(new Block("castle.right", 1, new Vector(3.5, .5)));
+		world.register(new Block(new Vector(-3.5, .5), 1, "castle.left"));
+		world.register(new Block(new Vector(3.5, .5), 1, "castle.right"));
 
 		// exit platform
-		world.register(new Block("castle.left", 1, new Vector(-1, 4.5)));
-		world.register(new Block("castle.middle", 1, new Vector(0, 4.5)));
-		world.register(new Block("castle.right", 1, new Vector(1, 4.5)));
+		world.register(new Block(new Vector(-1, 4.5), 1, "castle.left"));
+		world.register(new Block(new Vector(0, 4.5), 1, "castle.middle"));
+		world.register(new Block(new Vector(1, 4.5), 1, "castle.right"));
 		world.register(new Exit(new Vector(0, 5.5)));
-		world.register(new Decoration("exit", .5, new Vector(-0.8, 5.2), Math.PI / 8));
+		world.register(new Decoration(new Vector(-0.8, 5.2), .5, "exit", Math.PI / 8));
 
 		// laser and stuff
-		Lever lever = new Lever(new Vector(-1.5, 1.25), .5, 30D, false, "lever.red.off", "lever.red.on", null);
+		Lever lever = new Lever(new Vector(-1.5, 1.25), .5, 30D, false, "lever.green.off", "lever.green.on", null);
 		Lever lever2 = new Lever(new Vector(1.5, 1.25), .5, 30D, true);
 		world.register(lever);
 		world.register(lever2);
 		Signal elevators = new And(lever, new Not(lever2));
-		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "red", lever));
+		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "green", lever));
 
 		// Elevatooooor
 		world.register(new AlwaysMovingPlatform(new Box(new Vector(-5, .5), 1, 1), "metalPlatform", new Vector(-5, .5), new Vector(-5, 4.5), elevators, .5, 1));
