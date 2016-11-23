@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class SlowWriteLabel extends Label {
 	public static final double DIALOG_INTERVAL = .05; // parfait pour des messages de dialogues
-	private final double interval;
+	private double interval;
 	private double time = 0;
 	private int letters = 0;
 
@@ -47,5 +47,13 @@ public class SlowWriteLabel extends Label {
 		String text = super.getText();
 		int letters = Math.min(this.letters, text.length());
 		return text.substring(0, letters);
+	}
+
+	public void speedUp() {
+		interval /= 10;
+	}
+
+	public void finishNow() {
+		letters = super.getText().length();
 	}
 }

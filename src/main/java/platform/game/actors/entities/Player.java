@@ -2,12 +2,12 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.game.KeyBindings;
+import platform.game.KeyBindings.Key;
 import platform.game.World;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
-import platform.game.KeyBindings;
-import platform.game.KeyBindings.Key;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
 import platform.util.Input;
@@ -50,6 +50,7 @@ public class Player extends LivingActor {
 				if (speed > maxSpeed) {
 					speed = maxSpeed;
 				}
+
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
 		} else if (bindings.isDown(input, Key.LEFT)) {
@@ -59,12 +60,13 @@ public class Player extends LivingActor {
 				if (speed < -maxSpeed) {
 					speed = -maxSpeed;
 				}
+
 				setVelocity(new Vector(speed, getVelocity().getY()));
 			}
 		}
 
 		if (bindings.isPressed(input, Key.UP) && isColliding) {
-			setVelocity(new Vector(getVelocity().getX(), 7D));
+			setVelocity(new Vector(getVelocity().getX(), 5D));
 		}
 
 		if (bindings.isPressed(input, Key.ATTACK)) {
@@ -96,6 +98,7 @@ public class Player extends LivingActor {
 		if (other.isSolid()) {
 			Vector delta = other.getBox().getCollision(getBox());
 			if (delta != null) {
+				other.onCollide(this);
 				setPosition(getPosition().add(delta));
 
 				if (delta.getX() != 0D) {
@@ -134,8 +137,17 @@ public class Player extends LivingActor {
 	}
 
 	@Override
+	public void unregister() {
+		// save life in level manager
+		if (getHealth() > 0D) { getWorld().getLevelManager().setPlayerLife(getHealth()); }
+
+		super.unregister();
+	}
+
+	@Override
 	public void die() {
 		super.die();
+		getWorld().setNextLevel(getWorld().getLevelManager().restartGroup());
 		getWorld().nextLevel();
 	}
 

@@ -17,6 +17,8 @@ public class Exit extends DisplayableActor {
 	private final Signal signal;
 	private final Level targetLevel;
 
+	public Exit(Vector position) {this(position, Signal.ENABLED, null);}
+
 	public Exit(Vector position, Level targetLevel) {this(position, Signal.ENABLED, targetLevel);}
 
 	public Exit(Vector position, Signal signal, Level targetLevel) {
@@ -42,7 +44,8 @@ public class Exit extends DisplayableActor {
 
 		if (other instanceof Player && signal.isActive()) {
 			if (getBox().isColliding(other.getBox())) {
-				getWorld().setNextLevel(targetLevel);
+				if (targetLevel != null)
+					getWorld().setNextLevel(targetLevel);
 				getWorld().nextLevel();
 			}
 		}

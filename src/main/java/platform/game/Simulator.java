@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import platform.game.level.Level;
+import platform.game.level.LevelManager;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Loader;
@@ -23,6 +24,7 @@ public class Simulator implements World {
 	private final List<Actor> toRemove = new ArrayList<>();
 	private final Loader loader;
 	private final SoundLoader soundLoader;
+	private LevelManager levelManager = LevelManager.init();
 	private Level nextLevel = Level.createDefaultLevel();
 	private boolean passLevel = true; // when true, the level must be changed
 	private Vector center = Vector.ZERO;
@@ -157,6 +159,11 @@ public class Simulator implements World {
 	@Override
 	public void setNextLevel(Level level) {
 		this.nextLevel = level;
+	}
+
+	@Override
+	public LevelManager getLevelManager() {
+		return levelManager;
 	}
 
 	@Override

@@ -19,19 +19,16 @@ public class Door extends Block {
 	public Door(Box box, String sprite, Signal listenSignal) {
 		super(box, sprite);
 		this.listenSignal = listenSignal;
-	}
-
-	@Override
-	public void preUpdate(Input input) {
-		super.preUpdate(input);
-		lastState = listenSignal.isActive();
+		this.lastState = listenSignal.isActive();
 	}
 
 	@Override
 	public void update(Input input) {
 		super.update(input);
-		if (listenSignal.isActive() != lastState)
-			ParticleEffect.BLOW.play(getWorld(), super.getPosition());
+		if (listenSignal.isActive() != lastState) {
+			this.lastState = listenSignal.isActive();
+			onChangeState(listenSignal.isActive());
+		}
 	}
 
 	@Override
@@ -45,6 +42,10 @@ public class Door extends Block {
 		if (isSolid())
 			return super.getPosition();
 		return null;
+	}
+
+	public void onChangeState(boolean newState) {
+		ParticleEffect.BLOW.play(getWorld(), super.getPosition());
 	}
 
 	@Override

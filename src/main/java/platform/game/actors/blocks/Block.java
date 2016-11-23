@@ -1,6 +1,5 @@
 package platform.game.actors.blocks;
 
-import platform.game.actors.basic.DisplayableActor;
 import platform.game.actors.basic.PositionedActor;
 import platform.util.Box;
 import platform.util.Vector;

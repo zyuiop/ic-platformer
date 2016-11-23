@@ -57,6 +57,7 @@ public abstract class Projectile extends MovableActor {
 		if (other.isSolid() && other.getBox() != null) {
 			Vector delta = other.getBox().getCollision(getPosition());
 			if (delta != null) {
+				other.onCollide(this);
 				hitBlock(other, delta);
 			}
 		}

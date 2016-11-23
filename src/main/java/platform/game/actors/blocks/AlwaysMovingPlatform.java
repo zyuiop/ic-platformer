@@ -27,8 +27,7 @@ public class AlwaysMovingPlatform extends MovingPlatform {
 	public void update(Input input) {
 		super.update(input);
 
-		if (!isActive())
-			return;
+		if (!isActive()) { return; }
 
 		time += input.getDeltaTime();
 		if (time * speed <= 1) {
@@ -36,8 +35,7 @@ public class AlwaysMovingPlatform extends MovingPlatform {
 		} else if (time * speed > 1 + sleep * speed) {
 			if (getCurrent() > 0) {
 				setCurrent(1 - (time * speed - 1 - speed * sleep)); // go back
-				if (getCurrent() < 0)
-					setCurrent(0D);
+				if (getCurrent() < 0) { setCurrent(0D); }
 			} else {
 				setCurrent(0D);
 				if (time * speed > 2 + (2 * sleep * speed)) {

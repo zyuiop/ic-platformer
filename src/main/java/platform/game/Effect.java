@@ -11,7 +11,8 @@ public enum Effect {
 	AIR(false),
 	VOID,
 	ACTIVATION(false),
-	HEAL(false, true);
+	HEAL(false, true),
+	LASER;
 
 	private boolean harming = true;
 	private boolean healing = false;

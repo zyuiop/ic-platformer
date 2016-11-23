@@ -1,6 +1,7 @@
 package platform.util;
 
 import java.awt.*;
+import java.util.Collection;
 import platform.util.sounds.Sound;
 
 /**
@@ -134,4 +135,7 @@ public abstract class Transform implements Input, Output {
     public void drawBackground(Sprite sprite, boolean repeatX, boolean repeatY) {
         output.drawBackground(sprite, repeatX, repeatY);
     }
+
+    @Override
+    public Collection<Integer> getPressedKeys() {return input.getPressedKeys();}
 }

@@ -13,6 +13,7 @@ import platform.util.Vector;
 public abstract class LivingActor extends MovableActor {
 	private double maxHealth;
 	private double health;
+	private double invulnerability = 0D;
 
 	public LivingActor(String spriteName, double size, Vector position, Vector velocity, double maxHealth) {
 		super(spriteName, size, position, velocity);
@@ -54,10 +55,22 @@ public abstract class LivingActor extends MovableActor {
 	}
 
 	@Override
+	public void update(Input input) {
+		super.update(input);
+		if (!isVulnerable())
+			this.invulnerability = Math.max(0, invulnerability - input.getDeltaTime());
+	}
+
+	@Override
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
 		if (amount > 0 && (damageType.isHealing() || damageType.isHarming())) {
 			if (damageType.isHealing())
 				amount = -amount; // heal : we add the damage instead of removing it
+			else if (!isVulnerable()) {
+				return false; // prend pas les dégats
+			} else {
+				invulnerability = 2D;
+			}
 			setHealth(getHealth() - amount);
 			return true;
 		} else
@@ -70,5 +83,9 @@ public abstract class LivingActor extends MovableActor {
 
 	public boolean isDead() {
 		return getHealth() <= 0;
+	}
+
+	public boolean isVulnerable() {
+		return invulnerability <= 0;
 	}
 }

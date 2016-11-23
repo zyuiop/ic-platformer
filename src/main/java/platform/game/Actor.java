@@ -140,4 +140,14 @@ public abstract class Actor implements Comparable<Actor> {
 	public boolean isRegistered() {
 		return getWorld() != null;
 	}
+
+
+	/**
+	 * This method is called if the current actor is solid and an actor with an higher priority
+	 * level touches it.
+	 * @param actor the actor that touched this actor
+	 */
+	public void onCollide(Actor actor) {
+
+	}
 }

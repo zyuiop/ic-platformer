@@ -76,8 +76,9 @@ public class KeyBindings {
 
 	public boolean isPressed(Input input, Key key) {
 		for (Integer k : keyBinds.get(key)) {
-			if (input.getKeyboardButton(k).isPressed())
+			if (input.getKeyboardButton(k).isPressed()) {
 				return true;
+			}
 		}
 
 		return false;

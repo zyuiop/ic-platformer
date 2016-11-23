@@ -36,7 +36,7 @@ public class MainMenuLevel extends Level {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenvector_future_thin.ttf")).deriveFont(Font.BOLD, 20);
 
 			world.register(new ButtonActor(() -> {
-				getWorld().setNextLevel(new BasicLevel());
+				getWorld().setNextLevel(getWorld().getLevelManager().restartGroup());
 				getWorld().nextLevel();
 			}, new Vector(-2, -.5), font, Color.BLACK, "Jouer", "grey_button14", "grey_button00", 4, 1, .5, .5));
 

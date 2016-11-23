@@ -35,8 +35,7 @@ public abstract class AtachableProjectible extends Projectile {
 
 	@Override
 	public void interact(Actor other) {
-		if (attachedTo == null || !attachedTo.isRegistered())
-			super.interact(other);
+		if (attachedTo == null || !attachedTo.isRegistered()) { super.interact(other); }
 	}
 
 	@Override

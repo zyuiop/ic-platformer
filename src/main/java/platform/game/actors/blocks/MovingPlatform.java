@@ -44,4 +44,5 @@ public abstract class MovingPlatform extends Block {
 	public Vector getPosition() {
 		return super.getPosition().add((getSecond().sub(getFirst()).mul(current)));
 	}
+
 }

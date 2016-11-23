@@ -1,6 +1,7 @@
 package platform.game.actors;
 
 import platform.game.Actor;
+import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -34,7 +35,12 @@ public class Label extends Actor {
 
 	@Override
 	public void draw(Input input, Output output) {
-		output.drawText(getText(), position, font, color);
+		output.drawText(getText(), getPosition(), font, color);
+	}
+
+	@Override
+	public Vector getPosition() {
+		return position;
 	}
 
 	@Override

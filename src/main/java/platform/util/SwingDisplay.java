@@ -302,6 +302,7 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 		return mouseButtons.get(index);
 	}
 
+	@Override
 	public Collection<Integer> getPressedKeys() {
 		return keyboardButtons.getPressed();
 	}

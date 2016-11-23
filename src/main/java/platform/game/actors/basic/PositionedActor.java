@@ -49,20 +49,23 @@ public abstract class PositionedActor extends DisplayableActor {
 		return position;
 	}
 
+	public void setPosition(Vector position) {
+		this.position = position;
+	}
+
 	private boolean positionChanged() {
 		Vector currentPosition = getPosition();
-		if (lastCalcBase == null && currentPosition == null)
+		if (lastCalcBase == null && currentPosition == null) { return false; }
+		if (lastCalcBase != null && currentPosition != null && currentPosition.equals(lastCalcBase)) {
 			return false;
-		if (lastCalcBase != null && currentPosition != null && currentPosition.equals(lastCalcBase))
-			return false;
+		}
 
 		lastCalcBase = currentPosition;
 		return true;
 	}
 
 	public Box getBox() {
-		if (!positionChanged())
-			return lastCalcBox;
+		if (!positionChanged()) { return lastCalcBox; }
 
 		if (lastCalcBase == null) {
 			lastCalcBox = null;
@@ -70,10 +73,6 @@ public abstract class PositionedActor extends DisplayableActor {
 			lastCalcBox = new Box(getPosition(), sizeX, sizeY);
 		}
 		return lastCalcBox;
-	}
-
-	public void setPosition(Vector position) {
-		this.position = position;
 	}
 
 	public double getSizeX() {

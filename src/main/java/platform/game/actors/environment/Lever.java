@@ -18,14 +18,27 @@ public class Lever extends PositionedActor implements Signal {
 	private double transition = 0;
 	private double time;
 
+	private String disabledSprite = "lever.left";
+	private String enabledSprite = "lever.right";
+	private String transitionSprite = "lever.mid";
+
 	public Lever(Vector position, double size, double duration) {
 		this(position, size, duration, false);
 	}
 
 	public Lever(Vector position, double size, double duration, boolean active) {
-		super(active ? "lever.left" : "lever.right", size, position);
+		super(active ? "lever.right" : "lever.left", size, position);
 		this.duration = duration;
 		this.active = active;
+	}
+
+	public Lever(Vector position, double size, double duration, boolean active, String disabledSprite, String enabledSprite, String transitionSprite) {
+		super(active ? enabledSprite : disabledSprite, size, position);
+		this.duration = duration;
+		this.active = active;
+		this.enabledSprite = enabledSprite;
+		this.disabledSprite = disabledSprite;
+		this.transitionSprite = transitionSprite;
 	}
 
 	@Override
@@ -55,10 +68,10 @@ public class Lever extends PositionedActor implements Signal {
 			transition -= input.getDeltaTime();
 			if (transition <= 0) {
 				if (this.active) {
-					setSpriteName("lever.left");
+					setSpriteName(enabledSprite);
 					time = duration;
 				} else {
-					setSpriteName("lever.right");
+					setSpriteName(disabledSprite);
 				}
 
 				transition = 0;
@@ -74,11 +87,16 @@ public class Lever extends PositionedActor implements Signal {
 
 	private void setActive(boolean state) {
 		this.active = state;
-		setSpriteName("lever.mid");
+
+		if (transitionSprite != null) {
+			setSpriteName(transitionSprite);
+			this.transition = 0.3;
+		} else {
+			setSpriteName(active ? enabledSprite : disabledSprite);
+		}
 
 		Sound sound = getWorld().getSoundLoader().getSound("chop");
 		sound.play();
 
-		this.transition = 0.3;
 	}
 }

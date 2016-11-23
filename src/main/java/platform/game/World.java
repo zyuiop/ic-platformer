@@ -1,6 +1,7 @@
 package platform.game;
 
 import platform.game.level.Level;
+import platform.game.level.LevelManager;
 import platform.util.Box;
 import platform.util.Loader;
 import platform.util.sounds.SoundLoader;
@@ -49,14 +50,20 @@ public interface World {
 	Vector getGravity();
 
 	/**
-	 * Start the previously defined add level.
+	 * Get the {@link LevelManager} associated with this world
+	 * @return the level manager used
+	 */
+	LevelManager getLevelManager();
+
+	/**
+	 * Start the previously defined next level.
 	 * @see World#setNextLevel(Level)
 	 */
 	void nextLevel();
 
 	/**
-	 * Set the add level. The add level is started when {@link World#nextLevel()} is called
-	 * @param level the add level to set
+	 * Set the next level. The next level is started when {@link World#nextLevel()} is called
+	 * @param level the next level to set
 	 */
 	void setNextLevel(Level level);
 

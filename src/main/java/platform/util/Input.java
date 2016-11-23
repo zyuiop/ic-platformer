@@ -1,5 +1,7 @@
 package platform.util;
 
+import java.util.Collection;
+
 /**
  * Provides informations about input, such as time, mouse and keyboard.
  */
@@ -20,8 +22,10 @@ public interface Input {
      * @return button state
      */
 	public Button getMouseButton(int index);
-	
-    /** @return mouse wheel rotation units since last frame (positive is upward) */
+
+	Collection<Integer> getPressedKeys();
+
+	/** @return mouse wheel rotation units since last frame (positive is upward) */
 	public int getMouseScroll();
 	
     /**
