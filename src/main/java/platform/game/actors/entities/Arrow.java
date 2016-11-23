@@ -12,7 +12,7 @@ import platform.util.Vector;
  */
 public class Arrow extends AttachableProjectile {
 	private double damage = 2D;
-	private double baseAttachTime = 45D;
+	private double baseAttachTime = 10D;
 	private double attachTime = 45D; // expiration time
 	private double blink = 0D; // TODO make faster with time
 
@@ -44,7 +44,11 @@ public class Arrow extends AttachableProjectile {
 					getWorld().unregister(this);
 				} else {
 					blink += input.getDeltaTime();
-					if (blink > .5)
+					// 3 => 0.3 sec
+					// 2 => 0.2 sec
+					// 1 => 0.1 sec
+					// Multiply by two : show then hide
+					if (blink > attachTime * .2)
 						blink = 0;
 				}
 			}
@@ -54,7 +58,7 @@ public class Arrow extends AttachableProjectile {
 	@Override
 	public void draw(Input input, Output output) {
 		if (isAttached()) {
-			if (blink > .25)
+			if (blink > attachTime * .1)
 				return;
 		}
 		super.draw(input, output);

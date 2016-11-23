@@ -1,6 +1,7 @@
 package platform.game.actors;
 
 import platform.game.Actor;
+import platform.game.World;
 import platform.game.actors.interfaces.IAttachable;
 import platform.game.actors.interfaces.IPositioned;
 import platform.util.Input;
@@ -21,6 +22,14 @@ public class AttachLink extends Actor {
 	}
 
 	@Override
+	public void register(World world) {
+		super.register(world);
+
+		// Cancel actor velocity
+		this.attachedActor.setVelocity(Vector.ZERO);
+	}
+
+	@Override
 	public int getPriority() {
 		return -1;
 	}
@@ -38,6 +47,7 @@ public class AttachLink extends Actor {
 	}
 
 	public void detach() {
-		getWorld().unregister(this);
+		if (isRegistered())
+			getWorld().unregister(this);
 	}
 }

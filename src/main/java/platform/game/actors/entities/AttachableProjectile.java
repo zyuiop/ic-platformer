@@ -32,12 +32,14 @@ public abstract class AttachableProjectile extends Projectile implements IAttach
 
 	@Override
 	public void interact(Actor other) {
-		if (attachLink !=null) { super.interact(other); }
+		if (!isAttached()) {
+			super.interact(other);
+		}
 	}
 
 	@Override
 	protected double getAngle() {
-		if (attachLink != null) {
+		if (!isAttached()) {
 			return super.getAngle();
 		}
 
@@ -49,11 +51,10 @@ public abstract class AttachableProjectile extends Projectile implements IAttach
 		attachTo(attachedTo, positionDifference, 0D);
 	}
 
-
 	public void attachTo(IPositioned attachedTo, Vector positionDifference, double attachAngle) {
-		if (attachLink != null)
-			attachLink.detach();
+		this.detach(Vector.ZERO); // detach & reset velocity
 		this.attachLink = new AttachLink(attachedTo, this, positionDifference);
+		this.getWorld().register(this.attachLink);
 		this.attachAngle = attachAngle;
 	}
 
@@ -68,6 +69,13 @@ public abstract class AttachableProjectile extends Projectile implements IAttach
 
 	@Override
 	public boolean isAttached() {
-		return attachLink != null;
+		if (attachLink != null) {
+			if (attachLink.isRegistered())
+				return true;
+
+			// Not registered : attach cancelled
+			detach(Vector.ZERO);
+		}
+		return false;
 	}
 }
