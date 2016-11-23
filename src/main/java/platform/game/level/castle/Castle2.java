@@ -59,7 +59,7 @@ public class Castle2 extends PlayableLevel {
 		world.register(lever);
 		world.register(lever2);
 		Signal elevators = new And(lever, new Not(lever2));
-		world.register(new LaserDoor(new Vector(0, 3), 14, 0, "red", lever));
+		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "red", lever));
 
 		// Elevatooooor
 		world.register(new AlwaysMovingPlatform(new Box(new Vector(-5, .5), 1, 1), "metalPlatform", new Vector(-5, .5), new Vector(-5, 4.5), elevators, .5, 1));

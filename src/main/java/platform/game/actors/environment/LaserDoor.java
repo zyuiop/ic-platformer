@@ -7,6 +7,7 @@ import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.animations.ParticleAnimation;
 import platform.game.actors.basic.LivingActor;
+import platform.game.actors.basic.OrientedActor;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.DisappearingParticleEffect;
 import platform.game.particles.ParticleEffect;
@@ -28,20 +29,21 @@ public class LaserDoor extends Door {
 	private double time = 0D;
 	private ParticleEffect effect;
 
-	public LaserDoor(Vector center, double length, double angle, String color, Signal listenSignal) {
+	public LaserDoor(Vector center, double length, Orientation direction, String color, Signal listenSignal) {
 		super(new Box(center, length, .3), "laser." + color, listenSignal);
 		effect = new SimpleParticleEffect("spark." + color).transparency(.8).stay(.2).fadeOut(.3).size(.4);
 
 		this.center = center;
-		this.angle = angle;
+		this.angle = direction.angle;
 		this.length = length;
 	}
 
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
-		if (sprite != null && getBox() != null)
-			output.drawSprite(sprite, getDisplayBox(time > 1 ? .1 : 0), angle);
+		Box box = getDisplayBox(time > 1 ? .1 : 0);
+		if (sprite != null && box != null)
+			output.drawSprite(sprite, box, angle);
 	}
 
 	@Override
@@ -91,10 +93,14 @@ public class LaserDoor extends Door {
 
 	@Override
 	public Box getBox() {
-		return super.getBox(); // todo rotate (make rotatable boxes)
+		if (super.getPosition() == null)
+			return null;
+		return new Box(getPosition(), sizeX * Math.cos(angle) + sizeY * Math.sin(angle), sizeY * Math.cos(angle) + sizeX * Math.sin(angle));
 	}
 
 	protected Box getDisplayBox(double yAdd) {
+		if (super.getPosition() == null)
+			return null;
 		return new Box(getPosition(), sizeX, sizeY + yAdd);
 	}
 
@@ -112,5 +118,15 @@ public class LaserDoor extends Door {
 		time += input.getDeltaTime();
 		if (time > 2)
 			time = 0D;
+	}
+
+	public enum Orientation {
+		HORIZONTAL(0), VERICAL(Math.PI / 2);
+
+		private final double angle;
+
+		Orientation(double angle) {
+			this.angle = angle;
+		}
 	}
 }

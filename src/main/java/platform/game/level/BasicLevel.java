@@ -55,7 +55,7 @@ public class BasicLevel extends PlayableLevel {
 
 		Lever lever = new Lever(new Vector(0, 3), .5, Double.POSITIVE_INFINITY, false, "lever.red.off", "lever.red.on", null);
 		world.register(lever);
-		world.register(new LaserDoor(new Vector(3, 3), 5, Math.PI / 4, "red", lever));
+		// world.register(new LaserDoor(new Vector(3, 3), 5, Math.PI / 4, "red", lever));
 
 		world.register(new Door(new Box(new Vector(-1.5, 1.5), 1, 1), "lock.red", new And(key, torch)));
 	}

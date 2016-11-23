@@ -52,7 +52,7 @@ public class Castle1 extends PlayableLevel {
 		// laser and stuff
 		Lever lever = new Lever(new Vector(-1.5, 1.25), .5, 30D, false, "lever.red.off", "lever.red.on", null);
 		world.register(lever);
-		world.register(new LaserDoor(new Vector(0, 2), 4, Math.PI / 2, "red", lever));
+		world.register(new LaserDoor(new Vector(0, 2), 4, LaserDoor.Orientation.VERICAL, "red", lever));
 		world.register(new Exit(new Vector(3, 1.5)));
 
 		world.register(new Decoration("exit", .5, new Vector(2.2, 1.2), Math.PI / 8));
