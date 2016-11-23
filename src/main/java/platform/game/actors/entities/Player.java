@@ -118,7 +118,7 @@ public class Player extends LivingActor {
 
 	@Override
 	public void postUpdate(Input input) {
-		getWorld().setView(getPosition(), 8D);
+		getWorld().setView(getPosition(), 5D);
 		super.postUpdate(input);
 	}
 
