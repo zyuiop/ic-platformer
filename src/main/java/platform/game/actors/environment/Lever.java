@@ -14,7 +14,6 @@ import platform.util.Vector;
  */
 public class Lever extends PositionedActor implements Signal {
 	private boolean active = false;
-	private boolean playSound = false;
 	private double duration = 30D;
 	private double transition = 0;
 	private double time;
@@ -41,24 +40,6 @@ public class Lever extends PositionedActor implements Signal {
 			return true;
 		}
 		return super.hurt(damageFrom, damageType, amount, location);
-	}
-
-	@Override
-	public void draw(Input input, Output output) {
-		super.draw(input, output);
-
-		if (playSound) {
-			Sound sound = getWorld().getSoundLoader().getSound("creak2");
-			if (sound != null)
-				sound.play();
-		}
-	}
-
-	@Override
-	public void postUpdate(Input input) {
-		super.postUpdate(input);
-
-		playSound = false;
 	}
 
 	@Override
@@ -94,7 +75,10 @@ public class Lever extends PositionedActor implements Signal {
 	private void setActive(boolean state) {
 		this.active = state;
 		setSpriteName("lever.mid");
-		this.playSound = true;
+
+		Sound sound = getWorld().getSoundLoader().getSound("chop");
+		sound.play();
+
 		this.transition = 0.3;
 	}
 }

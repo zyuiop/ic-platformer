@@ -2,6 +2,7 @@ package platform.game.menus;
 
 import platform.game.actors.basic.DisplayableActor;
 import platform.util.*;
+import platform.util.sounds.Sound;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -60,8 +61,13 @@ public class ButtonActor extends DisplayableActor {
 
 		if (getBox().isColliding(input.getMouseLocation())) {
 			sprite = hoverSprite;
-			if (input.getMouseButton(MouseEvent.BUTTON1).isDown())
+			if (input.getMouseButton(MouseEvent.BUTTON1).isPressed()) {
+
+				Sound sound = getWorld().getSoundLoader().getSound("switch5");
+				sound.play();
+
 				clickHandler.onClick();
+			}
 		}
 
 		setSpriteName(sprite);
