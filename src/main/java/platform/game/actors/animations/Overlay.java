@@ -45,11 +45,11 @@ public class Overlay extends Actor {
 	}
 
 	public Box getBox(int i) {
-		return new Box(getPosition(i), .1, .1);
+		return new Box(getPosition(i), .15, .15);
 	}
 
 	public Vector getPosition(int i) {
-		return parent.getPosition().add(new Vector((i - 3D) / 10, .5D));
+		return parent.getPosition().add(new Vector((i - 3D) / 7D, .5D));
 	}
 
 	@Override
