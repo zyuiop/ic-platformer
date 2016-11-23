@@ -25,6 +25,7 @@ public class LaserDoor extends Door {
 	private double angle;
 	private double length;
 	private Vector center;
+	private double time = 0D;
 	private ParticleEffect effect;
 
 	public LaserDoor(Vector center, double length, double angle, String color, Signal listenSignal) {
@@ -40,7 +41,7 @@ public class LaserDoor extends Door {
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
 		if (sprite != null && getBox() != null)
-			output.drawSprite(sprite, getBox(), angle);
+			output.drawSprite(sprite, getDisplayBox(time > 1 ? .1 : 0), angle);
 	}
 
 	@Override
@@ -90,8 +91,11 @@ public class LaserDoor extends Door {
 
 	@Override
 	public Box getBox() {
-		double height = Math.cos(angle);
 		return super.getBox(); // todo rotate (make rotatable boxes)
+	}
+
+	protected Box getDisplayBox(double yAdd) {
+		return new Box(getPosition(), sizeX, sizeY + yAdd);
 	}
 
 	@Override
@@ -99,5 +103,14 @@ public class LaserDoor extends Door {
 		super.onCollide(actor);
 
 		actor.hurt(this, Effect.LASER, 2D, getPosition());
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
+
+		time += input.getDeltaTime();
+		if (time > 2)
+			time = 0D;
 	}
 }
