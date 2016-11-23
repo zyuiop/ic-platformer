@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
 import platform.util.Sprite;
 import platform.util.Vector;
@@ -9,7 +10,7 @@ import platform.util.Vector;
  *         <p>
  *         An actor defined by its position and sprite
  */
-public abstract class PositionedActor extends DisplayableActor {
+public abstract class PositionedActor extends DisplayableActor implements IPositioned {
 	protected final double sizeX;
 	protected final double sizeY;
 	protected Vector position;
@@ -38,10 +39,12 @@ public abstract class PositionedActor extends DisplayableActor {
 		this.position = position;
 	}
 
+	@Override
 	public Vector getPosition() {
 		return position;
 	}
 
+	@Override
 	public void setPosition(Vector position) {
 		this.position = position;
 	}
@@ -75,4 +78,5 @@ public abstract class PositionedActor extends DisplayableActor {
 	public double getSizeY() {
 		return sizeY;
 	}
+
 }

@@ -1,11 +1,12 @@
 package platform.game;
 
+import platform.game.actors.interfaces.IActor;
 import platform.util.*;
 
 /**
  * Base class of all simulated actors, attached to a world.
  */
-public abstract class Actor implements Comparable<Actor> {
+public abstract class Actor implements Comparable<Actor>, IActor {
 	private World world;
 
 	/**

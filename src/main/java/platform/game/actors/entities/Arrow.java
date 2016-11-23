@@ -2,6 +2,7 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.Effect;
+import platform.game.actors.interfaces.IPositioned;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -9,7 +10,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Arrow extends AtachableProjectible {
+public class Arrow extends AttachableProjectile {
 	private double damage = 2D;
 	private double baseAttachTime = 45D;
 	private double attachTime = 45D; // expiration time
@@ -60,7 +61,7 @@ public class Arrow extends AtachableProjectible {
 	}
 
 	@Override
-	public void attachTo(Actor attachedTo, Vector positionDifference, double attachAngle) {
+	public void attachTo(IPositioned attachedTo, Vector positionDifference, double attachAngle) {
 		super.attachTo(attachedTo, positionDifference, attachAngle);
 		attachTime = baseAttachTime; // reset attach
 		blink = 0D;
@@ -71,7 +72,8 @@ public class Arrow extends AtachableProjectible {
 		if (other.hurt(this, Effect.PHYSICAL, damage, getPosition())) {
 			if (other.getPosition() != null) {
 				Vector diff = getPosition().sub(other.getPosition());
-				attachTo(other, diff, getVelocity().getAngle());
+				if (other instanceof IPositioned)
+				attachTo((IPositioned) other, diff, getVelocity().getAngle());
 			}
 			return true;
 		}
@@ -82,6 +84,7 @@ public class Arrow extends AtachableProjectible {
 	@Override
 	protected void hitBlock(Actor solidActor, Vector delta) {
 		Vector diff = getPosition().sub(solidActor.getPosition());
-		attachTo(solidActor, diff, getVelocity().getAngle());
+		if (solidActor instanceof IPositioned)
+			attachTo((IPositioned) solidActor, diff, getVelocity().getAngle());
 	}
 }
