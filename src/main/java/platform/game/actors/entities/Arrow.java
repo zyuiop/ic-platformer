@@ -12,7 +12,7 @@ import platform.util.Vector;
  */
 public class Arrow extends AttachableProjectile {
 	private double damage = 2D;
-	private double baseAttachTime = 10D;
+	private double baseAttachTime = 45D;
 	private double attachTime = 45D; // expiration time
 	private double blink = 0D; // TODO make faster with time
 
