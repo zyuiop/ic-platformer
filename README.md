@@ -1,7 +1,16 @@
 # ic-platformer
 
 The second Java "mini-project" of the first semester.
- 
+
+# Textures
+
+- Voxel Pack (body parts, backgrounds)
+- http://kenney.nl/assets/platformer-art-requests (for better puzzles)
+- http://kenney.nl/assets/topdown-tanks (interactions, leds)
+- http://kenney.nl/assets/medals (rewards)
+- http://kenney.nl/assets/ui-pack-rpg-expansion (for nice text backgrounds)
+- http://kenney.nl/assets/ui-pack-space-expansion (nice menus backgrounds)
+
 # Todo :
 
 #### Important stuff :
@@ -20,6 +29,8 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] Level switcher
 - [ ] Progression saver (level reached)
 - [ ] Level switch animation
+- [ ] Character damage animation 
+- [ ] Compound actor system (i.e. player with multiple body parts)
 - [ ] Weapon System
     - [ ] Rendering
     - [ ] Switching
@@ -29,5 +40,6 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] More sounds
 - [ ] Add enemies
 - [ ] Make better levels using enemies and all kinds of blocks
+- [ ] story and texts
 - [ ] Stars to collect
 - [ ] Scoring system

@@ -32,26 +32,27 @@
         <dependency>
             <groupId>com.github</groupId>
             <artifactId>tinysound</artifactId>
-            <scope>compile</scope>
+            <version>1</version>
+            <scope>system</scope>
             <systemPath>${pom.basedir}/tinysound-1.1.1.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.github</groupId>
+            <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>jorbis</artifactId>
+            <version>0.0.17.4</version>
             <scope>compile</scope>
-            <systemPath>${pom.basedir}/jorbis-0.0.17.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.github</groupId>
-            <artifactId>tritonus</artifactId>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>tritonus-all</artifactId>
+            <version>0.3.7.2</version>
             <scope>compile</scope>
-            <systemPath>${pom.basedir}/tritonus_share.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.github</groupId>
+            <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>vorbisspi</artifactId>
+            <version>1.0.3.3</version>
             <scope>compile</scope>
-            <systemPath>${pom.basedir}/vorbisspi1.0.3.jar</systemPath>
         </dependency>
     </dependencies>
 
