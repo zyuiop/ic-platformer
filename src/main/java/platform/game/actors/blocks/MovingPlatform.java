@@ -57,7 +57,6 @@ public abstract class MovingPlatform extends Block {
 				(Math.abs(((Player) actor).getVelocity().getX())) < .2) {
 			// This is a bit glitchy but it works.
 			// The last check is there to avoid sticking the player when he wants to move
-			// TODO : improve ?
 
 			if (actor.getPosition().getY() >= getPosition().getY()) {
 				Vector diff = actor.getPosition().sub(getPosition());

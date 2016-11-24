@@ -19,6 +19,7 @@ I **MUST** do this to get a correct grade.
 
 - [ ] Check all todos in code
 - [ ] Basic levels (in a chain)
+- [ ] Remove unneeded draw overrides
 - [ ] Javadoc
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions
