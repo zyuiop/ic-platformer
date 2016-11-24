@@ -6,7 +6,8 @@ import platform.util.*;
 /**
  * @author zyuiop
  *
- * This class defines a common base for different actors that can move
+ * This class defines a common base for different actors that can move, and that are moved
+ * automatically by different forces of the world
  */
 public abstract class MovableActor extends PositionedActor implements IMovable {
 	private Vector velocity;
@@ -44,11 +45,19 @@ public abstract class MovableActor extends PositionedActor implements IMovable {
 		return getWorld().getGravity();
 	}
 
+	/**
+	 * Get the current velocity of the actor
+	 * @return the velocity of the actor
+	 */
 	@Override
 	public Vector getVelocity() {
 		return velocity;
 	}
 
+	/**
+	 * Set the velocity of the actor.
+	 * @param velocity the new velocity vector
+	 */
 	@Override
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;

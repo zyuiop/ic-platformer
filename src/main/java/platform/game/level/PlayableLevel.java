@@ -9,10 +9,19 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ * A level that can be played by an human character.
  */
 public abstract class PlayableLevel extends Level {
+	/**
+	 * Get the start position for this level. The player will spawn here when the level will start.
+	 * @return the start position of this level
+	 */
 	protected abstract Vector startPosition();
 
+	/**
+	 * Get the limits of this level. If the player goes out of these limits, he will die immediately.
+	 * @return the bounding box of this level.
+	 */
 	protected abstract Box getLimits();
 
 	@Override

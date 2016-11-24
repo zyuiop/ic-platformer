@@ -22,6 +22,8 @@ I **MUST** do this to get a correct grade.
 - [ ] Basic levels (in a chain)
 - [x] Remove unneeded draw overrides
 - [ ] Javadoc
+    - [ ] animations
+    - [ ] gui
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions
 - [ ] Check particle system

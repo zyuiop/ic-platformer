@@ -2,8 +2,7 @@ package platform.game.menus.main;
 
 
 import platform.game.World;
-import platform.game.actors.SlowWriteLabel;
-import platform.game.level.BasicLevel;
+import platform.game.actors.ui.SlowWriteLabel;
 import platform.game.level.Level;
 import platform.game.menus.ButtonActor;
 import platform.game.menus.settings.KeyBindingsLevel;

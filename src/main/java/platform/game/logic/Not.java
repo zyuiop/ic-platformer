@@ -4,6 +4,7 @@ import platform.game.Signal;
 
 /**
  * @author zyuiop
+ * The negation of a signal. This signal is true if the sub signal is false.
  */
 public final class Not implements Signal {
 	private final Signal signal;

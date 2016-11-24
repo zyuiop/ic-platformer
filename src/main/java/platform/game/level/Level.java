@@ -23,7 +23,6 @@ public abstract class Level extends Actor {
 		return Integer.MAX_VALUE;
 	}
 
-	//
 	@Override
 	public void update(Input input) {
 		fadein -= input.getDeltaTime();
@@ -31,7 +30,6 @@ public abstract class Level extends Actor {
 			getWorld().unregister(this);
 	}
 
-	//
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getSprite("pixel.black");

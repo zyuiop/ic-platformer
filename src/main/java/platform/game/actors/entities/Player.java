@@ -75,7 +75,7 @@ public class Player extends LivingActor implements IAttachable {
 			}
 		}
 
-		if (bindings.isPressed(input, Key.UP)) {
+		if (bindings.isPressed(input, Key.JUMP)) {
 			if (isOnFloor || remainingAirJumps > 0) {
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(getVelocity().getX(), 5D));

@@ -9,6 +9,7 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *         A block with which the collision causes an interaction (example : jumper)
  */
 public abstract class InteractableBlock extends Block {
 	public InteractableBlock(Box box, String spriteName) {
@@ -35,6 +36,15 @@ public abstract class InteractableBlock extends Block {
 		super(position, sizeX, sizeY, spriteName, direction);
 	}
 
+	/**
+	 * Check if an interaction can come from the given side
+	 *
+	 * @param side the side to check
+	 * @return true if an interaction can come from this size
+	 *
+	 * @implNote the default implementation returns true if the side corresponds to the orientation
+	 * of the block
+	 */
 	protected boolean isRightSide(Side side) {
 		switch (getDirection()) {
 			case UP:
@@ -50,10 +60,22 @@ public abstract class InteractableBlock extends Block {
 		return false;
 	}
 
+	/**
+	 * Check if this block can be used. If this block implements a cooldown, it should return false
+	 * when it's cooling down.
+	 *
+	 * @return true if the block can be used
+	 */
 	protected boolean canBeUsed() {
 		return true;
 	}
 
+	/**
+	 * Handle a validated interaction from an actor. When this method is called, this class already
+	 * checked that the actor is interacting from the right side, and that the block can be used.
+	 *
+	 * @param other the actor interacting with this block
+	 */
 	protected abstract void doInteract(MovableActor other);
 
 	@Override

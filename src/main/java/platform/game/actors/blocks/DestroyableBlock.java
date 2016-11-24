@@ -10,7 +10,7 @@ import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
- * Simple solid actor that does nothing.
+ * A block that can be destroyed
  */
 public class DestroyableBlock extends Block implements Signal {
 	private double health;
@@ -54,6 +54,10 @@ public class DestroyableBlock extends Block implements Signal {
 		return super.hurt(damageFrom, damageType, amount, location);
 	}
 
+	/**
+	 * Get the health of this block. When the health reaches 0, the block is destroyed.
+	 * @return the health of the block
+	 */
 	public double getHealth() {
 		return health;
 	}

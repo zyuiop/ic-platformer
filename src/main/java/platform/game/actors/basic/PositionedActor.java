@@ -63,7 +63,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * @param spriteName the name of the sprite of the actor
 	 * @param direction the direction of the actor. The direction is applied on the provided box an
 	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is UP). The box is rotated if the direction is not vertical.
+	 * direction is JUMP). The box is rotated if the direction is not vertical.
 	 */
 	public PositionedActor(Box box, String spriteName, Direction direction) {
 		this(box.getCenter(), box.getWidth(), box.getHeight(), spriteName, direction);
@@ -77,7 +77,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * @param spriteName the name of the sprite of the actor
 	 * @param direction the direction of the actor. The direction is applied on the provided box an
 	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is UP). The box is rotated if the direction is not vertical.
+	 * direction is JUMP). The box is rotated if the direction is not vertical.
 	 */
 	public PositionedActor(Vector position, double size, String spriteName, Direction direction) {
 		this(position, size, size, spriteName, direction);
@@ -92,7 +92,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * @param spriteName the name of the sprite of the actor
 	 * @param direction the direction of the actor. The direction is applied on the provided box an
 	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is UP). The box is rotated if the direction is not vertical.
+	 * direction is JUMP). The box is rotated if the direction is not vertical.
 	 */
 	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
 		super(spriteName);
@@ -153,6 +153,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 		return true;
 	}
 
+	@Override
 	public Box getBox() {
 		if (!boxChanged()) {
 			return lastCalcBox;
@@ -168,10 +169,20 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 		return lastCalcBox;
 	}
 
+	/**
+	 * Get the width of this actor. This width doesn't take into account the eventual orientation
+	 * modification.
+	 * @return the width of the actor in a vertical orientation
+	 */
 	public double getSizeX() {
 		return sizeX;
 	}
 
+	/**
+	 * Get the height of this actor. This height doesn't take into account the eventual orientation
+	 * modification.
+	 * @return the height of the actor in a vertical orientation
+	 */
 	public double getSizeY() {
 		return sizeY;
 	}

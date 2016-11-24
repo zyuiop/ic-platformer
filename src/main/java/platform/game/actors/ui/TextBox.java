@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game.actors.ui;
 
 import platform.game.actors.basic.DisplayableActor;
 import platform.util.Input;

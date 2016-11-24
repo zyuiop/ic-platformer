@@ -12,6 +12,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A basic jumper that gives velocity to players walking on it
  */
 public class Jumper extends InteractableBlock {
 	private double cooldown = 0;

@@ -8,7 +8,7 @@ import java.io.IOException;
 import platform.game.World;
 import platform.game.actors.Background;
 import platform.game.actors.Orientation;
-import platform.game.actors.Tooltip;
+import platform.game.actors.ui.Tooltip;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Exit;

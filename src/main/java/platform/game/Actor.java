@@ -2,7 +2,12 @@ package platform.game;
 
 import platform.game.actors.Side;
 import platform.game.actors.interfaces.IActor;
-import platform.util.*;
+import platform.util.Box;
+import platform.util.Input;
+import platform.util.Loader;
+import platform.util.Output;
+import platform.util.Sprite;
+import platform.util.Vector;
 
 /**
  * Base class of all simulated actors, attached to a world.
@@ -38,7 +43,7 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 	/**
 	 * Draw this actor
 	 *
-	 * @param input  current input state
+	 * @param input current input state
 	 * @param output current output
 	 */
 	public void draw(Input input, Output output) {
@@ -119,8 +124,10 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 
 	/**
 	 * Gets a sprite from the world loader
+	 *
 	 * @param name the sprite to get
 	 * @return the loaded sprite, or null if the Actor is not attached to a world or if the sprite doesn't exist
+	 *
 	 * @see Loader#getSprite(String)
 	 */
 	protected Sprite getSprite(String name) {
@@ -129,6 +136,7 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 
 	/**
 	 * React to a damage or action
+	 *
 	 * @param damageFrom the actor who gave the damage
 	 * @param damageType the type of damage given
 	 * @param amount the amount of damage given
@@ -139,15 +147,20 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 		return false;
 	}
 
-	public boolean isRegistered() {
+	/**
+	 * Check if this actor is registered to a world
+	 *
+	 * @return true if this actor is registered
+	 */
+	public final boolean isRegistered() {
 		return getWorld() != null;
 	}
-
 
 	/**
 	 * This method is called if the current actor is solid and an actor with an higher priority
 	 * level touches it. This method will, in general, be executed by blocks willing to provide
 	 * interactions on the top of the collision, that is already handled by the colliding actor.
+	 *
 	 * @param actor the actor that touched this actor
 	 * @param side the side of the bounding box touched by the actor
 	 */

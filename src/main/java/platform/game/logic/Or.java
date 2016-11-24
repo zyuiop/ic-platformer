@@ -4,6 +4,8 @@ import platform.game.Signal;
 
 /**
  * @author zyuiop
+ * A representation of an OR gate of signals.
+ * This signal is true if one or more of the two sub signals is true.
  */
 public final class Or implements Signal {
 	private final Signal s1;

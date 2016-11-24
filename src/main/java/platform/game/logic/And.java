@@ -4,6 +4,7 @@ import platform.game.Signal;
 
 /**
  * @author zyuiop
+ * An and gate of two signals. True if and only if the two sub signals are both true.
  */
 public final class And implements Signal {
 	private final Signal s1;

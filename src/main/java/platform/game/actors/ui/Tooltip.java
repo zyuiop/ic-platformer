@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game.actors.ui;
 
 import java.awt.Color;
 import java.awt.Font;

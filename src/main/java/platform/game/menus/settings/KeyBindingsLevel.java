@@ -3,7 +3,7 @@ package platform.game.menus.settings;
 import platform.game.KeyBindings;
 import platform.game.Simulator;
 import platform.game.World;
-import platform.game.actors.Label;
+import platform.game.actors.ui.Label;
 import platform.game.level.Level;
 import platform.game.menus.ButtonActor;
 import platform.game.KeyBindings.Key;

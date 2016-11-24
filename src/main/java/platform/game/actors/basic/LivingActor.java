@@ -4,6 +4,8 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.util.Box;
 import platform.util.Input;
+import platform.util.Output;
+import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
@@ -14,6 +16,7 @@ public abstract class LivingActor extends MovableActor {
 	private double maxHealth;
 	private double health;
 	private double invulnerability = 0D;
+	private double blink = 0D;
 
 	public LivingActor(Box box, String spriteName, Vector velocity, double maxHealth) {
 		super(box, spriteName, velocity);
@@ -33,14 +36,25 @@ public abstract class LivingActor extends MovableActor {
 		this.health = health;
 	}
 
+	/**
+	 * Get the current health of the actor
+	 * @return the health of the actor
+	 */
 	public double getHealth() {
 		return health;
 	}
 
+	/**
+	 * Changes the health of the actor
+	 * @param health the new health
+	 */
 	public void setHealth(double health) {
 		this.health = Math.min(health, maxHealth);
 	}
 
+	/**
+	 * Kill the actor
+	 */
 	public void die() {
 		getWorld().unregister(this);
 	}
@@ -56,8 +70,22 @@ public abstract class LivingActor extends MovableActor {
 	@Override
 	public void update(Input input) {
 		super.update(input);
-		if (!isVulnerable())
+		if (!isVulnerable()) {
+			blink += input.getDeltaTime();
 			this.invulnerability = Math.max(0, invulnerability - input.getDeltaTime());
+
+			if (blink > .08)
+				blink = 0;
+		} else if (blink > 0) {
+			blink = 0;
+		}
+	}
+
+	@Override
+	public void draw(Input input, Output output) {
+		if (blink > .05)
+			return;
+		super.draw(input, output);
 	}
 
 	@Override
@@ -68,7 +96,7 @@ public abstract class LivingActor extends MovableActor {
 			else if (!isVulnerable()) {
 				return false; // prend pas les dégats
 			} else {
-				invulnerability = 2D;
+				invulnerability = 1.5D;
 			}
 			setHealth(getHealth() - amount);
 			return true;
@@ -76,14 +104,26 @@ public abstract class LivingActor extends MovableActor {
 			return super.hurt(damageFrom, damageType, amount, location);
 	}
 
+	/**
+	 * Get the maximum health of this actor
+	 * @return the max health
+	 */
 	public double getMaxHealth() {
 		return maxHealth;
 	}
 
+	/**
+	 * Check if this actor is dead, i.e. if its health is lower than 0
+	 * @return true if the actor is dead
+	 */
 	public boolean isDead() {
 		return getHealth() <= 0;
 	}
 
+	/**
+	 * Check if this actor can be damaged
+	 * @return true if the actor can be damaged
+	 */
 	public boolean isVulnerable() {
 		return invulnerability <= 0;
 	}

@@ -33,7 +33,6 @@ public class Simulator implements World {
 	private double expectedRadius = 10D;
 	private boolean isRaw = false;
 
-
 	/**
 	 * Create a new simulator.
 	 *  @param loader associated loader, not null

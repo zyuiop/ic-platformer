@@ -1,5 +1,6 @@
 package platform.game;
 
+import platform.util.Button;
 import platform.util.Input;
 
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ import java.util.Map.Entry;
 
 /**
  * @author zyuiop
+ * This class manages used-configured key bindings
  */
 public class KeyBindings {
 	private File file;
@@ -19,35 +21,68 @@ public class KeyBindings {
 	private Map<Key, Collection<Integer>> keyBinds = new HashMap<>();
 	private static KeyBindings instance;
 
+	/**
+	 * Create an instance of the KeyBindings manager, giving it the file in which the keys are saved
+	 * @param file the file identifier of the properties file
+	 */
 	public KeyBindings(File file) {
 		this.file = file;
 		instance = this;
 	}
 
+	/**
+	 * Get the current KeyBindings instance. May return null if no instance of this class have been
+	 * created.
+	 * @return the current KeyBindings instance
+	 */
 	public static KeyBindings getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Load default key bindings and user-configured ones, if the file exists.
+	 * @throws IOException if an error happens while reading the file
+	 */
 	public void load() throws IOException {
 		load(file);
 		populateKeybinds();
 		loadKeybindsFromFile();
 	}
 
+	/**
+	 * Save the user keybinds to the file
+	 * @throws IOException if an error happens while writing the file
+	 */
 	public void save() throws IOException {
+		verifyKeys();
 		saveKeybindsToFile();
 		save(file);
 	}
 
+	/**
+	 * Get all the bindings for a key
+	 * @param key the key to check
+	 * @return the bindings for this key
+	 */
 	public Collection<Integer> getKeys(Key key) {
 		return keyBinds.get(key);
 	}
 
+	/**
+	 * Add a binding for a key
+	 * @param key the modified key
+	 * @param button the new binding to add
+	 */
 	public void addKey(Key key, Integer button) {
 		if (!keyBinds.get(key).contains(button))
 			keyBinds.get(key).add(button);
 	}
 
+	/**
+	 * Remove a binding for a key
+	 * @param key the modified key
+	 * @param button the binding to remove
+	 */
 	public void removeKey(Key key, Integer button) {
 		keyBinds.get(key).remove(button);
 	}
@@ -74,6 +109,13 @@ public class KeyBindings {
 		}
 	}
 
+	/**
+	 * Check if a given key is pressed
+	 * @param input the user input
+	 * @param key the key to check
+	 * @return true if the key is pressed
+	 * @see Button#isPressed()
+	 */
 	public boolean isPressed(Input input, Key key) {
 		for (Integer k : keyBinds.get(key)) {
 			if (input.getKeyboardButton(k).isPressed()) {
@@ -84,6 +126,13 @@ public class KeyBindings {
 		return false;
 	}
 
+	/**
+	 * Check if a given key is down
+	 * @param input the user input
+	 * @param key the key to check
+	 * @return true if the key is down
+	 * @see Button#isDown()
+	 */
 	public boolean isDown(Input input, Key key) {
 		for (Integer k : keyBinds.get(key)) {
 			if (input.getKeyboardButton(k).isDown())
@@ -170,13 +219,37 @@ public class KeyBindings {
 		return target;
 	}
 
+	/**
+	 * An enumeration representing all available action keys
+	 */
 	public enum Key {
-		UP("Sauter", KeyEvent.VK_UP, KeyEvent.VK_Z),
+		/**
+		 * A key used to jump
+		 */
+		JUMP("Sauter", KeyEvent.VK_UP, KeyEvent.VK_Z),
+		/**
+		 * A key used to go left
+		 */
 		LEFT("Gauche", KeyEvent.VK_LEFT, KeyEvent.VK_Q),
+		/**
+		 * A key used to go right
+		 */
 		RIGHT("Droite", KeyEvent.VK_RIGHT, KeyEvent.VK_D),
+		/**
+		 * A key used to use an item or block
+		 */
 		USE("Utiliser", KeyEvent.VK_E),
+		/**
+		 * A key used to attack
+		 */
 		ATTACK("Attaquer", KeyEvent.VK_SPACE),
+		/**
+		 * A key used to blow
+		 */
 		BLOW("Souffler", KeyEvent.VK_B),
+		/**
+		 * A key used to open a menu
+		 */
 		MENU("Menu", KeyEvent.VK_ESCAPE);
 
 		private int[] defaultKeys;
@@ -191,10 +264,18 @@ public class KeyBindings {
 			this.description = description;
 		}
 
+		/**
+		 * Get the default bindings for this Key
+		 * @return an array of bindings
+		 */
 		public int[] getDefaultKeys() {
 			return defaultKeys;
 		}
 
+		/**
+		 * Get the human readable description of this key
+		 * @return a string explaining shortly what this key does
+		 */
 		public String getDescription() {
 			return description;
 		}
