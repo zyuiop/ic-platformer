@@ -2,6 +2,8 @@ package platform.game.actors;
 
 /**
  * @author zyuiop
+ * This enumeration represents a basic orientation (vertical or horizontal). It's useful for
+ * sprites that can be used on both direction of same orientation (i.e. facing left = facing right).
  */
 public enum Orientation {
 	HORIZONTAL(Math.PI / 2), VERICAL(0);
@@ -20,11 +22,10 @@ public enum Orientation {
 		return angle;
 	}
 
-	// todo improve jd
 	/**
 	 * Get the angle corresponding to this orientation, but relative to an other orientation.
-	 * @param spriteOrientation the orientation to compare
-	 * @return
+	 * @param spriteOrientation the orientation used as a reference (by default : vertical)
+	 * @return the angle corresponding to this orientation, with a specified sprite orientation
 	 */
 	public double getAngle(Orientation spriteOrientation) {
 		return Math.abs(getAngle() - spriteOrientation.getAngle());

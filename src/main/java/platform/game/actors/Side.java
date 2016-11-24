@@ -5,7 +5,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  *
- * Represents the side of a box
+ * Represents the side of a box.
  */
 public enum Side {
 	TOP, BOTTOM, LEFT, RIGHT, UNKNOWN;

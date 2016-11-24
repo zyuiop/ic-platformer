@@ -4,6 +4,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ * Represents a basic facing direction. Used in oriented blocks. Allows to quickly give velocity
+ * to projectiles or players, or to rotate sprites easily. It's more precise than {@link Orientation}
  */
 public enum Direction {
 	LEFT(new Vector(-1, 0), Math.PI / 2),
