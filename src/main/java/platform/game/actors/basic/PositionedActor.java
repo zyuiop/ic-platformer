@@ -1,42 +1,125 @@
 package platform.game.actors.basic;
 
+import platform.game.actors.Direction;
+import platform.game.actors.Orientation;
 import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  *         <p>
- *         An actor defined by its position and sprite
+ *         An actor defined by its position, sprite, and direction.
  */
 public abstract class PositionedActor extends DisplayableActor implements IPositioned {
 	protected final double sizeX;
 	protected final double sizeY;
 	protected Vector position;
+	// direction of the sprite
+	private Direction direction = Direction.UP;
 
 	// The last position used as a middle
 	private Vector lastCalcBase;
 	private Box lastCalcBox;
+	private boolean directionChanged = false;
 
+	/**
+	 * Create a positioned actor using a box
+	 *
+	 * @param box the box defining the position of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 */
 	public PositionedActor(Box box, String spriteName) {
-		this(box.getCenter(), box.getWidth(), box.getHeight(), spriteName);
-		this.lastCalcBox = box;
-		this.lastCalcBase = box.getCenter();
+		this(box, spriteName, Direction.UP);
 	}
 
+	/**
+	 * Create a positioned actor using a position and a size
+	 *
+	 * @param position the center of the actor
+	 * @param size the size of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 */
 	public PositionedActor(Vector position, double size, String spriteName) {
-		super(spriteName);
-		this.sizeX = size;
-		this.sizeY = size;
-		this.position = position;
+		this(position, size, spriteName, Direction.UP);
 	}
 
+	/**
+	 * Create a positioned actor using a position and a size
+	 *
+	 * @param position the center of the actor
+	 * @param sizeX the width of the actor
+	 * @param sizeY the height of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 */
 	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName) {
+		this(position, sizeX, sizeY, spriteName, Direction.UP);
+	}
+
+	/**
+	 * Create a positioned actor using a box
+	 *
+	 * @param box the box defining the position of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 * @param direction the direction of the actor. The direction is applied on the provided box an
+	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
+	 * direction is UP). The box is rotated if the direction is not vertical.
+	 */
+	public PositionedActor(Box box, String spriteName, Direction direction) {
+		this(box.getCenter(), box.getWidth(), box.getHeight(), spriteName, direction);
+	}
+
+	/**
+	 * Create a positioned actor using a box
+	 *
+	 * @param position the center of the actor
+	 * @param size the size of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 * @param direction the direction of the actor. The direction is applied on the provided box an
+	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
+	 * direction is UP). The box is rotated if the direction is not vertical.
+	 */
+	public PositionedActor(Vector position, double size, String spriteName, Direction direction) {
+		this(position, size, size, spriteName, direction);
+	}
+
+	/**
+	 * Create a positioned actor using a box
+	 *
+	 * @param position the center of the actor
+	 * @param sizeX the width of the actor
+	 * @param sizeY the height of the actor
+	 * @param spriteName the name of the sprite of the actor
+	 * @param direction the direction of the actor. The direction is applied on the provided box an
+	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
+	 * direction is UP). The box is rotated if the direction is not vertical.
+	 */
+	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
 		super(spriteName);
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
 		this.position = position;
+		this.direction = direction;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	/**
+	 * Change the direction of this actor.
+	 * <br>The texture of this actor will be rotated by the correct angle, considering that the
+	 * default state is {@link Direction#UP}
+	 * <br>If the direction orientation is different, the box will be recalculated, inverting
+	 * width and height.
+	 * @param direction the new direction, not null
+	 */
+	public void setDirection(Direction direction) {
+		if (direction == null) { throw new NullPointerException(); }
+
+		this.directionChanged = (this.direction == null ||
+				this.direction.getOrientation() != direction.getOrientation());
+		this.direction = direction;
 	}
 
 	@Override
@@ -49,11 +132,21 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 		this.position = position;
 	}
 
-	private boolean positionChanged() {
+	private boolean boxChanged() {
 		Vector currentPosition = getPosition();
-		if (lastCalcBase == null && currentPosition == null) { return false; }
-		if (lastCalcBase != null && currentPosition != null && currentPosition.equals(lastCalcBase)) {
+		if (lastCalcBase == null && currentPosition == null) {
+			// same (null) position
 			return false;
+		}
+
+		if (lastCalcBase != null && currentPosition != null && currentPosition.equals(lastCalcBase)) {
+			// same position
+			if (directionChanged) {
+				directionChanged = false;
+				return true; // need recalculation because direction changed
+			} else {
+				return false; // nothing changed
+			}
 		}
 
 		lastCalcBase = currentPosition;
@@ -61,12 +154,16 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	}
 
 	public Box getBox() {
-		if (!positionChanged()) { return lastCalcBox; }
+		if (!boxChanged()) {
+			return lastCalcBox;
+		}
 
 		if (lastCalcBase == null) {
 			lastCalcBox = null;
 		} else {
-			lastCalcBox = new Box(getPosition(), sizeX, sizeY);
+			// if orientation is horizontal, we invert the coordinates.
+			lastCalcBox = direction.getOrientation() == Orientation.VERICAL ?
+					new Box(getPosition(), sizeX, sizeY) : new Box(getPosition(), sizeY, sizeX);
 		}
 		return lastCalcBox;
 	}
@@ -79,4 +176,8 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 		return sizeY;
 	}
 
+	@Override
+	public double getRotation() {
+		return direction.getRotation();
+	}
 }

@@ -2,7 +2,7 @@ package platform.game.actors.blocks;
 
 import platform.game.Signal;
 import platform.game.actors.Direction;
-import platform.game.actors.basic.OrientedBlock;
+import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.entities.Arrow;
 import platform.game.actors.entities.Fireball;
 import platform.game.actors.entities.Projectile;
@@ -12,7 +12,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class ProjectileLauncher extends OrientedBlock {
+public class ProjectileLauncher extends Block {
 	private final Signal signal;
 	private final LaunchPolicy launchPolicy;
 	private final ProjectileCreator projectileCreator;

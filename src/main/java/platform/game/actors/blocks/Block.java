@@ -1,11 +1,12 @@
 package platform.game.actors.blocks;
 
+import platform.game.actors.Direction;
 import platform.game.actors.basic.PositionedActor;
 import platform.util.Box;
 import platform.util.Vector;
 
 /**
- * Simple solid actor that does nothing.
+ * Simple solid actor that does nothing more than being solid.
  */
 public class Block extends PositionedActor {
 	public Block(Box box, String spriteName) {
@@ -18,6 +19,18 @@ public class Block extends PositionedActor {
 
 	public Block(Vector position, double sizeX, double sizeY, String spriteName) {
 		super(position, sizeX, sizeY, spriteName);
+	}
+
+	public Block(Box box, String spriteName, Direction direction) {
+		super(box, spriteName, direction);
+	}
+
+	public Block(Vector position, double size, String spriteName, Direction direction) {
+		super(position, size, spriteName, direction);
+	}
+
+	public Block(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
+		super(position, sizeX, sizeY, spriteName, direction);
 	}
 
 	@Override

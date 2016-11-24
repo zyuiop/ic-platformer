@@ -3,23 +3,36 @@ package platform.game.actors.basic;
 import platform.game.Actor;
 import platform.game.actors.Direction;
 import platform.game.actors.Side;
+import platform.game.actors.blocks.Block;
 import platform.util.Box;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public abstract class InteractableBlock extends OrientedBlock {
+public abstract class InteractableBlock extends Block {
+	public InteractableBlock(Box box, String spriteName) {
+		super(box, spriteName);
+	}
+
+	public InteractableBlock(Vector position, double size, String spriteName) {
+		super(position, size, spriteName);
+	}
+
+	public InteractableBlock(Vector position, double sizeX, double sizeY, String spriteName) {
+		super(position, sizeX, sizeY, spriteName);
+	}
+
+	public InteractableBlock(Box box, String spriteName, Direction direction) {
+		super(box, spriteName, direction);
+	}
+
 	public InteractableBlock(Vector position, double size, String spriteName, Direction direction) {
 		super(position, size, spriteName, direction);
 	}
 
 	public InteractableBlock(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
 		super(position, sizeX, sizeY, spriteName, direction);
-	}
-
-	public InteractableBlock(Box box, String spriteName, Direction direction) {
-		super(box, spriteName, direction);
 	}
 
 	protected boolean isRightSide(Side side) {

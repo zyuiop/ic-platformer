@@ -42,6 +42,7 @@ When parts of the bonus stuff are stable and ready, we can merge them into `stab
 
 I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 
+- [ ] Moving platforms can be climbed from the bottom
 - [ ] Level switcher
 - [ ] Progression saver (level reached)
 - [ ] Level switch animation
