@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import java.util.function.Function;
 import platform.game.Actor;
 import platform.util.Box;
 import platform.util.Input;
@@ -15,6 +16,7 @@ public abstract class DisplayableActor extends Actor {
 	private boolean reloadSprite = false;
 	private String spriteName;
 	private Sprite sprite;
+	private Function<Box, Box> boxTransformer = null;
 
 	public DisplayableActor(String spriteName) {
 		this.spriteName = spriteName;
@@ -23,18 +25,34 @@ public abstract class DisplayableActor extends Actor {
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
-		Box box = getDisplayBox();
+		Box box = getBox();
+
+		if (boxTransformer != null)
+			box = boxTransformer.apply(box);
+
 		if (sprite != null && box != null)
-			output.drawSprite(sprite, getDisplayBox());
+			output.drawSprite(sprite, box);
 	}
 
 	/**
-	 * Get the box used to display the actor. In general it is the same than the classic box.
-	 * @return a box corresponding to the dimensions of the displayed actor
-	 * @implNote this implementation returns {@link Actor#getBox()}
+	 * Defines a transformer to convert the bounding box to a displayable box. The transformer
+	 * argument is the bounding box of this actor, and the function must return a box which will
+	 * be used as a basis to display this actor.
+	 * @param boxTransformer a box-to-box transformer
 	 */
-	public Box getDisplayBox() {
-		return getBox();
+	public void setBoxTransformer(Function<Box, Box> boxTransformer) {
+		this.boxTransformer = boxTransformer;
+	}
+
+	/**
+	 * Defines a box transformer and return this actor. Same method as
+	 * {@link DisplayableActor#setBoxTransformer(Function)} but for chained calls.
+	 * @param boxTransformer a box-to-box transformer
+	 * @return this actor
+	 */
+	public DisplayableActor boxTransformer(Function<Box, Box> boxTransformer) {
+		setBoxTransformer(boxTransformer);
+		return this;
 	}
 
 	protected Sprite getCurrentSprite() {
