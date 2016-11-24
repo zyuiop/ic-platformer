@@ -54,7 +54,7 @@ public abstract class MovingPlatform extends Block {
 		super.onCollide(actor, side);
 
 		if (side == Side.TOP && actor instanceof Player && !((Player) actor).isAttached() &&
-				(Math.abs(((Player) actor).getVelocity().getX())) < .05) {
+				(Math.abs(((Player) actor).getVelocity().getX())) < .2) {
 			// This is a bit glitchy but it works.
 			// The last check is there to avoid sticking the player when he wants to move
 			// TODO : improve ?

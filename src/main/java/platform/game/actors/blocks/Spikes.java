@@ -57,6 +57,6 @@ public class Spikes extends InteractableBlock {
 
 	@Override
 	public boolean isSolid() {
-		return false;
+		return true;
 	}
 }

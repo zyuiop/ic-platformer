@@ -31,16 +31,18 @@ public class DestroyableBlock extends Block implements Signal {
 	}
 
 	@Override
-	public void draw(Input input, Output output) {
-		if (isSolid())
-			super.draw(input, output);
-	}
-
-	@Override
 	public Vector getPosition() {
 		if (isSolid())
 			return super.getPosition();
 		return null;
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
+
+		if (getHealth() <= 0)
+			getWorld().unregister(this);
 	}
 
 	@Override

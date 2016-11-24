@@ -15,8 +15,7 @@ import platform.util.Vector;
  */
 public class AttachLink extends Actor {
 	private IPositioned attachedTo;
-	// TODO : use MovableActor and PositionedActor instead of interfaces ?
-	private IAttachable attachedActor; // technically it could be an IMovable, but it's more logic to use IAttachable
+	private IAttachable attachedActor;
 	private Vector difference;
 
 	/**
