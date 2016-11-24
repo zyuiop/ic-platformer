@@ -7,6 +7,7 @@ import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.Orientation;
 import platform.game.actors.Side;
+import platform.game.actors.basic.OrientedBlock;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
 import platform.game.particles.SimpleParticleEffect;
@@ -48,8 +49,8 @@ public class LaserDoor extends Door {
 		super.register(world);
 
 		Vector unit = Vector.X.rotated(angle);
-		world.register(new LaserPower(center.add(unit.mul(length / 2)).add(unit.mul(0.2)), angle + Math.PI));
-		world.register(new LaserPower(center.sub(unit.mul(length / 2)).sub(unit.mul(0.2)), angle));
+		world.register(new LaserPower(center.add(unit.mul(length / 2)).add(unit.mul(0.2)), angle - Math.PI / 2));
+		world.register(new LaserPower(center.sub(unit.mul(length / 2)).sub(unit.mul(0.2)), angle + Math.PI / 2));
 	}
 
 	@Override
@@ -76,18 +77,14 @@ public class LaserDoor extends Door {
 	private static class LaserPower extends Block {
 		private double angle;
 
-		// TODO : make oriented (when oriented will be rewriten)
-
-		public LaserPower(Vector position, double angle) {
+		LaserPower(Vector position, double angle) {
 			super(position, .4, "laserdown");
 			this.angle = angle;
 		}
 
 		@Override
-		public void draw(Input input, Output output) {
-			Sprite sprite = getCurrentSprite();
-			if (sprite != null)
-				output.drawSprite(sprite, getBox(), angle + Math.PI / 2);
+		public double getRotation() {
+			return angle;
 		}
 
 		@Override
