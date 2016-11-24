@@ -43,8 +43,4 @@ public interface Output {
 	 * @param color the color of the text, not null
 	 */
 	void drawText(String text, Vector position, Font font, Color color);
-
-	void drawBackground(Sprite sprite);
-
-	void drawBackground(Sprite sprite, boolean repeatX, boolean repeatY);
 }

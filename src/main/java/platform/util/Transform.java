@@ -127,15 +127,5 @@ public abstract class Transform implements Input, Output {
     }
 
     @Override
-    public void drawBackground(Sprite sprite) {
-        output.drawBackground(sprite);
-    }
-
-    @Override
-    public void drawBackground(Sprite sprite, boolean repeatX, boolean repeatY) {
-        output.drawBackground(sprite, repeatX, repeatY);
-    }
-
-    @Override
     public Collection<Integer> getPressedKeys() {return input.getPressedKeys();}
 }
