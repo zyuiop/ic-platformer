@@ -14,7 +14,7 @@ public class Arrow extends AttachableProjectile {
 	private double damage = 2D;
 	private double baseAttachTime = 45D;
 	private double attachTime = 45D; // expiration time
-	private double blink = 0D; // TODO make faster with time
+	private double blink = 0D;
 
 	public Arrow(Vector position, Vector velocity, Actor sender) {
 		super("arrow", position, velocity, sender, .75, 0.1725);

@@ -25,8 +25,6 @@ public class Jumper extends InteractableBlock {
 			double size = (direction.getOrientation() == Orientation.HORIZONTAL) ?
 					box.getHeight() : box.getWidth();
 
-			System.out.println(box);
-
 			// we add a useless zone in the top
 			Vector max = box.getMin().add(new Vector(size, size));
 			return new Box(box.getMin(), max);
@@ -47,11 +45,6 @@ public class Jumper extends InteractableBlock {
 	}
 
 	@Override
-	public boolean isSolid() {
-		return false;
-	}
-
-	@Override
 	protected boolean canBeUsed() {
 		return cooldown <= 0;
 	}
@@ -63,11 +56,6 @@ public class Jumper extends InteractableBlock {
 			cooldown = 0.5;
 			setSpriteName("jumper.extended");
 		}
-	}
-
-	@Override
-	public int getPriority() {
-		return 100;
 	}
 
 }

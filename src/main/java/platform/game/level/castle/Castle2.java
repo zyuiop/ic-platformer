@@ -9,6 +9,7 @@ import platform.game.actors.Orientation;
 import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.Jumper;
+import platform.game.actors.blocks.Spikes;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Exit;
 import platform.game.actors.environment.LaserDoor;
@@ -65,8 +66,8 @@ public class Castle2 extends PlayableLevel {
 		Signal elevators = new And(lever, new Not(lever2));
 		world.register(new LaserDoor(new Vector(0, 3), 14, Orientation.HORIZONTAL, "green", lever));
 
-		world.register(new Jumper(new Vector(.5 , 1.125), .5, .25, Direction.UP, 10D));
-		world.register(new Jumper(new Vector(-1.5 , 1.25), .5, .25, Direction.RIGHT, 10D));
+		world.register(new Spikes(new Vector(.5 , 1.25), .5, Direction.UP, 1D));
+		world.register(new Spikes(new Vector(-1.5 , 1.25), .5, Direction.RIGHT, 1D));
 
 		// Elevatooooor
 

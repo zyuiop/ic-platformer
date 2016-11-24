@@ -12,7 +12,7 @@ public enum Side {
 
 	public static Side compute(Vector delta) {
 		if (delta.getX() != 0) {
-			if (delta.getX() > 0)
+			if (delta.getX() < 0)
 				return LEFT;
 			return RIGHT;
 		}

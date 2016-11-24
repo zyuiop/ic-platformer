@@ -15,9 +15,6 @@ import platform.util.Vector;
 public abstract class OrientedBlock extends Block {
 	private Direction direction;
 
-	// TODO : rewrite ratio system ? ==> add sizeX sizeY support using cos/sin (see laser)
-	// TODO : move jumper specific methods to the jumper itself
-
 	public OrientedBlock(Vector position, double size, String spriteName, Direction direction) {
 		super(position, size, spriteName);
 		this.direction = direction;

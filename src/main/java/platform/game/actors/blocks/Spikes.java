@@ -4,6 +4,7 @@ import platform.game.Effect;
 import platform.game.actors.Direction;
 import platform.game.actors.basic.InteractableBlock;
 import platform.game.actors.basic.MovableActor;
+import platform.util.Box;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -14,13 +15,25 @@ public class Spikes extends InteractableBlock {
 	private double damage = 5D;
 	private double cooldown = 0;
 
+	// current system :
+	// - solid block
+	// - half hitbox
+	// - damage on collide with hitbox
+	// TODO : improve (use the old velocity system ?) (major drawback of current system : horizontal are easier to avoid)
+
 	public Spikes(Vector position, double size) {
 		this(position, size, Direction.UP, 5D);
 	}
 
 	public Spikes(Vector position, double size, Direction direction, double damage) {
-		super(position, size, "spikes", direction);
+		super(position.add(new Vector(0, -size / 4)), size, size / 2, "spikes", direction);
 		this.damage = damage;
+
+		this.setBoxTransformer((box) -> {
+			// we add a useless zone in the top
+			Vector max = box.getMin().add(new Vector(size, size));
+			return new Box(box.getMin(), max);
+		});
 	}
 
 	@Override
@@ -41,10 +54,6 @@ public class Spikes extends InteractableBlock {
 		cooldown = 1D;
 	}
 
-	@Override
-	public int getPriority() {
-		return 100;
-	}
 
 	@Override
 	public boolean isSolid() {
