@@ -62,8 +62,8 @@ public class Castle2 extends PlayableLevel {
 		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "green", lever));
 
 		// Elevatooooor
-		world.register(new AlwaysMovingPlatform(new Box(new Vector(-5, .5), 1, 1), "metalPlatform", new Vector(-5, .5), new Vector(-5, 4.5), elevators, .5, 1));
-		world.register(new AlwaysMovingPlatform(new Box(new Vector(5, .5), 1, 1), "metalPlatform", new Vector(5, .5), new Vector(5, 4.5), elevators, .5, 1));
+		world.register(new AlwaysMovingPlatform(new Box(new Vector(-5, .5), 1, 1), "metalPlatform", new Vector(-5, .5), new Vector(-2.5, 4.5), elevators, .35, 1));
+		world.register(new AlwaysMovingPlatform(new Box(new Vector(5, .5), 1, 1), "metalPlatform", new Vector(5, .5), new Vector(2.5, 4.5), elevators, .35, 1));
 
 		world.register(new Background("background.hills", true, false));
 	}

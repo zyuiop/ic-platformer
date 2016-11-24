@@ -1,6 +1,7 @@
 package platform.game.actors.blocks;
 
 import platform.game.Effect;
+import platform.game.actors.Direction;
 import platform.game.actors.basic.InteractableBlock;
 import platform.game.actors.basic.MovableActor;
 import platform.util.Input;

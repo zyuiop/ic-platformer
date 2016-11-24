@@ -30,9 +30,18 @@ public abstract class MovableActor extends PositionedActor implements IMovable {
 	public void update(Input input) {
 		super.update(input);
 		double delta = input.getDeltaTime();
-		Vector acceleration = getWorld().getGravity();
+		Vector acceleration = computeAcceleration();
 		setVelocity(getVelocity().add(acceleration.mul(delta)));
 		setPosition(getPosition().add(getVelocity().mul(delta)));
+	}
+
+	/**
+	 * Get the physical acceleration of this actor.
+	 * @return the physical acceleration
+	 * @implNote the default implementation only returns the gravity of the world.
+	 */
+	protected Vector computeAcceleration() {
+		return getWorld().getGravity();
 	}
 
 	@Override

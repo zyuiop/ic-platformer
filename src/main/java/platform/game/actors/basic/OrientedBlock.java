@@ -1,5 +1,6 @@
 package platform.game.actors.basic;
 
+import platform.game.actors.Direction;
 import platform.game.actors.blocks.Block;
 import platform.util.Box;
 import platform.util.Input;
@@ -50,25 +51,4 @@ public abstract class OrientedBlock extends Block {
 		return 1;
 	}
 
-	public enum Direction {
-		LEFT(new Vector(-1, 0), Math.PI / 2),
-		RIGHT(new Vector(1, 0), -Math.PI / 2),
-		UP(new Vector(0, 1), 0),
-		DOWN(new Vector(0, -1), Math.PI);
-		private final Vector unitVector;
-		private final double rotation;
-
-		Direction(Vector unitVector, double rotation) {
-			this.unitVector = unitVector;
-			this.rotation = rotation;
-		}
-
-		public Vector getUnitVector() {
-			return unitVector;
-		}
-
-		public double getRotation() {
-			return rotation;
-		}
-	}
 }

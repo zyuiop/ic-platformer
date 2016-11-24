@@ -3,7 +3,7 @@ package platform.game.level;
 import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.Background;
-import platform.game.actors.basic.OrientedBlock;
+import platform.game.actors.Direction;
 import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.Jumper;
@@ -42,12 +42,12 @@ public class BasicLevel extends PlayableLevel {
 		world.register(new Block(new Box(new Vector(0, 0), 4, 2), "stone.broken.2"));
 		Key key = new Key("red", .3, new Vector(2.5, 3.5));
 		world.register(key);
-		world.register(new Spikes(new Vector(2.5, .749), 1, OrientedBlock.Direction.UP, 2D));
+		world.register(new Spikes(new Vector(2.5, .749), 1, Direction.UP, 2D));
 		world.register(new Jumper(new Vector(2.5, -.749), 1));
 		world.register(new Heart(new Vector(2.5, 2.5), 1));
 		Lever torch = new Lever(new Vector(-.5, 1.25), .5, 30);
 		world.register(torch);
-		world.register(new ProjectileLauncher(new Vector(2.5, 2.5), 1, "box.double", OrientedBlock.Direction.LEFT, Signal.ENABLED, (sinceLastLaunch, oldSignal, newSignal) -> sinceLastLaunch >= 1.5, new ProjectileLauncher.FireballCreator().power(10)));
+		world.register(new ProjectileLauncher(new Vector(2.5, 2.5), 1, "box.double", Direction.LEFT, Signal.ENABLED, (sinceLastLaunch, oldSignal, newSignal) -> sinceLastLaunch >= 1.5, new ProjectileLauncher.FireballCreator().power(10)));
 
 		world.register(new AlwaysMovingPlatform(new Box(new Vector(0, 4), 1, 1), "box.single", new Vector(0, 4), new Vector(0, 0), new Not(torch), .5, 1D));
 

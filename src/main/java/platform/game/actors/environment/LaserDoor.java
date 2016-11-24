@@ -5,6 +5,7 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.World;
+import platform.game.actors.Side;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
 import platform.game.particles.SimpleParticleEffect;
@@ -113,8 +114,8 @@ public class LaserDoor extends Door {
 	}
 
 	@Override
-	public void onCollide(Actor actor) {
-		super.onCollide(actor);
+	public void onCollide(Actor actor, Side side) {
+		super.onCollide(actor, side);
 
 		actor.hurt(this, Effect.LASER, 2D, getPosition());
 	}

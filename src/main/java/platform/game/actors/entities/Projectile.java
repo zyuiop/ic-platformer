@@ -1,6 +1,7 @@
 package platform.game.actors.entities;
 
 import platform.game.Actor;
+import platform.game.actors.Side;
 import platform.game.actors.basic.MovableActor;
 import platform.util.Input;
 import platform.util.Output;
@@ -57,7 +58,7 @@ public abstract class Projectile extends MovableActor {
 		if (other.isSolid() && other.getBox() != null) {
 			Vector delta = other.getBox().getCollision(getPosition());
 			if (delta != null) {
-				other.onCollide(this);
+				other.onCollide(this, Side.compute(delta));
 				hitBlock(other, delta);
 			}
 		}

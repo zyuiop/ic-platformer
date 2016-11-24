@@ -5,9 +5,13 @@ import platform.game.Effect;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.World;
+import platform.game.actors.AttachLink;
+import platform.game.actors.Side;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
+import platform.game.actors.interfaces.IAttachable;
+import platform.game.actors.interfaces.IPositioned;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
 import platform.util.Input;
@@ -16,12 +20,13 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Player extends LivingActor {
+public class Player extends LivingActor implements IAttachable {
 	private KeyBindings bindings;
 	private boolean isColliding = false;
 	private int maxAirJumps = 1;
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
+	private AttachLink attachLink;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
 		super(position, .5, "blocker.happy", velocity, 10);
@@ -54,7 +59,8 @@ public class Player extends LivingActor {
 					speed = maxSpeed;
 				}
 
-				setVelocity(new Vector(speed, getVelocity().getY()));
+				// We call detach because it moves but also frees the player from a moving platform
+				detach(new Vector(speed, getVelocity().getY()));
 			}
 		} else if (bindings.isDown(input, Key.LEFT)) {
 			if (getVelocity().getX() > -maxSpeed) {
@@ -64,13 +70,15 @@ public class Player extends LivingActor {
 					speed = -maxSpeed;
 				}
 
-				setVelocity(new Vector(speed, getVelocity().getY()));
+				// We call detach because it moves but also frees the player from a moving platform
+				detach(new Vector(speed, getVelocity().getY()));
 			}
 		}
 
 		if (bindings.isPressed(input, Key.UP)) {
 			if (isOnFloor || remainingAirJumps > 0) {
-				setVelocity(new Vector(getVelocity().getX(), 5D));
+				// We call detach because it moves but also frees the player from a moving platform
+				detach(new Vector(getVelocity().getX(), 5D));
 
 				if (!isOnFloor) {
 					remainingAirJumps--;
@@ -108,8 +116,9 @@ public class Player extends LivingActor {
 		if (other.isSolid()) {
 			Vector delta = other.getBox().getCollision(getBox());
 			if (delta != null) {
-				other.onCollide(this);
 				setPosition(getPosition().add(delta));
+
+				Side direction = Side.compute(delta);
 
 				if (delta.getX() != 0D) {
 					setVelocity(new Vector(0D, getVelocity().getY()));
@@ -117,10 +126,16 @@ public class Player extends LivingActor {
 
 				if (delta.getY() != 0D) {
 					setVelocity(new Vector(getVelocity().getX(), 0D));
-					this.isOnFloor = true;
-					this.remainingAirJumps = this.maxAirJumps;
+					if (delta.getY() > 0) {
+						this.isOnFloor = true;
+						this.remainingAirJumps = this.maxAirJumps;
+						if (direction != Side.TOP) {
+							System.err.println("Wrong side " + direction + " / " + delta);
+						}
+					}
 				}
 
+				other.onCollide(this, direction);
 				this.isColliding = true;
 			}
 		}
@@ -168,7 +183,38 @@ public class Player extends LivingActor {
 	@Override
 	public void register(World world) {
 		super.register(world);
-		System.out.println("Register / " + getHealth() + " / " + getWorld());
 		world.register(new Overlay(this));
+	}
+
+	@Override
+	public void attachTo(IPositioned attachedTo, Vector positionDifference) {
+		detach(Vector.ZERO); // detach and set velocity
+		this.attachLink = new AttachLink(attachedTo, this, positionDifference);
+		getWorld().register(attachLink);
+	}
+
+	/**
+	 * Detach the current actor from it's attach (if it exists), and give it a velocity.
+	 *
+	 * @param velocity the velocity to set to the actor when detached. In general,
+	 * {@link Vector#ZERO} is used as the new velocity parameter.
+	 * @implNote This implementation tries to remove the link then it sets the velocity of the
+	 * player, even if it was not attached.
+	 */
+	@Override
+	public void detach(Vector velocity) {
+		if (attachLink != null) { attachLink.detach(); }
+		this.attachLink = null;
+		this.setVelocity(velocity);
+	}
+
+	@Override
+	public boolean isAttached() {
+		if (attachLink != null && !attachLink.isRegistered()) {
+			detach(Vector.ZERO);
+			return false;
+		}
+
+		return attachLink != null;
 	}
 }

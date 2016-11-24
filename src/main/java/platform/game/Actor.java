@@ -1,5 +1,6 @@
 package platform.game;
 
+import platform.game.actors.Side;
 import platform.game.actors.interfaces.IActor;
 import platform.util.*;
 
@@ -147,8 +148,9 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 	 * This method is called if the current actor is solid and an actor with an higher priority
 	 * level touches it.
 	 * @param actor the actor that touched this actor
+	 * @param side the side of the bounding box touched by the actor
 	 */
-	public void onCollide(Actor actor) {
+	public void onCollide(Actor actor, Side side) {
 
 	}
 }

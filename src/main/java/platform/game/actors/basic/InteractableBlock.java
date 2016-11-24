@@ -1,6 +1,7 @@
 package platform.game.actors.basic;
 
 import platform.game.Actor;
+import platform.game.actors.Direction;
 import platform.util.Vector;
 
 /**

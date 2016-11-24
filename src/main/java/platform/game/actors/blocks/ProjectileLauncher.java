@@ -1,6 +1,7 @@
 package platform.game.actors.blocks;
 
 import platform.game.Signal;
+import platform.game.actors.Direction;
 import platform.game.actors.basic.OrientedBlock;
 import platform.game.actors.entities.Arrow;
 import platform.game.actors.entities.Fireball;

@@ -1,6 +1,10 @@
 package platform.game.actors.blocks;
 
+import platform.game.Actor;
 import platform.game.Signal;
+import platform.game.actors.Side;
+import platform.game.actors.entities.Player;
+import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
 import platform.util.Vector;
 
@@ -45,4 +49,20 @@ public abstract class MovingPlatform extends Block {
 		return super.getPosition().add((getSecond().sub(getFirst()).mul(current)));
 	}
 
+	@Override
+	public void onCollide(Actor actor, Side side) {
+		super.onCollide(actor, side);
+
+		if (side == Side.TOP && actor instanceof Player && !((Player) actor).isAttached() &&
+				(Math.abs(((Player) actor).getVelocity().getX())) < .05) {
+			// This is a bit glitchy but it works.
+			// The last check is there to avoid sticking the player when he wants to move
+			// TODO : improve ?
+
+			if (actor.getPosition().getY() >= getPosition().getY()) {
+				Vector diff = actor.getPosition().sub(getPosition());
+				((Player) actor).attachTo(this, diff);
+			}
+		}
+	}
 }
