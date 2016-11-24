@@ -1,6 +1,7 @@
 package platform.game.actors.basic;
 
 import platform.game.Actor;
+import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;
@@ -22,8 +23,18 @@ public abstract class DisplayableActor extends Actor {
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
-		if (sprite != null)
-			output.drawSprite(sprite, getBox());
+		Box box = getDisplayBox();
+		if (sprite != null && box != null)
+			output.drawSprite(sprite, getDisplayBox());
+	}
+
+	/**
+	 * Get the box used to display the actor. In general it is the same than the classic box.
+	 * @return a box corresponding to the dimensions of the displayed actor
+	 * @implNote this implementation returns {@link Actor#getBox()}
+	 */
+	public Box getDisplayBox() {
+		return getBox();
 	}
 
 	protected Sprite getCurrentSprite() {

@@ -62,8 +62,39 @@ public class Castle2 extends PlayableLevel {
 		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "green", lever));
 
 		// Elevatooooor
-		world.register(new AlwaysMovingPlatform(new Box(new Vector(-5, .5), 1, 1), "metalPlatform", new Vector(-5, .5), new Vector(-2.5, 4.5), elevators, .35, 1));
-		world.register(new AlwaysMovingPlatform(new Box(new Vector(5, .5), 1, 1), "metalPlatform", new Vector(5, .5), new Vector(2.5, 4.5), elevators, .35, 1));
+
+		// The used sprite has a strange ratio
+		// To avoid having a hitbox that doesn't correspond to the reality we recreate it correctly
+		// (owwww I really dislike declaring a class directly in a method)
+		class CastlePlatform extends AlwaysMovingPlatform {
+			private CastlePlatform(Box box, Vector first, Vector second) {
+				super(box, "metalPlatform", first, second, elevators, .35, 1);
+			}
+
+			@Override
+			public Box getBox() {
+				Box box = super.getBox();
+				if (box == null)
+					return null; // no parent box, we don't return anything
+
+				double ratio = 18D / 70; // ratio of the image (hardcoded)
+				double newHeight = box.getWidth() * ratio;
+
+				// the useful part of the image is the part at the top :
+				// remove the useless transparent part in the bottom by increasing lowest position
+				Vector min = box.getMin().add(new Vector(0, box.getHeight() - newHeight));
+				return new Box(min, box.getMax());
+			}
+
+			@Override
+			public Box getDisplayBox() {
+				// display box is classic box
+				return super.getBox();
+			}
+		}
+
+		world.register(new CastlePlatform(new Box(new Vector(-5, .5), 1, 1), new Vector(-5, .5), new Vector(-2.5, 4.5)));
+		world.register(new CastlePlatform(new Box(new Vector(5, .5), 1, 1), new Vector(5, .5), new Vector(2.5, 4.5)));
 
 		world.register(new Background("background.hills", true, false));
 	}
