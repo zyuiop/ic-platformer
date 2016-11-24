@@ -17,9 +17,10 @@ The second Java "mini-project" of the first semester.
 
 I **MUST** do this to get a correct grade.
 
-- [ ] Check all todos in code
+- [x] Check all todos in code
+- [ ] Improve spikes
 - [ ] Basic levels (in a chain)
-- [ ] Remove unneeded draw overrides
+- [x] Remove unneeded draw overrides
 - [ ] Javadoc
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions

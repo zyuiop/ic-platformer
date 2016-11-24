@@ -35,6 +35,11 @@ public abstract class Projectile extends MovableActor {
 	 */
 	protected abstract boolean damage(Actor other);
 
+	/**
+	 * This method is called when the projectile hits a block, after computing collisions
+	 * @param solidActor the block hit
+	 * @param delta the computed easiest wayout from this block's hitbox
+	 */
 	protected abstract void hitBlock(Actor solidActor, Vector delta);
 
 	protected double getAngle() {

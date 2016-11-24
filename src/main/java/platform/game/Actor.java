@@ -146,7 +146,8 @@ public abstract class Actor implements Comparable<Actor>, IActor {
 
 	/**
 	 * This method is called if the current actor is solid and an actor with an higher priority
-	 * level touches it.
+	 * level touches it. This method will, in general, be executed by blocks willing to provide
+	 * interactions on the top of the collision, that is already handled by the colliding actor.
 	 * @param actor the actor that touched this actor
 	 * @param side the side of the bounding box touched by the actor
 	 */
