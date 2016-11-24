@@ -64,7 +64,6 @@ public class LaserDoor extends Door {
 				double diff = (random.nextDouble() - .5) / 2;
 
 				Vector position = center.add(unit.mul(i + .5)).add(norm.mul(diff));
-				System.out.println(position);
 				effect.play(getWorld(), position);
 			}
 
