@@ -31,10 +31,8 @@ public class Decoration extends PositionedActor {
 	}
 
 	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		if (sprite != null)
-			output.drawSprite(sprite, getBox(), rotation);
+	public double getRotation() {
+		return rotation;
 	}
 
 	@Override

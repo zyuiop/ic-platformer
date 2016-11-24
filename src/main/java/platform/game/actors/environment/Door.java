@@ -32,12 +32,6 @@ public class Door extends Block {
 	}
 
 	@Override
-	public void draw(Input input, Output output) {
-		if (!listenSignal.isActive())
-			super.draw(input, output);
-	}
-
-	@Override
 	public Vector getPosition() {
 		if (isSolid())
 			return super.getPosition();

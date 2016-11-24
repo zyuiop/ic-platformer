@@ -30,10 +30,8 @@ public class BlowAnimation extends ParticleActor {
 	}
 
 	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		if (sprite != null)
-			output.drawSprite(sprite, getBox(), 0, .80 - time);
+	public double getOpacity() {
+		return 0.8 - time;
 	}
 
 	@Override

@@ -24,6 +24,10 @@ I **MUST** do this to get a correct grade.
 - [ ] Javadoc
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions
+- [ ] Check particle system
+- [ ] Recheck :
+    - [ ] Fireballs
+    - [ ] Door
 
 #### Bonus stuff :
 

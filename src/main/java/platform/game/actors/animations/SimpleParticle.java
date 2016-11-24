@@ -46,7 +46,8 @@ public class SimpleParticle extends ParticleActor {
 		}
 	}
 
-	protected double calcTransparency() {
+	@Override
+	public double getOpacity() {
 		double transparency = this.transparency;
 
 		if (time < fadeIn) {
@@ -55,15 +56,6 @@ public class SimpleParticle extends ParticleActor {
 			transparency = transparency - ((time - fadeIn - fadeOut) / fadeOut) * transparency;
 		}
 		return transparency;
-	}
-
-	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		if (sprite == null || !isRegistered())
-			return;
-
-		output.drawSprite(sprite, getBox(), 0, calcTransparency());
 	}
 
 	protected double getFadeIn() {

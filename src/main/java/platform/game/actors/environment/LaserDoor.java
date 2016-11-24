@@ -7,14 +7,11 @@ import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.Orientation;
 import platform.game.actors.Side;
-import platform.game.actors.basic.OrientedBlock;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
 import platform.game.particles.SimpleParticleEffect;
 import platform.util.Box;
 import platform.util.Input;
-import platform.util.Output;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
@@ -34,14 +31,11 @@ public class LaserDoor extends Door {
 		this.center = center;
 		this.angle = direction.getAngle(Orientation.HORIZONTAL);
 		this.length = length;
-	}
 
-	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		Box box = getDisplayBox(time > 1 ? .1 : 0);
-		if (sprite != null && box != null)
-			output.drawSprite(sprite, box, angle);
+		// Fancy animation
+		this.setBoxTransformer(box ->
+				getPosition() == null ? null : new Box(getPosition(), sizeX, sizeY + (time > 1 ? .1 : 0))
+		);
 	}
 
 	@Override
@@ -73,6 +67,37 @@ public class LaserDoor extends Door {
 		}
 	}
 
+	@Override
+	public int getPriority() {
+		return 1; // on the front of the blocks please !
+	}
+
+	@Override
+	public Box getBox() {
+		if (super.getPosition() == null) { return null; }
+		return new Box(getPosition(), sizeX * Math.cos(angle) + sizeY * Math.sin(angle), sizeY * Math.cos(angle) + sizeX * Math.sin(angle));
+	}
+
+	@Override
+	public double getRotation() {
+		return angle;
+	}
+
+	@Override
+	public void onCollide(Actor actor, Side side) {
+		super.onCollide(actor, side);
+
+		actor.hurt(this, Effect.LASER, 2D, getPosition());
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
+
+		time += input.getDeltaTime();
+		if (time > 2) { time = 0D; }
+	}
+
 	private static class LaserPower extends Block {
 		private double angle;
 
@@ -90,40 +115,6 @@ public class LaserDoor extends Door {
 		public int getPriority() {
 			return 1; // on the front of the blocks please !
 		}
-	}
-
-	@Override
-	public int getPriority() {
-		return 1; // on the front of the blocks please !
-	}
-
-	@Override
-	public Box getBox() {
-		if (super.getPosition() == null)
-			return null;
-		return new Box(getPosition(), sizeX * Math.cos(angle) + sizeY * Math.sin(angle), sizeY * Math.cos(angle) + sizeX * Math.sin(angle));
-	}
-
-	protected Box getDisplayBox(double yAdd) {
-		if (super.getPosition() == null)
-			return null;
-		return new Box(getPosition(), sizeX, sizeY + yAdd);
-	}
-
-	@Override
-	public void onCollide(Actor actor, Side side) {
-		super.onCollide(actor, side);
-
-		actor.hurt(this, Effect.LASER, 2D, getPosition());
-	}
-
-	@Override
-	public void update(Input input) {
-		super.update(input);
-
-		time += input.getDeltaTime();
-		if (time > 2)
-			time = 0D;
 	}
 
 }

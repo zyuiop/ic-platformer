@@ -38,9 +38,9 @@ public abstract class AttachableProjectile extends Projectile implements IAttach
 	}
 
 	@Override
-	protected double getAngle() {
+	public double getRotation() {
 		if (!isAttached()) {
-			return super.getAngle();
+			return super.getRotation();
 		}
 
 		return attachAngle;

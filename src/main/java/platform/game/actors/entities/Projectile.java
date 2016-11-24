@@ -42,15 +42,8 @@ public abstract class Projectile extends MovableActor {
 	 */
 	protected abstract void hitBlock(Actor solidActor, Vector delta);
 
-	protected double getAngle() {
+	public double getRotation() {
 		return getVelocity() == null ? 0 : getVelocity().getAngle();
-	}
-
-	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		if (sprite != null)
-			output.drawSprite(sprite, getBox(), getAngle());
 	}
 
 	@Override
