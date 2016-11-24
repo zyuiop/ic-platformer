@@ -28,6 +28,15 @@ I **MUST** do this to get a correct grade.
 - [ ] Recheck :
     - [ ] Fireballs
     - [ ] Door
+    
+When everything works :
+- [ ] Create a new branch `stable`
+- [ ] Create a tag in `stable`
+- [ ] Remove unused code from `stable`
+
+And after, switch to BONUS STUFF in `master`.
+When parts of the bonus stuff are stable and ready, we can merge them into `stable`.
+
 
 #### Bonus stuff :
 
