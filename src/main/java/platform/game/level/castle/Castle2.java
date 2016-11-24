@@ -4,8 +4,11 @@ import java.util.function.Function;
 import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.Background;
+import platform.game.actors.Direction;
+import platform.game.actors.Orientation;
 import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
+import platform.game.actors.blocks.Jumper;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Exit;
 import platform.game.actors.environment.LaserDoor;
@@ -60,7 +63,10 @@ public class Castle2 extends PlayableLevel {
 		world.register(lever);
 		world.register(lever2);
 		Signal elevators = new And(lever, new Not(lever2));
-		world.register(new LaserDoor(new Vector(0, 3), 14, LaserDoor.Orientation.HORIZONTAL, "green", lever));
+		world.register(new LaserDoor(new Vector(0, 3), 14, Orientation.HORIZONTAL, "green", lever));
+
+		world.register(new Jumper(new Vector(.5 , 1.125), .5, .25, Direction.UP, 10D));
+		world.register(new Jumper(new Vector(-1.5 , 1.25), .5, .25, Direction.RIGHT, 10D));
 
 		// Elevatooooor
 

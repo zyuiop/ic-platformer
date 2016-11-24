@@ -31,7 +31,7 @@ public abstract class DisplayableActor extends Actor {
 			box = boxTransformer.apply(box);
 
 		if (sprite != null && box != null)
-			output.drawSprite(sprite, box);
+			output.drawSprite(sprite, box, getRotation(), getOpacity());
 	}
 
 	/**
@@ -64,6 +64,14 @@ public abstract class DisplayableActor extends Actor {
 		}
 
 		return sprite;
+	}
+
+	public double getOpacity() {
+		return 1D;
+	}
+
+	public double getRotation() {
+		return 0D;
 	}
 
 	public void setSpriteName(String spriteName) {

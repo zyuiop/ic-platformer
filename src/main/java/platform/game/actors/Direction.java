@@ -25,4 +25,8 @@ public enum Direction {
 	public double getRotation() {
 		return rotation;
 	}
+
+	public Orientation getOrientation() {
+		return (this == LEFT || this == RIGHT) ? Orientation.HORIZONTAL : Orientation.VERICAL;
+	}
 }

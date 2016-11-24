@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import platform.game.World;
 import platform.game.actors.Background;
+import platform.game.actors.Orientation;
 import platform.game.actors.Tooltip;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.environment.Decoration;
@@ -54,7 +55,7 @@ public class Castle1 extends PlayableLevel {
 		// laser and stuff
 		Lever lever = new Lever(new Vector(-1.5, 1.25), .5, 30D, false, "lever.red.off", "lever.red.on", null);
 		world.register(lever);
-		world.register(new LaserDoor(new Vector(0, 3), 4, LaserDoor.Orientation.VERICAL, "red", lever));
+		world.register(new LaserDoor(new Vector(0, 3), 4, Orientation.VERICAL, "red", lever));
 		world.register(new Exit(new Vector(3, 1.5)));
 
 		world.register(new Decoration(new Vector(2.2, 1.2), .5, "exit", Math.PI / 8));

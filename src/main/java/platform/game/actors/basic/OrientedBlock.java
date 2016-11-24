@@ -23,6 +23,16 @@ public abstract class OrientedBlock extends Block {
 		this.direction = direction;
 	}
 
+	public OrientedBlock(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
+		super(position, sizeX, sizeY, spriteName);
+		this.direction = direction;
+	}
+
+	public OrientedBlock(Box box, String spriteName, Direction direction) {
+		super(box, spriteName);
+		this.direction = direction;
+	}
+
 	public Direction getDirection() {
 		return direction;
 	}
@@ -31,24 +41,16 @@ public abstract class OrientedBlock extends Block {
 		this.direction = direction;
 	}
 
+	@Override
 	public Box getBox() {
-		return new Box(position, sizeX * getHitboxXRatio(), sizeY * getHitboxYRatio());
+		if (super.getPosition() == null)
+			return null;
+		double angle = direction.getOrientation().getAngle();
+		return new Box(getPosition(), getSizeX() * Math.cos(angle) + getSizeY() * Math.sin(angle), getSizeY() * Math.cos(angle) + getSizeX() * Math.sin(angle));
 	}
 
 	@Override
-	public void draw(Input input, Output output) {
-		Sprite sprite = getCurrentSprite();
-		if (sprite != null) {
-			output.drawSprite(sprite, super.getBox(), getDirection().getRotation());
-		}
+	public double getRotation() {
+		return direction.getRotation();
 	}
-
-	protected double getHitboxXRatio() {
-		return 1;
-	}
-
-	protected double getHitboxYRatio() {
-		return 1;
-	}
-
 }

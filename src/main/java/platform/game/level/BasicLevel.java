@@ -43,7 +43,7 @@ public class BasicLevel extends PlayableLevel {
 		Key key = new Key("red", .3, new Vector(2.5, 3.5));
 		world.register(key);
 		world.register(new Spikes(new Vector(2.5, .749), 1, Direction.UP, 2D));
-		world.register(new Jumper(new Vector(2.5, -.749), 1));
+		// world.register(new Jumper(new Vector(2.5, -.749), 1));
 		world.register(new Heart(new Vector(2.5, 2.5), 1));
 		Lever torch = new Lever(new Vector(-.5, 1.25), .5, 30);
 		world.register(torch);

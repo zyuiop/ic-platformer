@@ -5,6 +5,7 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.World;
+import platform.game.actors.Orientation;
 import platform.game.actors.Side;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
@@ -30,7 +31,7 @@ public class LaserDoor extends Door {
 		effect = new SimpleParticleEffect("spark." + color).transparency(.8).stay(.2).fadeOut(.3).size(.4);
 
 		this.center = center;
-		this.angle = direction.angle;
+		this.angle = direction.getAngle(Orientation.HORIZONTAL);
 		this.length = length;
 	}
 
@@ -129,13 +130,4 @@ public class LaserDoor extends Door {
 			time = 0D;
 	}
 
-	public enum Orientation {
-		HORIZONTAL(0), VERICAL(Math.PI / 2);
-
-		private final double angle;
-
-		Orientation(double angle) {
-			this.angle = angle;
-		}
-	}
 }

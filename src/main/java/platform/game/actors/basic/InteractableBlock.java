@@ -2,6 +2,7 @@ package platform.game.actors.basic;
 
 import platform.game.Actor;
 import platform.game.actors.Direction;
+import platform.util.Box;
 import platform.util.Vector;
 
 /**
@@ -12,6 +13,13 @@ public abstract class InteractableBlock extends OrientedBlock {
 		super(position, size, spriteName, direction);
 	}
 
+	public InteractableBlock(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
+		super(position, sizeX, sizeY, spriteName, direction);
+	}
+
+	public InteractableBlock(Box box, String spriteName, Direction direction) {
+		super(box, spriteName, direction);
+	}
 
 	protected boolean isRightDirection(Vector vector) {
 		switch (getDirection()) {

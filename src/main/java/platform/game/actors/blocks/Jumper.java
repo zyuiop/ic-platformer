@@ -1,9 +1,12 @@
 package platform.game.actors.blocks;
 
+import java.util.function.Function;
 import platform.game.Effect;
 import platform.game.actors.Direction;
+import platform.game.actors.Orientation;
 import platform.game.actors.basic.InteractableBlock;
 import platform.game.actors.basic.MovableActor;
+import platform.util.Box;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -14,32 +17,22 @@ public class Jumper extends InteractableBlock {
 	private double cooldown = 0;
 	private double power;
 
-	public Jumper(Vector position, double size) {
-		this(position, size, Direction.UP, 10D);
-	}
+	public Jumper(Vector position, double sizeX, double sizeY, Direction direction, double power) {
+		super(position, sizeX, sizeY, "jumper.normal", direction);
 
-	private double getHitboxRatio() {
-		if (cooldown >= 0)
-			return .5;
-		return .4;
-	}
+		Function<Box, Box> transformer = (box) -> {
+			// the box we get has already been transformed by the rotation
+			double size = (direction.getOrientation() == Orientation.HORIZONTAL) ?
+					box.getHeight() : box.getWidth();
 
-	@Override
-	protected double getHitboxXRatio() {
-		if (getDirection() == Direction.LEFT || getDirection() == Direction.RIGHT)
-			return getHitboxRatio();
-		return 1;
-	}
+			System.out.println(box);
 
-	@Override
-	protected double getHitboxYRatio() {
-		if (getDirection() == Direction.UP || getDirection() == Direction.DOWN)
-			return getHitboxRatio();
-		return 1;
-	}
+			// we add a useless zone in the top
+			Vector max = box.getMin().add(new Vector(size, size));
+			return new Box(box.getMin(), max);
+		};
+		this.setBoxTransformer(transformer);
 
-	public Jumper(Vector position, double size, Direction direction, double power) {
-		super(position, size, "jumper.normal", direction);
 		this.power = power;
 	}
 
