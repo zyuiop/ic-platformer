@@ -1,7 +1,3 @@
-# !/bin/bash
-
-# Simple script to deploy compiled artifact to the dedicated server
-
 targetName=Platformer-$TRAVIS_BUILD_NUMBER-$TRAVIS_COMMIT
 
 echo "Deploying to "$targetName
