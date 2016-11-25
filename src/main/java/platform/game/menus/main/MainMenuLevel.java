@@ -2,6 +2,7 @@ package platform.game.menus.main;
 
 
 import platform.game.World;
+import platform.game.actors.Background;
 import platform.game.actors.ui.SlowWriteLabel;
 import platform.game.level.Level;
 import platform.game.menus.ButtonActor;
@@ -32,7 +33,7 @@ public class MainMenuLevel extends Level {
 		super.register(world);
 
 		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File("resources/kenvector_future_thin.ttf")).deriveFont(Font.BOLD, 20);
+			Font font = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 
 			world.register(new ButtonActor(() -> {
 				getWorld().setNextLevel(getWorld().getLevelManager().restartGroup());
@@ -46,6 +47,7 @@ public class MainMenuLevel extends Level {
 
 			world.register(new SlowWriteLabel(50, new Vector(-5, 3), "Salut ceci est un texte lent a s'ecrire omg", font));
 
+			world.register(new Background("background.hills", true, false));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

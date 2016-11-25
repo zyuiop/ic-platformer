@@ -33,6 +33,12 @@
 
     <!-- Build Settings -->
     <build>
+        <resources>
+            <resource>
+                <directory>${pom.basedir}/resources</directory>
+                <targetPath>resources/</targetPath>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>

@@ -8,6 +8,7 @@ import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -52,7 +53,16 @@ public final class Sprite {
 	public Sprite(File file) throws IOException {
 		this(ImageIO.read(file));
 	}
-	
+
+    /**
+     * Creates a sprite from specified input stream
+     * @param stream valid input stream, not null
+     * @throws IOException if an error occurs during reading
+     */
+	public Sprite(InputStream stream) throws IOException {
+		this(ImageIO.read(stream));
+	}
+
     /**
      * Creates a sprite from specified image file.
      * @param path valid image file path, not null

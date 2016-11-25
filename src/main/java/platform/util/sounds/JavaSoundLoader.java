@@ -1,6 +1,9 @@
 package platform.util.sounds;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Loads sprites from specified folder, guessing necessary file extensions.
@@ -33,8 +36,9 @@ public class JavaSoundLoader implements SoundLoader {
 		Sound sound = null;
 
 		File f = new File(prefix + name + ".wav");
-		if (f.exists()) { sound = new JavaSound(f); }
-
+		if (f.exists()) {
+			sound = new JavaSound(f);
+		}
 
 		// On failure, use fallback loader
 		if (sound == null) { sound = fallback.getSound(name); }

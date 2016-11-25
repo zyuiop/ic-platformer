@@ -2,6 +2,19 @@ package platform;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.HashMap;
+import com.sun.nio.zipfs.ZipFileSystem;
+import com.sun.nio.zipfs.ZipFileSystemProvider;
 import platform.game.KeyBindings;
 import platform.game.Simulator;
 import platform.util.BufferedLoader;
@@ -22,6 +35,39 @@ public class Program {
 	public static void main(String[] args) throws Exception {
 
 		// Create components
+		Path resourcePath = Paths.get("resources");
+		if (!Files.exists(resourcePath)) {
+			Files.createDirectory(resourcePath);
+		}
+
+		if (!Files.isDirectory(resourcePath)) {
+			System.out.println("Resources path " + resourcePath + " is not a directory !");
+			return;
+		}
+
+		URI uri = Program.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+		Path path = Paths.get(uri.getPath());
+
+		if (uri.getPath().endsWith(".jar") && Files.exists(path)) {
+			FileSystem system = FileSystems.newFileSystem(path, ClassLoader.getSystemClassLoader());
+			Path p = system.getPath("/resources/");
+			if (Files.exists(p) && Files.isDirectory(p)) {
+				Files.list(p).forEach((f) -> {
+					Path target = Paths.get("resources", f.getFileName().toString());
+					if (!Files.exists(target)) {
+						System.out.println("- Extracting " + f.getFileName());
+						try {
+							Files.copy(f, target);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		}
+
+
+
 		SoundLoader sl = new JavaSoundLoader("resources/");
 
 		BufferedLoader loader = new BufferedLoader(new FileLoader("resources/", DefaultLoader.INSTANCE), sl);
