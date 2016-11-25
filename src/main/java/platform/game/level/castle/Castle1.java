@@ -66,11 +66,11 @@ public class Castle1 extends PlayableLevel {
 
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 		world.register(new DismissableTextBox(startPosition().add(new Vector(0, -3)),
-				"text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Déplace toi avec " +
-				"[Gauche] et [Droite] et saute avec [Haut]"));
+				"text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Déplacez vous avec " +
+				"[Gauche] et [Droite] et sautez avec [Haut]"));
 		world.register(new TriggerableTextbox(detector.getPosition().add(new Vector(0, -3)),
-				"text.background", font, 0, 0.3, 6, .4, .2, .25, .3, detector, "Utilise la touche" +
+				"text.background", font, 0, 0.3, 6, .4, .2, .25, .3, detector, "Utilisez la touche" +
 				" [E] pour intéragir.", "Attention, les lasers ça pique !"));
-
+		world.setViewRadius(5D);
 	}
 }

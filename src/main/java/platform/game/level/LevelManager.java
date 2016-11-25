@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import platform.game.level.castle.Castle1;
 import platform.game.level.castle.Castle2;
+import platform.game.level.castle.Castle3;
 
 /**
  * @author zyuiop
@@ -19,7 +20,11 @@ public class LevelManager {
 	 * @return a new Level Manager filled with all the levels
 	 */
 	public static LevelManager init() {
-		return new LevelManager().add(new LevelGroup().addLevel(Castle1.class).addLevel(Castle2.class));
+		return new LevelManager().add(new LevelGroup()
+				.addLevel(Castle1.class)
+				.addLevel(Castle2.class)
+				.addLevel(Castle3.class)
+		);
 	}
 
 	private LevelManager() {

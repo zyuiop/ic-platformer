@@ -6,6 +6,7 @@ import platform.game.KeyBindings.Key;
 import platform.game.actors.AttachLink;
 import platform.game.actors.Side;
 import platform.game.actors.animations.BlowAnimation;
+import platform.game.actors.animations.Crosshair;
 import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
 import platform.game.actors.interfaces.IAttachable;
@@ -20,6 +21,7 @@ import platform.util.sounds.Sound;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 /**
  * @author zyuiop
@@ -34,6 +36,7 @@ public class Player extends LivingActor implements IAttachable {
 	private AttachLink attachLink;
 	private int footstep = 0;
 	private double footStepTime = 0D;
+	private Crosshair crosshair;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
 		super(position, .5, "blocker.happy", velocity, 10);
@@ -135,9 +138,16 @@ public class Player extends LivingActor implements IAttachable {
 			}
 		}
 
-		if (bindings.isPressed(input, Key.ATTACK)) {
-			Vector fireballSpeed = getVelocity().add(getVelocity().resized(2.0));
-			getWorld().register(new Arrow(getPosition(), fireballSpeed, this));
+		if (bindings.isPressed(input, Key.ATTACK) || input.getMouseButton(MouseEvent.BUTTON1).isPressed()) {
+			Vector vector = input.getMouseLocation().sub(getPosition());
+			if (vector.getLength() > 7D) {
+				double angle = vector.getAngle();
+				vector = Vector.X.rotated(angle).mul(7D);
+			}
+
+			vector = vector.mul(2);
+
+			getWorld().register(new Fireball(getPosition(), vector, this));
 		}
 
 		if (input.getKeyboardButton(KeyEvent.VK_F3).isPressed()) {
@@ -203,7 +213,7 @@ public class Player extends LivingActor implements IAttachable {
 
 	@Override
 	public void postUpdate(Input input) {
-		getWorld().setView(getPosition(), 5D);
+		getWorld().setView(getPosition());
 		super.postUpdate(input);
 	}
 
@@ -240,6 +250,8 @@ public class Player extends LivingActor implements IAttachable {
 	@Override
 	public void register(World world) {
 		super.register(world);
+		crosshair = new Crosshair(this);
+		world.register(crosshair);
 		world.register(new Overlay(this));
 	}
 

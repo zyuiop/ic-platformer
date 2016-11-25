@@ -24,12 +24,23 @@ public interface World {
 	SoundLoader getSoundLoader();
 
 	/**
-	 * Set viewport location and size.
+	 * Set viewport location
 	 *
 	 * @param center viewport center , not null
+	 */
+	void setView(Vector center);
+
+	/**
+	 * Set viewport size
 	 * @param radius viewport radius , positive
 	 */
-	void setView(Vector center, double radius);
+	void setViewRadius(double radius);
+
+	/**
+	 * Locks the view to the current one. If the view is locked, it cannot be modified.
+	 * @param fixedView true if the view should be locked
+	 */
+	void setFixedView(boolean fixedView);
 
 	/**
 	 * Add an actor to the world

@@ -32,6 +32,7 @@ public class Simulator implements World {
 	private double radius = 10D;
 	private double expectedRadius = 10D;
 	private boolean isRaw = false;
+	private boolean isViewFixed = false;
 
 	/**
 	 * Create a new simulator.
@@ -118,6 +119,8 @@ public class Simulator implements World {
 		isRaw = false;
 		center = Vector.ZERO;
 		expectedCenter = Vector.ZERO;
+		isViewFixed = false;
+		setViewRadius(5D); // default
 
 		// register the new level
 		register(level);
@@ -129,15 +132,30 @@ public class Simulator implements World {
 	}
 
 	@Override
-	public void setView(Vector center, double radius) {
+	public void setView(Vector center) {
 		if (center == null) { throw new NullPointerException(); }
+		if (isViewFixed)
+			return;
+
+
+		Logger.getGlobal().fine("Changed view to center " + center.getX() + "," + center.getY());
+		this.expectedCenter = center;
+	}
+
+	@Override
+	public void setViewRadius(double radius) {
 		if (radius <= 0D) {
 			throw new IllegalArgumentException("radius must be strictly positive");
 		}
+		if (isViewFixed)
+			return;
 
-		Logger.getGlobal().fine("Changed view to center " + center.getX() + "," + center.getY() + " and radius " + radius);
-		this.expectedCenter = center;
 		this.expectedRadius = radius;
+	}
+
+	@Override
+	public void setFixedView(boolean fixedView) {
+		this.isViewFixed = fixedView;
 	}
 
 	public void register(Actor actor) {

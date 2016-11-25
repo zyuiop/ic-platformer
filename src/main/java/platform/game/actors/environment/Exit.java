@@ -2,8 +2,10 @@ package platform.game.actors.environment;
 
 import platform.game.Actor;
 import platform.game.Signal;
+import platform.game.actors.Side;
 import platform.game.actors.basic.DisplayableActor;
 import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.blocks.Block;
 import platform.game.actors.entities.Player;
 import platform.game.level.Level;
 import platform.util.Box;
@@ -13,7 +15,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Exit extends PositionedActor {
+public class Exit extends Block {
 	private final Signal signal;
 	private final Level targetLevel;
 
@@ -21,11 +23,12 @@ public class Exit extends PositionedActor {
 
 	public Exit(Vector position, Level targetLevel) {this(position, Signal.ENABLED, targetLevel);}
 
+	public Exit(Vector position, Signal signal) {this(position, signal, null);}
+
 	public Exit(Vector position, Signal signal, Level targetLevel) {
-		super(position, .4, 1, "door.closed");
+		super(position, 1, 1, "door.closed");
 		this.signal = signal;
 		this.targetLevel = targetLevel;
-		this.setBoxTransformer(box -> new Box(box.getCenter(), 1, 1));
 	}
 
 	@Override
@@ -39,20 +42,18 @@ public class Exit extends PositionedActor {
 	}
 
 	@Override
-	public void interact(Actor other) {
-		super.interact(other);
+	public void onCollide(Actor actor, Side side) {
+		super.onCollide(actor, side);
 
-		if (other instanceof Player && signal.isActive()) {
-			if (getBox().isColliding(other.getBox())) {
-				if (targetLevel != null)
-					getWorld().setNextLevel(targetLevel);
-				getWorld().nextLevel();
-			}
+		if (actor instanceof Player) {
+			if (targetLevel != null)
+				getWorld().setNextLevel(targetLevel);
+			getWorld().nextLevel();
 		}
 	}
 
 	@Override
 	public int getPriority() {
-		return 50;
+		return 0;
 	}
 }
