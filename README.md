@@ -57,7 +57,7 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
     - [ ] Targeting
     - [ ] Teeworlds hook ? (neeed !)
 - [ ] More particles
-- [ ] More sounds
+- [x] More sounds
 - [ ] Add enemies
 - [ ] Make better levels using enemies and all kinds of blocks
 - [ ] story and texts

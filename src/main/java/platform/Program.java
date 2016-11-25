@@ -1,6 +1,7 @@
 package platform;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.util.logging.Logger;
 
@@ -32,6 +33,9 @@ public class Program {
             Logger.getGlobal().severe("No sound library found, falling back to silent.");
             sl = SoundLoader.DUMMY_LOADER;
         }
+
+        // init font as it's quite slow
+        new Font(Font.SANS_SERIF, Font.PLAIN, 0);
 
         BufferedLoader loader = new BufferedLoader(new FileLoader("resources/", DefaultLoader.INSTANCE), sl);
         KeyBindings bindings = new KeyBindings(new File("keyboard.properties"));

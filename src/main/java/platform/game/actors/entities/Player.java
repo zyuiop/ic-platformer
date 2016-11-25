@@ -16,6 +16,7 @@ import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
 import platform.util.View;
+import platform.util.sounds.Sound;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,6 +32,8 @@ public class Player extends LivingActor implements IAttachable {
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
 	private AttachLink attachLink;
+	private int footstep = 0;
+	private double footStepTime = 0D;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
 		super(position, .5, "blocker.happy", velocity, 10);
@@ -79,6 +82,7 @@ public class Player extends LivingActor implements IAttachable {
 		}
 
 		double maxSpeed = 4.0;
+		boolean walking = false;
 		if (bindings.isDown(input, Key.RIGHT)) {
 			if (getVelocity().getX() < maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
@@ -89,6 +93,7 @@ public class Player extends LivingActor implements IAttachable {
 
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(speed, getVelocity().getY()));
+				walking = true;
 			}
 		} else if (bindings.isDown(input, Key.LEFT)) {
 			if (getVelocity().getX() > -maxSpeed) {
@@ -100,6 +105,18 @@ public class Player extends LivingActor implements IAttachable {
 
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(speed, getVelocity().getY()));
+				walking = true;
+			}
+		}
+
+		if (walking && isOnFloor) {
+			footStepTime += input.getDeltaTime();
+			if (footStepTime >= .25) {
+				Sound sound = getWorld().getSoundLoader().getSound("footstep0" + footstep++);
+				if (footstep == 9)
+					footstep = 0;
+				sound.play(.5);
+				footStepTime = 0D;
 			}
 		}
 
@@ -107,6 +124,9 @@ public class Player extends LivingActor implements IAttachable {
 			if (isOnFloor || remainingAirJumps > 0) {
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(getVelocity().getX(), 5D));
+
+				Sound sound = getWorld().getSoundLoader().getSound("jump");
+				sound.play(2.5);
 
 				if (!isOnFloor) {
 					remainingAirJumps--;
@@ -194,7 +214,11 @@ public class Player extends LivingActor implements IAttachable {
 				setVelocity(getPosition().sub(location).resized(amount));
 				return true;
 			default:
-				return super.hurt(damageFrom, damageType, amount, location);
+				boolean ret = super.hurt(damageFrom, damageType, amount, location);
+				if (ret && amount > 0 && damageType.isHarming()) {
+					getWorld().getSoundLoader().getSound("hurt").play();
+				}
+				return ret;
 		}
 	}
 

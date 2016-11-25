@@ -3,6 +3,7 @@ package platform.game.actors.environment;
 import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.entities.Player;
 import platform.game.level.Level;
 import platform.util.Box;
@@ -12,8 +13,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Exit extends DisplayableActor {
-	private final Box box;
+public class Exit extends PositionedActor {
 	private final Signal signal;
 	private final Level targetLevel;
 
@@ -22,10 +22,10 @@ public class Exit extends DisplayableActor {
 	public Exit(Vector position, Level targetLevel) {this(position, Signal.ENABLED, targetLevel);}
 
 	public Exit(Vector position, Signal signal, Level targetLevel) {
-		super("door.closed");
-		this.box = new Box(position, 1, 1);
+		super(position, .4, 1, "door.closed");
 		this.signal = signal;
 		this.targetLevel = targetLevel;
+		this.setBoxTransformer(box -> new Box(box.getCenter(), 1, 1));
 	}
 
 	@Override
@@ -49,11 +49,6 @@ public class Exit extends DisplayableActor {
 				getWorld().nextLevel();
 			}
 		}
-	}
-
-	@Override
-	public Box getBox() {
-		return box;
 	}
 
 	@Override

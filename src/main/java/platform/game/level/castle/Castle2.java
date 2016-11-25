@@ -1,5 +1,6 @@
 package platform.game.level.castle;
 
+import java.awt.Font;
 import java.util.function.Function;
 import platform.game.Signal;
 import platform.game.World;
@@ -14,6 +15,7 @@ import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Exit;
 import platform.game.actors.environment.LaserDoor;
 import platform.game.actors.environment.Lever;
+import platform.game.actors.ui.DismissableTextBox;
 import platform.game.level.PlayableLevel;
 import platform.game.logic.And;
 import platform.game.logic.Not;
@@ -65,6 +67,9 @@ public class Castle2 extends PlayableLevel {
 		world.register(lever2);
 		Signal elevators = new And(lever, new Not(lever2));
 		world.register(new LaserDoor(new Vector(0, 3), 14, Orientation.HORIZONTAL, "green", lever));
+
+		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
+		//world.register(new DismissableTextBox(startPosition().add(new Vector(0, -3)), "text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Parfois les leviers fonctionnent par paire"));
 
 		// Elevatooooor
 
