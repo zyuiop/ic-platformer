@@ -3,12 +3,9 @@ package platform.game.actors.environment;
 import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.Side;
-import platform.game.actors.basic.DisplayableActor;
-import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.entities.Player;
 import platform.game.level.Level;
-import platform.util.Box;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -35,10 +32,11 @@ public class Exit extends Block {
 	public void update(Input input) {
 		super.update(input);
 
-		if (signal.isActive() && getSpriteName().endsWith("closed"))
+		if (signal.isActive() && getSpriteName().endsWith("closed")) {
 			setSpriteName("door.open");
-		else if (!signal.isActive() && getSpriteName().endsWith("open"))
+		} else if (!signal.isActive() && getSpriteName().endsWith("open")) {
 			setSpriteName("door.closed");
+		}
 	}
 
 	@Override
@@ -46,8 +44,7 @@ public class Exit extends Block {
 		super.onCollide(actor, side);
 
 		if (actor instanceof Player) {
-			if (targetLevel != null)
-				getWorld().setNextLevel(targetLevel);
+			if (targetLevel != null) { getWorld().setNextLevel(targetLevel); }
 			getWorld().nextLevel();
 		}
 	}

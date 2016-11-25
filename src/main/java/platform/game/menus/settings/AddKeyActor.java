@@ -1,27 +1,34 @@
 package platform.game.menus.settings;
 
-import platform.game.KeyBindings;
-import platform.game.actors.basic.DisplayableActor;
-import platform.game.KeyBindings.Key;
-import platform.util.*;
-
 import java.awt.event.MouseEvent;
 import java.util.Collection;
+import platform.game.KeyBindings;
+import platform.game.KeyBindings.Key;
+import platform.game.actors.basic.PositionedActor;
+import platform.util.Box;
+import platform.util.Input;
+import platform.util.Output;
+import platform.util.SwingDisplay;
+import platform.util.Vector;
+import platform.util.View;
 
 /**
  * @author zyuiop
  */
-public class AddKeyActor extends DisplayableActor {
+public class AddKeyActor extends PositionedActor {
 	private KeyLineActor parent;
 	private boolean isActive;
 	private Key key;
-	private Vector position;
 
 	public AddKeyActor(KeyLineActor parent, Key key) {
-		super("green_button04");
+		super(createBox(parent.getNextAvailablePosition()), "green_button04");
 		this.parent = parent;
 		this.key = key;
-		this.position = parent.getNextAvailablePosition();
+	}
+
+	private static Box createBox(Vector position) {
+		System.out.println(position);
+		return new Box(position.add(new Vector(-10, -10)), position.add(new Vector(30, 30)));
 	}
 
 	@Override
@@ -60,13 +67,7 @@ public class AddKeyActor extends DisplayableActor {
 			}
 		}
 
-		if (sprite != null)
-			setSpriteName(sprite);
-	}
-
-	@Override
-	public Box getBox() {
-		return new Box(position.add(new Vector(-10, -10)), position.add(new Vector(30, 30)));
+		if (sprite != null) { setSpriteName(sprite); }
 	}
 
 	@Override

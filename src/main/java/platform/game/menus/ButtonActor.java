@@ -1,18 +1,20 @@
 package platform.game.menus;
 
-import platform.game.actors.basic.DisplayableActor;
-import platform.util.*;
-import platform.util.sounds.Sound;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
+import platform.game.actors.basic.PositionedActor;
+import platform.util.Box;
+import platform.util.Input;
+import platform.util.Output;
+import platform.util.Vector;
+import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
  */
-public class ButtonActor extends DisplayableActor {
+public class ButtonActor extends PositionedActor {
 	private final ClickHandler clickHandler;
-	private final Vector position;
 	private final Font font;
 	private final Color color;
 	private final String text;
@@ -24,20 +26,12 @@ public class ButtonActor extends DisplayableActor {
 	private double paddingBot = 10;
 
 	public ButtonActor(ClickHandler handler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite) {
-		super(sprite);
-		this.clickHandler = handler;
-		this.font = font;
-		this.color = color;
-		this.text = text;
-		this.sprite = sprite;
-		this.hoverSprite = hoverSprite;
-		this.position = position;
+		this(handler, position, font, color, text, sprite, hoverSprite, 100, 30, 10, 10);
 	}
 
 	public ButtonActor(ClickHandler clickHandler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite, double width, double heigth, double paddingLeft, double paddingBot) {
-		super(sprite);
+		super(new Box(position.add(new Vector(-paddingLeft, -paddingBot)), position.add(new Vector(width, heigth))), sprite);
 		this.clickHandler = clickHandler;
-		this.position = position;
 		this.font = font;
 		this.color = color;
 		this.text = text;
@@ -52,7 +46,7 @@ public class ButtonActor extends DisplayableActor {
 	@Override
 	public void draw(Input input, Output output) {
 		super.draw(input, output);
-		output.drawText(text, position, font, color);
+		output.drawText(text, getBox().getMin().add(new Vector(paddingLeft, paddingBot)), font, color);
 	}
 
 	@Override
@@ -73,10 +67,6 @@ public class ButtonActor extends DisplayableActor {
 		setSpriteName(sprite);
 	}
 
-	@Override
-	public Box getBox() {
-		return new Box(position.add(new Vector(-paddingLeft, -paddingBot)), position.add(new Vector(width, heigth)));
-	}
 
 	@Override
 	public int getPriority() {

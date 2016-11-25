@@ -34,7 +34,7 @@ public class LaserDoor extends Door {
 
 		// Fancy animation
 		this.setBoxTransformer(box ->
-				getPosition() == null ? null : new Box(getPosition(), sizeX, sizeY + (time > 1 ? .1 : 0))
+				getPosition() == null ? null : new Box(getPosition(), getSizeX(), getSizeY() + (time > 1 ? .1 : 0))
 		);
 	}
 
@@ -75,7 +75,7 @@ public class LaserDoor extends Door {
 	@Override
 	public Box getBox() {
 		if (super.getPosition() == null) { return null; }
-		return new Box(getPosition(), sizeX * Math.cos(angle) + sizeY * Math.sin(angle), sizeY * Math.cos(angle) + sizeX * Math.sin(angle));
+		return new Box(getPosition(), getSizeX() * Math.cos(angle) + getSizeY() * Math.sin(angle), getSizeY() * Math.cos(angle) + getSizeX() * Math.sin(angle));
 	}
 
 	@Override

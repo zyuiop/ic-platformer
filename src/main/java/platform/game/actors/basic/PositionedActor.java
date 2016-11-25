@@ -12,9 +12,9 @@ import platform.util.Vector;
  *         An actor defined by its position, sprite, and direction.
  */
 public abstract class PositionedActor extends DisplayableActor implements IPositioned {
-	protected final double sizeX;
-	protected final double sizeY;
-	protected Vector position;
+	private final double sizeX;
+	private final double sizeY;
+	private Vector position;
 	// direction of the sprite
 	private Direction direction = Direction.UP;
 
@@ -59,7 +59,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	/**
 	 * Create a positioned actor using a box
 	 *
-	 * @param box the box defining the position of the actor
+	 * @param box the box defining the position of the actor, not null
 	 * @param spriteName the name of the sprite of the actor
 	 * @param direction the direction of the actor. The direction is applied on the provided box an
 	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
