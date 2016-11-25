@@ -1,11 +1,6 @@
 package platform.util.sounds;
 
 import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import kuusisto.tinysound.TinySound;
 
 /**
  * Loads sprites from specified folder, guessing necessary file extensions.
@@ -31,21 +26,15 @@ public class JavaSoundLoader implements SoundLoader {
 		if (prefix == null || fallback == null) { throw new NullPointerException(); }
 		this.prefix = prefix;
 		this.fallback = fallback;
-		TinySound.init();
 	}
 
 	@Override
 	public Sound getSound(String name) {
 		Sound sound = null;
 
-		// Try each extension, until we are able to successfully read the file
-		try {
-			AudioInputStream stream = AudioSystem.getAudioInputStream(new File(prefix + name + ".wav"));
-			if (stream != null)
-				sound = new JavaSound(stream);
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		}
+		File f = new File(prefix + name + ".wav");
+		if (f.exists()) { sound = new JavaSound(f); }
+
 
 		// On failure, use fallback loader
 		if (sound == null) { sound = fallback.getSound(name); }

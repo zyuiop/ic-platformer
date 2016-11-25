@@ -248,7 +248,6 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 			graphics.setComposite(original);
 		} else {
 			graphics.drawImage(sprite.getImage(), transform, null);
-			// drawText(sprite.toString(), location.getCenter(), new Font(Font.MONOSPACED, Font.BOLD, 20), Color.RED);
 		}
 	}
 
