@@ -1,16 +1,3 @@
-# ic-platformer
-
-The second Java "mini-project" of the first semester.
-
-# Textures
-
-- Voxel Pack (body parts, backgrounds)
-- http://kenney.nl/assets/platformer-art-requests (for better puzzles)
-- http://kenney.nl/assets/topdown-tanks (interactions, leds)
-- http://kenney.nl/assets/medals (rewards)
-- http://kenney.nl/assets/ui-pack-rpg-expansion (for nice text backgrounds)
-- http://kenney.nl/assets/ui-pack-space-expansion (nice menus backgrounds)
-
 # Todo :
 
 #### Important stuff :
@@ -63,3 +50,12 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] story and texts
 - [ ] Stars to collect
 - [ ] Scoring system
+
+# Textures
+
+- Voxel Pack (body parts, backgrounds)
+- http://kenney.nl/assets/platformer-art-requests (for better puzzles)
+- http://kenney.nl/assets/topdown-tanks (interactions, leds)
+- http://kenney.nl/assets/medals (rewards)
+- http://kenney.nl/assets/ui-pack-rpg-expansion (for nice text backgrounds)
+- http://kenney.nl/assets/ui-pack-space-expansion (nice menus backgrounds)
