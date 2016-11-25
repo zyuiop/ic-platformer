@@ -19,6 +19,8 @@ import platform.util.SwingDisplay;
  */
 public class Program {
 
+    private static double fps;
+
     public static void main(String[] args) throws Exception {
         
         // Create components
@@ -54,6 +56,7 @@ public class Program {
                 avg = avg * 0.95 + display.getDeltaTime() * 0.05;
                 if (display.getTime() - last > 1) {
                     last = display.getTime();
+                    fps = (1 / avg);
                     System.out.println(avg + " // " + (1 / avg) + " frames per sec");
                 }
             }
@@ -64,4 +67,11 @@ public class Program {
         }
     }
 
+    /**
+     * Get the number of frames per second
+     * @return
+     */
+    public static double getFps() {
+        return fps;
+    }
 }

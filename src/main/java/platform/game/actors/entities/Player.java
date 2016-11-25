@@ -1,10 +1,8 @@
 package platform.game.actors.entities;
 
-import platform.game.Actor;
-import platform.game.Effect;
-import platform.game.KeyBindings;
+import platform.Program;
+import platform.game.*;
 import platform.game.KeyBindings.Key;
-import platform.game.World;
 import platform.game.actors.AttachLink;
 import platform.game.actors.Side;
 import platform.game.actors.animations.BlowAnimation;
@@ -15,12 +13,18 @@ import platform.game.actors.interfaces.IPositioned;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
 import platform.util.Input;
+import platform.util.Output;
 import platform.util.Vector;
+import platform.util.View;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /**
  * @author zyuiop
  */
 public class Player extends LivingActor implements IAttachable {
+	private boolean debug = false;
 	private KeyBindings bindings;
 	private boolean isColliding = false;
 	private int maxAirJumps = 1;
@@ -41,6 +45,30 @@ public class Player extends LivingActor implements IAttachable {
 	@Override
 	public int getPriority() {
 		return 42;
+	}
+
+	@Override
+	public void draw(Input input, Output output) {
+		super.draw(input, output);
+
+		if (debug) {
+			if (output instanceof View)
+				output = ((View) output).getOutput();
+			Vector top = output.getBox().getMin().add(new Vector(0, output.getBox().getHeight()));
+			Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 15);
+			output.drawText("Position : " + getPosition(), top.add(new Vector(10, -20)), font, Color.BLACK);
+			output.drawText("Velocity : " + getVelocity(), top.add(new Vector(10, -40)), font, Color.BLACK);
+			output.drawText("colliding : " + isColliding + ", on floor : " + isOnFloor, top.add(new Vector(10, -60)), font, Color.BLACK);
+			output.drawText("attached : " + isAttached() + ", airjumps : " + remainingAirJumps, top.add(new Vector(10, -80)), font, Color.BLACK);
+			output.drawText("health : " + getHealth() + " / " + getMaxHealth(), top.add(new Vector(10, -100)), font, Color.BLACK);
+
+			int actors = 0;
+			if (getWorld() instanceof Simulator)
+				actors = ((Simulator) getWorld()).countActors();
+
+			output.drawText("FPS : " + Math.round(Program.getFps()), output.getBox().getMin().add(new Vector(10, 5)), font, Color.BLACK);
+			output.drawText("Actors : " + actors, output.getBox().getMin().add(new Vector(10, 25)), font, Color.BLACK);
+		}
 	}
 
 	@Override
@@ -90,6 +118,11 @@ public class Player extends LivingActor implements IAttachable {
 		if (bindings.isPressed(input, Key.ATTACK)) {
 			Vector fireballSpeed = getVelocity().add(getVelocity().resized(2.0));
 			getWorld().register(new Arrow(getPosition(), fireballSpeed, this));
+		}
+
+		if (input.getKeyboardButton(KeyEvent.VK_F3).isPressed()) {
+			this.debug = !this.debug;
+			System.out.println("Debug toggled to " + debug);
 		}
 
 		if (bindings.isPressed(input, Key.BLOW)) {

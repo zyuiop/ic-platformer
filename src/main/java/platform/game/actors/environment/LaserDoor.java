@@ -102,7 +102,7 @@ public class LaserDoor extends Door {
 		private double angle;
 
 		LaserPower(Vector position, double angle) {
-			super(position, .4, "laserdown");
+			super(position, .4, "laserDown");
 			this.angle = angle;
 		}
 

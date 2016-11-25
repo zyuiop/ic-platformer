@@ -92,6 +92,10 @@ public class Simulator implements World {
 		if (passLevel) { passLevel(); }
 	}
 
+	public int countActors() {
+		return actors.size();
+	}
+
 	public boolean isRaw() {
 		return isRaw;
 	}
