@@ -2,6 +2,7 @@ package platform.game.level.castle;
 
 import java.awt.Font;
 import java.util.function.Function;
+import platform.game.KeyBindings;
 import platform.game.World;
 import platform.game.actors.Background;
 import platform.game.actors.Direction;
@@ -122,12 +123,20 @@ public class Castle3 extends PlayableLevel {
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
 		Vector view = new Vector(0, -2);
+		KeyBindings kb = KeyBindings.getInstance();
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
-				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, torchDetector, "Eteindre cette torche permet peut être de traverser...", "Utilisez la touche [B] pour souffler sur la torche"));
+				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, torchDetector, "Eteindre " +
+				"cette torche permet peut être de traverser...", "Utilisez la touche " +
+				"[" +  kb.getFirstConfiguredKey(KeyBindings.Key.BLOW) + "] pour souffler sur la torche"));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
-				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, new And(djumpDetector, elevators), "Il faut parfois utiliser un double saut pour traverser", "Utilisez la touche [Haut] en l'air pour faire un double saut"));
+				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7,
+				new And(djumpDetector, elevators), "Il faut parfois utiliser un double saut pour " +
+				"traverser", "Utilisez la touche [" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) + "] en l'air pour faire un double saut"));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
-				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, endZoneDetector, "La porte s'est fermée lors de l'extinction de la torche", "Utilisez la touche [Espace] ou cliquez pour lancer des boules de feu", "Vous pouvez utiliser la souris pour viser plus précisément"));
+				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, endZoneDetector, "La" +
+				" porte s'est fermée lors de l'extinction de la torche", "Utilisez la touche " +
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.ATTACK) + "] ou cliquez pour lancer " +
+				"des boules de feu", "Vous pouvez utiliser la souris pour viser plus précisément"));
 
 		world.register(new Background("background.cave", true, false));
 		world.setViewRadius(8D);

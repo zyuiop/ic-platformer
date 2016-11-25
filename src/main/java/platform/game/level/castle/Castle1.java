@@ -1,6 +1,7 @@
 package platform.game.level.castle;
 
 import java.awt.Font;
+import platform.game.KeyBindings;
 import platform.game.World;
 import platform.game.actors.Background;
 import platform.game.actors.Orientation;
@@ -65,12 +66,16 @@ public class Castle1 extends PlayableLevel {
 		world.register(new Background("background.hills", true, false));
 
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
+
+		KeyBindings kb = KeyBindings.getInstance();
 		world.register(new DismissableTextBox(startPosition().add(new Vector(0, -3)),
 				"text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Déplacez vous avec " +
-				"[Gauche] et [Droite] et sautez avec [Haut]"));
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.LEFT) + "] et " +
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.RIGHT) + "] et sautez avec " +
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) +"]"));
 		world.register(new TriggerableTextbox(detector.getPosition().add(new Vector(0, -3)),
 				"text.background", font, 0, 0.3, 6, .4, .2, .25, .3, detector, "Utilisez la touche" +
-				" [E] pour intéragir.", "Attention, les lasers ça pique !"));
+				" [" +  kb.getFirstConfiguredKey(KeyBindings.Key.USE) + "] pour intéragir.", "Attention, les lasers ça pique !"));
 		world.setViewRadius(5D);
 	}
 }

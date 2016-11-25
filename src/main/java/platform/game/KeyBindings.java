@@ -78,6 +78,14 @@ public class KeyBindings {
 			keyBinds.get(key).add(button);
 	}
 
+	public String getFirstConfiguredKey(Key key) {
+		Collection<Integer> collection = getKeys(key);
+		if (collection.size() > 0) {
+			return KeyEvent.getKeyText(collection.iterator().next());
+		}
+		return key.getDescription();
+	}
+
 	/**
 	 * Remove a binding for a key
 	 * @param key the modified key
