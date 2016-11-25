@@ -4,7 +4,8 @@ jdk:
 
 deploy:
   provider: script
-  script: deploy.sh
+  skip_cleanup: true
+  script: ./deploy.sh
   on:
     repo: zyuiop/ic-platformer
     branch: master
