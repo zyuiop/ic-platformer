@@ -48,7 +48,7 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] Progression saver (level reached)
 - [ ] Level switch animation
 - [ ] Ladder block
-- [ ] LevelManager : Mario Bros like lives (and so level life would be different from world life)
+- [ ] On void fall, remove 1HP and restart level
 - [x] Character damage animation 
 - [ ] Compound actor system (i.e. player with multiple body parts)
 - [ ] Weapon System

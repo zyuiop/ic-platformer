@@ -36,21 +36,6 @@ public abstract class DisplayableActor extends PositionedActor implements IPosit
 		this.spriteName = spriteName;
 	}
 
-	public DisplayableActor(Box box, String spriteName, Direction direction) {
-		super(box, direction);
-		this.spriteName = spriteName;
-	}
-
-	public DisplayableActor(Vector position, double size, String spriteName, Direction direction) {
-		super(position, size, direction);
-		this.spriteName = spriteName;
-	}
-
-	public DisplayableActor(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
-		super(position, sizeX, sizeY, direction);
-		this.spriteName = spriteName;
-	}
-
 	@Override
 	public void draw(Input input, Output output) {
 		Sprite sprite = getCurrentSprite();
@@ -59,6 +44,15 @@ public abstract class DisplayableActor extends PositionedActor implements IPosit
 		if (sprite != null && box != null) {
 			output.drawSprite(sprite, box, getRotation(), getOpacity());
 		}
+	}
+
+	/**
+	 * Get the rotation of this actor, in radians
+	 *
+	 * @return the rotation angle of this actor
+	 */
+	public double getRotation() {
+		return 0D;
 	}
 
 	/**

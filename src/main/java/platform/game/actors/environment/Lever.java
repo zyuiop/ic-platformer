@@ -17,6 +17,7 @@ public class Lever extends DisplayableActor implements Signal {
 	private double duration = 30D;
 	private double transition = 0;
 	private double time;
+	private double rotation = 0;
 
 	private String disabledSprite = null;
 	private String enabledSprite = null;
@@ -30,21 +31,18 @@ public class Lever extends DisplayableActor implements Signal {
 		this(position, size, duration, active, "lever.left", "lever.right", "lever.mid");
 	}
 
-	public Lever(Vector position, double size, double duration, boolean active, Direction direction) {
-		this(position, size, duration, active, direction, "lever.left", "lever.right", "lever.mid");
-	}
-
 	public Lever(Vector position, double size, double duration, boolean active, String disabledSprite, String enabledSprite, String transitionSprite) {
-		this(position, size, duration, active, Direction.UP, disabledSprite, enabledSprite, transitionSprite);
+		this(position, size, duration, active, disabledSprite, enabledSprite, transitionSprite, 0);
 	}
 
-	public Lever(Vector position, double size, double duration, boolean active, Direction direction, String disabledSprite, String enabledSprite, String transitionSprite) {
-		super(position, size, active ? enabledSprite : disabledSprite, direction);
+	public Lever(Vector position, double size, double duration, boolean active, String disabledSprite, String enabledSprite, String transitionSprite, double rotation) {
+		super(position, size, active ? enabledSprite : disabledSprite);
 		this.duration = duration;
 		this.active = active;
 		this.enabledSprite = enabledSprite;
 		this.disabledSprite = disabledSprite;
 		this.transitionSprite = transitionSprite;
+		this.rotation = rotation;
 	}
 
 	@Override
@@ -64,6 +62,11 @@ public class Lever extends DisplayableActor implements Signal {
 	@Override
 	public boolean isActive() {
 		return active;
+	}
+
+	@Override
+	public double getRotation() {
+		return rotation;
 	}
 
 	private void setActive(boolean state) {

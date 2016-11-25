@@ -26,12 +26,14 @@ public class LaserDoor extends Door {
 	private ParticleEffect effect;
 
 	public LaserDoor(Vector center, double length, Orientation direction, String color, Signal listenSignal) {
-		super(new Box(center, length, .3), "laser." + color, direction.getAngle(Orientation.HORIZONTAL) != 0 ? Direction.LEFT : Direction.UP, listenSignal);
+		super(new Box(center, length, .3), "laser." + color, direction == Orientation.VERICAL ? Direction.LEFT : Direction.UP, listenSignal);
 		effect = new SimpleParticleEffect("spark." + color).transparency(.8).stay(.2).fadeOut(.3).size(.4);
 
 		this.center = center;
 		this.angle = direction.getAngle(Orientation.HORIZONTAL);
 		this.length = length;
+
+		System.out.println(getBox());
 
 		// Fancy animation
 		this.setBoxTransformer(box ->
