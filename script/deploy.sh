@@ -1,3 +1,5 @@
+#!/bin/bash
+
 java -jar script/proguard.jar @script/config.pro
 
 targetName=Platformer-$TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}.jar
