@@ -13,6 +13,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A block that is solid and visible only when a given signal is not active
  */
 public class Door extends Block {
 	private final Signal listenSignal;
@@ -29,8 +31,6 @@ public class Door extends Block {
 		this.listenSignal = listenSignal;
 		this.lastState = listenSignal.isActive();
 	}
-
-
 
 	@Override
 	public void update(Input input) {

@@ -2,7 +2,7 @@ package platform.game.actors.environment;
 
 import platform.game.Actor;
 import platform.game.Effect;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -10,7 +10,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Heart extends PositionedActor {
+public class Heart extends DisplayableActor {
 	private final double healthBonus;
 	private double cooldown = 0D;
 

@@ -1,15 +1,12 @@
 package platform.game.actors.environment;
 
-import platform.game.actors.basic.PositionedActor;
-import platform.util.Input;
-import platform.util.Output;
-import platform.util.Sprite;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public class Decoration extends PositionedActor {
+public class Decoration extends DisplayableActor {
 	private double rotation = 0D;
 
 	public Decoration(Vector position, double size, String spriteName) {

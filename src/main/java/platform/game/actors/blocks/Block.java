@@ -1,14 +1,14 @@
 package platform.game.actors.blocks;
 
 import platform.game.actors.Direction;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Box;
 import platform.util.Vector;
 
 /**
  * Simple solid actor that does nothing more than being solid.
  */
-public class Block extends PositionedActor {
+public class Block extends DisplayableActor {
 	public Block(Box box, String spriteName) {
 		super(box.getCenter(), box.getWidth(), box.getHeight(), spriteName);
 	}

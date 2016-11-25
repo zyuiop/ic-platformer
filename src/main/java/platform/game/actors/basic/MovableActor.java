@@ -9,7 +9,7 @@ import platform.util.*;
  * This class defines a common base for different actors that can move, and that are moved
  * automatically by different forces of the world
  */
-public abstract class MovableActor extends PositionedActor implements IMovable {
+public abstract class MovableActor extends DisplayableActor implements IMovable {
 	private Vector velocity;
 
 	public MovableActor(Box box, String spriteName, Vector velocity) {

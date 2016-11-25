@@ -2,7 +2,7 @@ package platform.game.actors.blocks;
 
 import platform.game.Actor;
 import platform.game.Signal;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.game.actors.entities.Player;
 import platform.util.Box;
 import platform.util.Input;
@@ -11,7 +11,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class InvisiblePlayerDetector extends PositionedActor implements Signal {
+public class InvisiblePlayerDetector extends DisplayableActor implements Signal {
 	private boolean isPresent = false;
 
 	public InvisiblePlayerDetector(Box box) {

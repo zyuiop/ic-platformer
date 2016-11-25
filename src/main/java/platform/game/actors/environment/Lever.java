@@ -4,7 +4,7 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.actors.Direction;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Input;
 import platform.util.Vector;
 import platform.util.sounds.Sound;
@@ -12,7 +12,7 @@ import platform.util.sounds.Sound;
 /**
  * @author zyuiop
  */
-public class Lever extends PositionedActor implements Signal {
+public class Lever extends DisplayableActor implements Signal {
 	private boolean active = false;
 	private double duration = 30D;
 	private double transition = 0;

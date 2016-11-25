@@ -1,24 +1,53 @@
 package platform.game.actors.basic;
 
 import java.util.function.Function;
-import platform.game.Actor;
+import platform.game.actors.Direction;
+import platform.game.actors.Orientation;
+import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;
+import platform.util.Vector;
 
 /**
  * @author zyuiop
  *         <p>
- *         An actor defined by its sprite and that can be displayed
+ *         An actor defined by its position, sprite, and direction.
  */
-public abstract class DisplayableActor extends Actor {
+public abstract class DisplayableActor extends PositionedActor implements IPositioned {
 	private boolean reloadSprite = false;
 	private String spriteName;
 	private Sprite sprite;
 	private Function<Box, Box> boxTransformer = null;
 
-	public DisplayableActor(String spriteName) {
+	public DisplayableActor(Box box, String spriteName) {
+		super(box);
+		this.spriteName = spriteName;
+	}
+
+	public DisplayableActor(Vector position, double size, String spriteName) {
+		super(position, size);
+		this.spriteName = spriteName;
+	}
+
+	public DisplayableActor(Vector position, double sizeX, double sizeY, String spriteName) {
+		super(position, sizeX, sizeY);
+		this.spriteName = spriteName;
+	}
+
+	public DisplayableActor(Box box, String spriteName, Direction direction) {
+		super(box, direction);
+		this.spriteName = spriteName;
+	}
+
+	public DisplayableActor(Vector position, double size, String spriteName, Direction direction) {
+		super(position, size, direction);
+		this.spriteName = spriteName;
+	}
+
+	public DisplayableActor(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
+		super(position, sizeX, sizeY, direction);
 		this.spriteName = spriteName;
 	}
 
@@ -61,7 +90,7 @@ public abstract class DisplayableActor extends Actor {
 	 * @param boxTransformer a box-to-box transformer
 	 * @return this actor
 	 */
-	public DisplayableActor boxTransformer(Function<Box, Box> boxTransformer) {
+	public PositionedActor boxTransformer(Function<Box, Box> boxTransformer) {
 		setBoxTransformer(boxTransformer);
 		return this;
 	}
@@ -88,16 +117,6 @@ public abstract class DisplayableActor extends Actor {
 		return 1D;
 	}
 
-	/**
-	 * Get the rotation of this actor, in radians
-	 *
-	 * @return the rotation angle of this actor
-	 *
-	 * @see Output#drawSprite(Sprite, Box, double)
-	 */
-	public double getRotation() {
-		return 0D;
-	}
 
 	/**
 	 * Change the sprite of the actor

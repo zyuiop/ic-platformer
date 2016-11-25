@@ -3,14 +3,14 @@ package platform.game.actors.environment;
 import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Input;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  */
-public class Torch extends PositionedActor implements Signal {
+public class Torch extends DisplayableActor implements Signal {
 	private boolean lit;
 	private double variation = 0D;
 

@@ -3,7 +3,7 @@ package platform.game.menus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -13,15 +13,13 @@ import platform.util.sounds.Sound;
 /**
  * @author zyuiop
  */
-public class ButtonActor extends PositionedActor {
+public class ButtonActor extends DisplayableActor {
 	private final ClickHandler clickHandler;
 	private final Font font;
 	private final Color color;
 	private final String text;
 	private final String sprite;
 	private final String hoverSprite;
-	private double width = 100;
-	private double heigth = 30;
 	private double paddingLeft = 10;
 	private double paddingBot = 10;
 
@@ -37,8 +35,6 @@ public class ButtonActor extends PositionedActor {
 		this.text = text;
 		this.sprite = sprite;
 		this.hoverSprite = hoverSprite;
-		this.width = width;
-		this.heigth = heigth;
 		this.paddingLeft = paddingLeft;
 		this.paddingBot = paddingBot;
 	}

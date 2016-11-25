@@ -2,7 +2,6 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.actors.AttachLink;
-import platform.game.actors.basic.PositionedActor;
 import platform.game.actors.interfaces.IAttachable;
 import platform.game.actors.interfaces.IPositioned;
 import platform.util.Input;

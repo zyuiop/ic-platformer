@@ -2,7 +2,7 @@ package platform.game.actors.ui;
 
 import java.awt.Color;
 import java.awt.Font;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -11,7 +11,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class TextBox extends PositionedActor {
+public class TextBox extends DisplayableActor {
 	private String[] lines;
 	private double lineSpacing;
 	private double lineHeight;

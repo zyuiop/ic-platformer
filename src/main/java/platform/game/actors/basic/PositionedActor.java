@@ -1,17 +1,17 @@
 package platform.game.actors.basic;
 
+import platform.game.Actor;
 import platform.game.actors.Direction;
 import platform.game.actors.Orientation;
-import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
 import platform.util.Vector;
 
 /**
  * @author zyuiop
  *         <p>
- *         An actor defined by its position, sprite, and direction.
+ *         An actor defined by its sprite and that can be displayed
  */
-public abstract class PositionedActor extends DisplayableActor implements IPositioned {
+public abstract class PositionedActor extends Actor {
 	private final double sizeX;
 	private final double sizeY;
 	private Vector position;
@@ -27,10 +27,9 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * Create a positioned actor using a box
 	 *
 	 * @param box the box defining the position of the actor
-	 * @param spriteName the name of the sprite of the actor
 	 */
-	public PositionedActor(Box box, String spriteName) {
-		this(box, spriteName, Direction.UP);
+	public PositionedActor(Box box) {
+		this(box, Direction.UP);
 	}
 
 	/**
@@ -38,10 +37,9 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 *
 	 * @param position the center of the actor
 	 * @param size the size of the actor
-	 * @param spriteName the name of the sprite of the actor
 	 */
-	public PositionedActor(Vector position, double size, String spriteName) {
-		this(position, size, spriteName, Direction.UP);
+	public PositionedActor(Vector position, double size) {
+		this(position, size, Direction.UP);
 	}
 
 	/**
@@ -50,23 +48,20 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * @param position the center of the actor
 	 * @param sizeX the width of the actor
 	 * @param sizeY the height of the actor
-	 * @param spriteName the name of the sprite of the actor
 	 */
-	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName) {
-		this(position, sizeX, sizeY, spriteName, Direction.UP);
+	public PositionedActor(Vector position, double sizeX, double sizeY) {
+		this(position, sizeX, sizeY, Direction.UP);
 	}
 
 	/**
 	 * Create a positioned actor using a box
 	 *
 	 * @param box the box defining the position of the actor, not null
-	 * @param spriteName the name of the sprite of the actor
-	 * @param direction the direction of the actor. The direction is applied on the provided box an
-	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is JUMP). The box is rotated if the direction is not vertical.
+	 * @param direction the direction of the actor. The direction is applied on the provided box.
+	 * The default direction is UP, and the box must be provided as a vertical box.
 	 */
-	public PositionedActor(Box box, String spriteName, Direction direction) {
-		this(box.getCenter(), box.getWidth(), box.getHeight(), spriteName, direction);
+	public PositionedActor(Box box, Direction direction) {
+		this(box.getCenter(), box.getWidth(), box.getHeight(), direction);
 	}
 
 	/**
@@ -74,13 +69,11 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 *
 	 * @param position the center of the actor
 	 * @param size the size of the actor
-	 * @param spriteName the name of the sprite of the actor
-	 * @param direction the direction of the actor. The direction is applied on the provided box an
-	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is JUMP). The box is rotated if the direction is not vertical.
+	 * @param direction the direction of the actor. The direction is applied on the provided box.
+	 * The default direction is UP, and the box must be provided as a vertical box.
 	 */
-	public PositionedActor(Vector position, double size, String spriteName, Direction direction) {
-		this(position, size, size, spriteName, direction);
+	public PositionedActor(Vector position, double size, Direction direction) {
+		this(position, size, size, direction);
 	}
 
 	/**
@@ -89,13 +82,10 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * @param position the center of the actor
 	 * @param sizeX the width of the actor
 	 * @param sizeY the height of the actor
-	 * @param spriteName the name of the sprite of the actor
-	 * @param direction the direction of the actor. The direction is applied on the provided box an
-	 * the sprite, which means the sprite is rotated by the correct angle (considering that the default
-	 * direction is JUMP). The box is rotated if the direction is not vertical.
+	 * @param direction the direction of the actor. The direction is applied on the provided box.
+	 * The default direction is UP, and the box must be provided as a vertical box.
 	 */
-	public PositionedActor(Vector position, double sizeX, double sizeY, String spriteName, Direction direction) {
-		super(spriteName);
+	public PositionedActor(Vector position, double sizeX, double sizeY, Direction direction) {
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
 		this.position = position;
@@ -112,6 +102,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	 * default state is {@link Direction#UP}
 	 * <br>If the direction orientation is different, the box will be recalculated, inverting
 	 * width and height.
+	 *
 	 * @param direction the new direction, not null
 	 */
 	public void setDirection(Direction direction) {
@@ -127,7 +118,6 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 		return position;
 	}
 
-	@Override
 	public void setPosition(Vector position) {
 		this.position = position;
 	}
@@ -172,6 +162,7 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	/**
 	 * Get the width of this actor. This width doesn't take into account the eventual orientation
 	 * modification.
+	 *
 	 * @return the width of the actor in a vertical orientation
 	 */
 	public double getSizeX() {
@@ -181,13 +172,18 @@ public abstract class PositionedActor extends DisplayableActor implements IPosit
 	/**
 	 * Get the height of this actor. This height doesn't take into account the eventual orientation
 	 * modification.
+	 *
 	 * @return the height of the actor in a vertical orientation
 	 */
 	public double getSizeY() {
 		return sizeY;
 	}
 
-	@Override
+	/**
+	 * Get the rotation of this actor, in radians
+	 *
+	 * @return the rotation angle of this actor
+	 */
 	public double getRotation() {
 		return direction.getRotation();
 	}

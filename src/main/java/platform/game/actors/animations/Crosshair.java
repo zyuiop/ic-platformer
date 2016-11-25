@@ -1,6 +1,6 @@
 package platform.game.actors.animations;
 
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.game.actors.entities.Player;
 import platform.util.Input;
 import platform.util.Output;
@@ -9,7 +9,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  */
-public class Crosshair extends PositionedActor {
+public class Crosshair extends DisplayableActor {
 	private final Player parent;
 
 	public Crosshair(Player parent) {

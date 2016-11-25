@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Collection;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.basic.DisplayableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -15,7 +15,7 @@ import platform.util.View;
 /**
  * @author zyuiop
  */
-public class AddKeyActor extends PositionedActor {
+public class AddKeyActor extends DisplayableActor {
 	private KeyLineActor parent;
 	private boolean isActive;
 	private Key key;
