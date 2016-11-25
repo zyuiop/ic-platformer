@@ -3,9 +3,8 @@ jdk:
 - oraclejdk8
 
 deploy:
-  provider: releases
-  api_key:
-    secure: idEEhQWud/8/ft25DUlXXjHOlhXBlUBH4QnyhUeByRWUuoKQ2AtPmJoZA7VLvE4NGLQnePgwcQJfzglREiG3NtPTjOE7l8XkmgnIXJjQ+5E1t9cXooaYqUeZLF71uR5crksBEwRPcn1hD/9hNQaOgrSk8+LNf7KWWHJG3iLI/gWdUBuKwA35bIMYizwX+CPMf5LUZR4VDTGE87f0ZoDsXMPQBfGC70WVD1/oPPMgj0iNNDdSNmZUBxUNq5XfdGTzT4I/uW7vKcyTBMuNgBXYQJFMDfy1M/IvD5GoPcX3q8Nu9yTNbuW87+0FERn8+wssS9BvyyTLdrDV6xsIRZzLe7O8OgCYY/mUlyawWMG+uQQ6ySiJKDdYXHXL6lwh/w8s352e75HV2bILOgj2TB2ExyV7W6bm7ckaPcYoT1fw5cbPxiweZWri3Fdo2tlA/iKr4wYUcYWHU5dk8tpIG4T1dd/rKwQNqOL3QVh4ImRg06zrtGiJlhizHzxvG/CMOXcoYUy5izNIY1VazzTuwb3bV77VztJFoZORaJxlF3I/Quz/9K0sCDz2v3joBCeGWk63hDDY1IcFk6r1Bp82uHJo7PQjjrhefHLyML72GhPAK6rA0xfsLfF2Ewft2clYUoxjFmo7u3jq1QAaWz0Htpy1iNPAeHmgqMWI8H53EMHSGgQ=
-  file: target/ic-platformer-0.0.1-SNAPSHOT.jar
+  provider: script
+  script: scripts/deploy.sh
   on:
     repo: zyuiop/ic-platformer
+    branch: master
