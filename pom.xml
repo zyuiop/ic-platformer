@@ -29,31 +29,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github</groupId>
-            <artifactId>tinysound</artifactId>
-            <version>1</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/tinysound-1.1.1.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.soundlibs</groupId>
-            <artifactId>jorbis</artifactId>
-            <version>0.0.17.4</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.soundlibs</groupId>
-            <artifactId>tritonus-all</artifactId>
-            <version>0.3.7.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.soundlibs</groupId>
-            <artifactId>vorbisspi</artifactId>
-            <version>1.0.3.3</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <!-- Build Settings -->

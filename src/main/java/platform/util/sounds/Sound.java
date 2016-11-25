@@ -8,5 +8,9 @@ public interface Sound {
 		play(1D);
 	}
 
+	/**
+	 * Play a sound at a given volume
+	 * @param volume
+	 */
 	void play(double volume);
 }

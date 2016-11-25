@@ -129,7 +129,7 @@ public class Player extends LivingActor implements IAttachable {
 				detach(new Vector(getVelocity().getX(), 5D));
 
 				Sound sound = getWorld().getSoundLoader().getSound("jump");
-				sound.play(2.5);
+				sound.play(2);
 
 				if (!isOnFloor) {
 					remainingAirJumps--;
@@ -226,7 +226,7 @@ public class Player extends LivingActor implements IAttachable {
 			default:
 				boolean ret = super.hurt(damageFrom, damageType, amount, location);
 				if (ret && amount > 0 && damageType.isHarming()) {
-					getWorld().getSoundLoader().getSound("hurt").play();
+					getWorld().getSoundLoader().getSound("hurt").play(.8);
 				}
 				return ret;
 		}

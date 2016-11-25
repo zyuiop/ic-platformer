@@ -11,6 +11,7 @@ import platform.util.BufferedLoader;
 import platform.util.DefaultLoader;
 import platform.util.Display;
 import platform.util.FileLoader;
+import platform.util.sounds.JavaSoundLoader;
 import platform.util.sounds.SoundLoader;
 import platform.util.sounds.TinySoundLoader;
 import platform.util.SwingDisplay;
@@ -28,6 +29,7 @@ public class Program {
         SoundLoader sl;
         try {
             Class.forName("kuusisto.tinysound.TinySound");
+            //sl = new JavaSoundLoader("resources/");
             sl = new TinySoundLoader("resources/");
         } catch (ClassNotFoundException ex) {
             Logger.getGlobal().severe("No sound library found, falling back to silent.");
