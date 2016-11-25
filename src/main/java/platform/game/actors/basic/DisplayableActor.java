@@ -13,7 +13,7 @@ import platform.util.Vector;
 /**
  * @author zyuiop
  *         <p>
- *         An actor defined by its position, sprite, and direction.
+ *         An actor that has a position and can be displayed
  */
 public abstract class DisplayableActor extends PositionedActor implements IPositioned {
 	private boolean reloadSprite = false;

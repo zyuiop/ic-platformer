@@ -15,7 +15,7 @@ public abstract class PositionedActor extends Actor {
 	private final double sizeX;
 	private final double sizeY;
 	private Vector position;
-	// direction of the sprite
+	// direction of the box
 	private Direction direction = Direction.UP;
 
 	// The last position used as a middle
