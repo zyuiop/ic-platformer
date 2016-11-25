@@ -1,6 +1,8 @@
 package platform.game.actors.environment;
 
 import platform.game.Signal;
+import platform.game.actors.Direction;
+import platform.game.actors.Orientation;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
@@ -21,6 +23,14 @@ public class Door extends Block {
 		this.listenSignal = listenSignal;
 		this.lastState = listenSignal.isActive();
 	}
+
+	public Door(Box box, String sprite, Direction direction, Signal listenSignal) {
+		super(box, sprite, direction);
+		this.listenSignal = listenSignal;
+		this.lastState = listenSignal.isActive();
+	}
+
+
 
 	@Override
 	public void update(Input input) {

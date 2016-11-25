@@ -43,7 +43,7 @@ public class Exit extends Block {
 	public void onCollide(Actor actor, Side side) {
 		super.onCollide(actor, side);
 
-		if (actor instanceof Player) {
+		if (actor instanceof Player && signal.isActive()) {
 			if (targetLevel != null) { getWorld().setNextLevel(targetLevel); }
 			getWorld().nextLevel();
 		}

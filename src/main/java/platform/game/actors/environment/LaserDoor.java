@@ -5,6 +5,7 @@ import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.World;
+import platform.game.actors.Direction;
 import platform.game.actors.Orientation;
 import platform.game.actors.Side;
 import platform.game.actors.blocks.Block;
@@ -25,7 +26,7 @@ public class LaserDoor extends Door {
 	private ParticleEffect effect;
 
 	public LaserDoor(Vector center, double length, Orientation direction, String color, Signal listenSignal) {
-		super(new Box(center, length, .3), "laser." + color, listenSignal);
+		super(new Box(center, length, .3), "laser." + color, direction.getAngle(Orientation.HORIZONTAL) != 0 ? Direction.LEFT : Direction.UP, listenSignal);
 		effect = new SimpleParticleEffect("spark." + color).transparency(.8).stay(.2).fadeOut(.3).size(.4);
 
 		this.center = center;
@@ -70,12 +71,6 @@ public class LaserDoor extends Door {
 	@Override
 	public int getPriority() {
 		return 1; // on the front of the blocks please !
-	}
-
-	@Override
-	public Box getBox() {
-		if (super.getPosition() == null) { return null; }
-		return new Box(getPosition(), getSizeX() * Math.cos(angle) + getSizeY() * Math.sin(angle), getSizeY() * Math.cos(angle) + getSizeX() * Math.sin(angle));
 	}
 
 	@Override

@@ -18,7 +18,6 @@ The second Java "mini-project" of the first semester.
 I **MUST** do this to get a correct grade.
 
 - [x] Check all todos in code
-- [ ] Improve spikes
 - [ ] Basic levels (in a chain)
 - [x] Remove unneeded draw overrides
 - [ ] Javadoc
@@ -28,7 +27,7 @@ I **MUST** do this to get a correct grade.
 - [ ] Uniformiser l'ordre de traitement des interractions
 - [ ] Check particle system
 - [ ] Recheck :
-    - [ ] Fireballs
+    - [x] Fireballs
     - [ ] Door
     
 When everything works :
@@ -49,7 +48,8 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] Progression saver (level reached)
 - [ ] Level switch animation
 - [ ] Ladder block
-- [ ] Character damage animation 
+- [ ] LevelManager : Mario Bros like lives (and so level life would be different from world life)
+- [x] Character damage animation 
 - [ ] Compound actor system (i.e. player with multiple body parts)
 - [ ] Weapon System
     - [ ] Rendering
