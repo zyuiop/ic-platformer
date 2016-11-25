@@ -129,7 +129,7 @@ public class Castle3 extends PlayableLevel {
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, endZoneDetector, "La porte s'est fermée lors de l'extinction de la torche", "Utilisez la touche [Espace] ou cliquez pour lancer des boules de feu", "Vous pouvez utiliser la souris pour viser plus précisément"));
 
-		world.register(new Background("background.hills", true, false));
+		world.register(new Background("background.cave", true, false));
 		world.setViewRadius(8D);
 		world.setView(view);
 		world.setFixedView(true);
