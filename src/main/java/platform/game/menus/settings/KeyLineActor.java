@@ -2,6 +2,7 @@ package platform.game.menus.settings;
 
 import platform.game.Actor;
 import platform.game.KeyBindings.Key;
+import platform.game.actors.ui.TextBox;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -11,23 +12,17 @@ import java.awt.*;
 /**
  * @author zyuiop
  */
-public class KeyLineActor extends Actor {
+public class KeyLineActor extends TextBox {
 	private final Font font;
 	private final Vector position;
 	private final KeyBindingsLevel parentLevel;
-	private final Key key;
 	private int usedPositions = 0;
 
 	public KeyLineActor(Font font, Vector position, KeyBindingsLevel level, Key key) {
+		super(position, null, font, 0D, 30, 100, 0, 0, 0, 50, key.getDescription());
 		this.font = font;
 		this.position = position;
 		parentLevel = level;
-		this.key = key;
-	}
-
-	@Override
-	public void draw(Input input, Output output) {
-		output.drawText(key.getDescription(), position, font, Color.BLACK);
 	}
 
 	@Override
@@ -37,7 +32,7 @@ public class KeyLineActor extends Actor {
 	}
 
 	protected Vector getNextAvailablePosition() {
-		return position.add(new Vector(100 + (++usedPositions) * 120, 0));
+		return position.add(new Vector((++usedPositions) * 120, 15));
 	}
 
 	@Override

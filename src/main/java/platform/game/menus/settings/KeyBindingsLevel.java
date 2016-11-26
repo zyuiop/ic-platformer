@@ -42,7 +42,7 @@ public class KeyBindingsLevel extends Level {
 		Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
 
 		for (Key key : Key.values()) {
-			Vector vector = new Vector(30, pos);
+			Vector vector = new Vector(105, pos);
 			KeyLineActor kla = new KeyLineActor(font, vector, this, key);
 			world.register(kla);
 			for (int val : bindings.getKeys(key)) {
@@ -64,7 +64,7 @@ public class KeyBindingsLevel extends Level {
 			}
 			getWorld().setNextLevel(new MainMenuLevel());
 			getWorld().nextLevel();
-		}, new Vector(30, 35), font, Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 150, 30, 10, 10));
+		}, new Vector(105, 50), font, Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 100, 30, 10, 10));
 
 		world.register(new ButtonActor(() -> {
 			try {
@@ -74,9 +74,9 @@ public class KeyBindingsLevel extends Level {
 			}
 			getWorld().setNextLevel(new MainMenuLevel());
 			getWorld().nextLevel();
-		}, new Vector(200, 35), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 150, 30, 10, 10));
+		}, new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 100, 30, 10, 10));
 
-		world.register(new Label(100, new Vector(30, pos), "Configuration des touches", font.deriveFont(Font.BOLD, 20), Color.BLACK));
+		world.register(new Label(100, new Vector(50, pos), "Configuration des touches", font.deriveFont(Font.BOLD, 20), Color.BLACK));
 
 
 		((Simulator) world).setRaw(true);

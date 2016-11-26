@@ -13,6 +13,7 @@ import platform.util.Vector;
  */
 public class TextBox extends DisplayableActor {
 	private String[] lines;
+	private Color color;
 	private double lineSpacing;
 	private double lineHeight;
 	private double paddingLeft;
@@ -21,10 +22,15 @@ public class TextBox extends DisplayableActor {
 
 	public TextBox(Vector center, String spriteName, Font font, double lineSpacing, double lineHeight, double lineWidth, double padding, String... text) {this(center, spriteName, font, lineSpacing, lineHeight, lineWidth, padding, padding, padding, padding, text);}
 
-	public TextBox(Vector center, String spriteName, Font font, double lineSpacing, double lineHeight, double lineWidth, double paddingLeft, double paddingTop, double paddingRight, double paddingBottom, String... lines) {
+	public TextBox(Vector center, String spriteName, Font font, Color color, double lineSpacing, double lineHeight, double lineWidth, double padding, String... text) {this(center, spriteName, font, color, lineSpacing, lineHeight, lineWidth, padding, padding, padding, padding, text);}
+
+	public TextBox(Vector center, String spriteName, Font font, double lineSpacing, double lineHeight, double lineWidth, double paddingLeft, double paddingTop, double paddingRight, double paddingBottom, String... lines) {this(center, spriteName, font, Color.BLACK, lineSpacing, lineHeight, lineWidth, paddingLeft, paddingTop, paddingRight, paddingBottom, lines);}
+
+	public TextBox(Vector center, String spriteName, Font font, Color color, double lineSpacing, double lineHeight, double lineWidth, double paddingLeft, double paddingTop, double paddingRight, double paddingBottom, String... lines) {
 		super(new Box(center, lineWidth + paddingLeft + paddingRight, (lineHeight) *
 				lines.length + lineSpacing * (lines.length - 1) + paddingBottom + paddingTop), spriteName);
 
+		this.color = color;
 		this.lines = lines;
 		this.lineSpacing = lineSpacing;
 		this.lineHeight = lineHeight;
@@ -42,8 +48,11 @@ public class TextBox extends DisplayableActor {
 		double y = getBox().getMax().getY() - paddingTop;
 
 		for (String line : lines) {
+			if (line == null)
+				continue;
+
 			y -= lineHeight;
-			output.drawText(line, new Vector(x, y), font, Color.BLACK);
+			output.drawText(line, new Vector(x, y), font, color);
 			y -= lineSpacing;
 		}
 

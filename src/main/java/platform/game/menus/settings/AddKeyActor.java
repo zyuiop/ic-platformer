@@ -5,6 +5,7 @@ import java.util.Collection;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.actors.basic.DisplayableActor;
+import platform.game.menus.ButtonActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -15,20 +16,17 @@ import platform.util.View;
 /**
  * @author zyuiop
  */
-public class AddKeyActor extends DisplayableActor {
+public class AddKeyActor extends ButtonActor {
 	private KeyLineActor parent;
 	private boolean isActive;
 	private Key key;
 
 	public AddKeyActor(KeyLineActor parent, Key key) {
-		super(createBox(parent.getNextAvailablePosition()), "green_button04");
+		super(() -> {
+			// oseeeef
+		}, parent.getNextAvailablePosition().sub(new Vector(35, 0)), null, null, null, "green_button04", "yellow_button04", 40, 40, 0, 0);
 		this.parent = parent;
 		this.key = key;
-	}
-
-	private static Box createBox(Vector position) {
-		System.out.println(position);
-		return new Box(position.add(new Vector(-10, -10)), position.add(new Vector(30, 30)));
 	}
 
 	@Override
@@ -59,7 +57,7 @@ public class AddKeyActor extends DisplayableActor {
 		}
 
 		if (isActive) {
-			Collection<Integer> pressed = ((SwingDisplay) ((View) input).getInput()).getPressedKeys();
+			Collection<Integer> pressed = ((View) input).getInput().getPressedKeys();
 			if (pressed.size() > 0) {
 				KeyBindings.getInstance().addKey(key, pressed.iterator().next());
 				this.getWorld().setNextLevel(new KeyBindingsLevel());
