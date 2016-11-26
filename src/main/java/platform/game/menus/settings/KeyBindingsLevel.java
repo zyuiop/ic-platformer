@@ -1,21 +1,20 @@
 package platform.game.menus.settings;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
 import platform.game.KeyBindings;
+import platform.game.KeyBindings.Key;
 import platform.game.Simulator;
 import platform.game.World;
-import platform.game.actors.ui.Label;
+import platform.game.actors.ui.TextBox;
 import platform.game.level.Level;
 import platform.game.menus.ButtonActor;
-import platform.game.KeyBindings.Key;
 import platform.game.menus.main.MainMenuLevel;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author zyuiop
@@ -47,10 +46,10 @@ public class KeyBindingsLevel extends Level {
 			world.register(kla);
 			for (int val : bindings.getKeys(key)) {
 				world.register(new ButtonActor(() -> {
-							bindings.removeKey(key, val);
-							getWorld().setNextLevel(new KeyBindingsLevel());
-							getWorld().nextLevel();
-						}, kla.getNextAvailablePosition(), font, Color.WHITE, KeyEvent.getKeyText(val), "green_button04", "yellow_button04"));
+					bindings.removeKey(key, val);
+					getWorld().setNextLevel(new KeyBindingsLevel());
+					getWorld().nextLevel();
+				}, kla.getNextAvailablePosition(), font, Color.WHITE, KeyEvent.getKeyText(val), "green_button04", "yellow_button04"));
 			}
 			world.register(new AddKeyActor(kla, key));
 			pos += 45;
@@ -76,7 +75,7 @@ public class KeyBindingsLevel extends Level {
 			getWorld().nextLevel();
 		}, new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 100, 30, 10, 10));
 
-		world.register(new Label(100, new Vector(50, pos), "Configuration des touches", font.deriveFont(Font.BOLD, 20), Color.BLACK));
+		world.register(new TextBox(new Vector(125, pos + 15), null, font.deriveFont(Font.BOLD, 20), Color.BLACK, 0D, 30, 150, 0, "Configuration des touches"));
 
 
 		((Simulator) world).setRaw(true);

@@ -14,12 +14,14 @@ import platform.game.actors.blocks.Spikes;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Exit;
 import platform.game.actors.environment.Torch;
+import platform.game.actors.ui.SlowingAdapter;
 import platform.game.actors.ui.TriggerableTextbox;
 import platform.game.level.PlayableLevel;
 import platform.game.logic.And;
 import platform.game.logic.Not;
 import platform.util.Box;
 import platform.util.Vector;
+import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
@@ -124,19 +126,24 @@ public class Castle3 extends PlayableLevel {
 
 		Vector view = new Vector(0, -2);
 		KeyBindings kb = KeyBindings.getInstance();
+		Sound sound = getWorld().getSoundLoader().getSound("beep-07");
+
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, torchDetector, "Eteindre " +
 				"cette torche permet peut être de traverser...", "Utilisez la touche " +
-				"[" +  kb.getFirstConfiguredKey(KeyBindings.Key.BLOW) + "] pour souffler sur la torche"));
+				"[" +  kb.getFirstConfiguredKey(KeyBindings.Key.BLOW) + "] pour souffler sur la torche")
+				.setLinesAdapter(new SlowingAdapter(.05, sound)));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7,
 				new And(djumpDetector, elevators), "Il faut parfois utiliser un double saut pour " +
-				"traverser", "Utilisez la touche [" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) + "] en l'air pour faire un double saut"));
+				"traverser", "Utilisez la touche [" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) + "] en l'air pour faire un double saut")
+				.setLinesAdapter(new SlowingAdapter(.05, sound)));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, endZoneDetector, "La" +
 				" porte s'est fermée lors de l'extinction de la torche", "Utilisez la touche " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.ATTACK) + "] ou cliquez pour lancer " +
-				"des boules de feu", "Vous pouvez utiliser la souris pour viser plus précisément"));
+				"des boules de feu", "Vous pouvez utiliser la souris pour viser plus précisément")
+				.setLinesAdapter(new SlowingAdapter(.05, sound)));
 
 		world.register(new Background("background.cave", true, false));
 		world.setViewRadius(8D);
