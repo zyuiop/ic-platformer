@@ -4,12 +4,9 @@ import java.awt.event.MouseEvent;
 import java.util.Collection;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
-import platform.game.actors.basic.DisplayableActor;
-import platform.game.menus.ButtonActor;
-import platform.util.Box;
+import platform.game.actors.ui.ButtonActor;
 import platform.util.Input;
 import platform.util.Output;
-import platform.util.SwingDisplay;
 import platform.util.Vector;
 import platform.util.View;
 

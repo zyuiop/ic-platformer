@@ -10,7 +10,7 @@ import platform.game.Simulator;
 import platform.game.World;
 import platform.game.actors.ui.TextBox;
 import platform.game.level.Level;
-import platform.game.menus.ButtonActor;
+import platform.game.actors.ui.ButtonActor;
 import platform.game.menus.main.MainMenuLevel;
 import platform.util.Input;
 import platform.util.Output;

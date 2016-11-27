@@ -1,10 +1,8 @@
 package platform.game.actors.ui;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import platform.util.sounds.JavaSound;
 import platform.util.sounds.Sound;
 
 /**
@@ -43,8 +41,7 @@ public class SlowingAdapter implements BiFunction<String[], Double, String[]> {
 		}
 
 		if (readChars > prevShown) {
-			if (sound != null)
-				sound.play();
+			if (sound != null) { sound.play(.25); }
 
 			prevShown = charactersToShow;
 		}

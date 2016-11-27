@@ -1,4 +1,4 @@
-package platform.game.menus;
+package platform.game.actors.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -18,8 +18,6 @@ public class ButtonActor extends TextBox {
 	private final ClickHandler clickHandler;
 	private final String sprite;
 	private final String hoverSprite;
-	private double paddingLeft = 10;
-	private double paddingBot = 10;
 
 	public ButtonActor(ClickHandler handler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite) {
 		this(handler, position, font, color, text, sprite, hoverSprite, 100, 30, 10, 10);
@@ -28,12 +26,9 @@ public class ButtonActor extends TextBox {
 	public ButtonActor(ClickHandler clickHandler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite, double width, double heigth, double paddingLeft, double paddingBot) {
 		super(position, sprite, font, color, 0D, heigth, width, paddingLeft, 0, 0, paddingBot, text);
 
-		// super(new Box(position.add(new Vector(-paddingLeft, -paddingBot)), position.add(new Vector(width, heigth))), sprite);
 		this.sprite = sprite;
 		this.clickHandler = clickHandler;
 		this.hoverSprite = hoverSprite;
-		this.paddingLeft = paddingLeft;
-		this.paddingBot = paddingBot;
 	}
 
 	@Override

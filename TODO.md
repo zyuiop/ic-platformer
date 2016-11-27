@@ -10,6 +10,7 @@ I **MUST** do this to get a correct grade.
 - [ ] Javadoc
     - [ ] animations
     - [ ] gui
+    - [ ] sounds
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions
 - [ ] Check particle system
