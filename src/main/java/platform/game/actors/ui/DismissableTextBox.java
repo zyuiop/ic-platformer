@@ -6,6 +6,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A text box that is dismissed when the user presses a key
  */
 public class DismissableTextBox extends TextBox {
 	public DismissableTextBox(Vector center, String spriteName, Font font, double lineSpacing, double lineHeight, double lineWidth, double padding, String... text) {

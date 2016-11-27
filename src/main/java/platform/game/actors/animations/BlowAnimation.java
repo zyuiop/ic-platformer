@@ -7,6 +7,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A particle animation that represents an actor blowing
  */
 public class BlowAnimation extends ParticleActor {
 	private double time;

@@ -3,7 +3,7 @@ package platform.game.level;
 import platform.game.World;
 import platform.game.actors.entities.Player;
 import platform.game.KeyBindings;
-import platform.game.actors.environment.Limits;
+import platform.game.actors.Limits;
 import platform.util.Box;
 import platform.util.Vector;
 

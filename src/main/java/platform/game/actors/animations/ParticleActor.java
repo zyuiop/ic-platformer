@@ -5,6 +5,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A particle. This class does absolutely nothing but is there to distinguish particles from other
+ * actors.
  */
 public abstract class ParticleActor extends DisplayableActor {
 	protected ParticleActor(Vector position, double size, String spriteName) {

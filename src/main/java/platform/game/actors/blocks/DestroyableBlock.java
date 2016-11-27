@@ -10,7 +10,7 @@ import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
- * A block that can be destroyed
+ * A block that can be destroyed when its health goes down to 0
  */
 public class DestroyableBlock extends Block implements Signal {
 	private double health;

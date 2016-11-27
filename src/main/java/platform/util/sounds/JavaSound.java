@@ -11,6 +11,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * @author zyuiop
+ *
+ * An implementation of sounds interface using JavaX's AudioSystem
+ * Unfortunately I have to load the sound each time it is played as it seems AudioSystem cannot
+ * play the same sound twice.
+ * TODO : improve this
  */
 public class JavaSound implements Sound {
 	private final File file;

@@ -9,6 +9,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * An element that can be directly lit or unlit by the player using fireballs or blowing
+ * It is also a signal that transmits its status (lit or not lit)
  */
 public class Torch extends DisplayableActor implements Signal {
 	private boolean lit;
@@ -27,14 +30,14 @@ public class Torch extends DisplayableActor implements Signal {
 	public void update(Input input) {
 		super.update(input);
 
-		if (lit && !getSpriteName().contains("lit")) {
+		if (isLit() && !getSpriteName().contains("lit")) {
 			setSpriteName("torch.lit.1");
 			variation = 0D;
 		} else if (!lit && getSpriteName().contains("lit")) {
 			setSpriteName("torch");
 		}
 
-		if (lit) {
+		if (isLit()) {
 			variation += input.getDeltaTime();
 			if (variation > 0.6)
 				variation = 0D;

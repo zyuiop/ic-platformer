@@ -8,7 +8,7 @@ import platform.game.actors.Orientation;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.InvisiblePlayerDetector;
 import platform.game.actors.environment.Decoration;
-import platform.game.actors.environment.Exit;
+import platform.game.actors.blocks.Exit;
 import platform.game.actors.environment.LaserDoor;
 import platform.game.actors.environment.Lever;
 import platform.game.actors.ui.DismissableTextBox;
@@ -17,7 +17,6 @@ import platform.game.actors.ui.TriggerableTextbox;
 import platform.game.level.PlayableLevel;
 import platform.util.Box;
 import platform.util.Vector;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop

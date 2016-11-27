@@ -8,6 +8,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * The small target on the cursor of the mouse, used as a shoot-helper
  */
 public class Crosshair extends DisplayableActor {
 	private final Player parent;

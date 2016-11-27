@@ -10,6 +10,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A block that can launch {@link Projectile}
  */
 public class ProjectileLauncher extends Block {
 	private final Signal signal;
@@ -18,6 +20,18 @@ public class ProjectileLauncher extends Block {
 	private boolean lastState = false;
 	private double sinceLastTime = 0D;
 
+	/**
+	 * Create a projectile launcher
+	 * @param position The center of the launcher
+	 * @param size the size of the launcher
+	 * @param spriteName the sprite of the launcher
+	 * @param direction the direction which the launcher will be facing. The sprite will be rotated
+	 * accordingly and the projectiles will be launched in that direction. See {@link Block} for
+	 * more details.
+	 * @param signal the signal to listen to
+	 * @param launchPolicy a function called at every update of this block. {@link LaunchPolicy}
+	 * @param projectileCreator a function called to create a projectile when needed {@link ProjectileCreator}
+	 */
 	public ProjectileLauncher(Vector position, double size, String spriteName, Direction direction, Signal signal, LaunchPolicy launchPolicy, ProjectileCreator projectileCreator) {
 		super(position, size, spriteName, direction);
 		this.signal = signal;
@@ -58,11 +72,34 @@ public class ProjectileLauncher extends Block {
 		lastState = signal.isActive();
 	}
 
+	/**
+	 * An functional interface representing a launch policy that is called at each update of the block
+	 */
+	@FunctionalInterface
 	public interface LaunchPolicy {
+		/**
+		 * Check if the block should launch a projectile
+		 * @param sinceLastLaunch the time (in seconds) since the last projectile launch
+		 * @param oldSignal the old value of the signal
+		 * @param newSignal the new (current) value of the signal
+		 * @return a boolean, true if the block should launch a projectile
+		 */
 		boolean shouldLaunch(double sinceLastLaunch, boolean oldSignal, boolean newSignal);
 	}
 
+	/**
+	 * A functional interface creating projectiles using a position and a direction
+	 * @param <T> the type of projectile to launch
+	 */
+	@FunctionalInterface
 	public interface ProjectileCreator<T extends Projectile> {
+		/**
+		 * Create a projectile (without registering it !)
+		 * @param launcher the launcher creating the projectile
+		 * @param position the position of the new projectile
+		 * @param launchDirection the direction in which the projectile has to be directed
+		 * @return the newly created projectile
+		 */
 		T createProjectile(ProjectileLauncher launcher, Vector position, Vector launchDirection);
 	}
 

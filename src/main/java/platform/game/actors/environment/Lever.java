@@ -11,6 +11,8 @@ import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
+ *
+ * A basic lever that can be either enabled or disabled, and transmits the corresponding signal
  */
 public class Lever extends DisplayableActor implements Signal {
 	private boolean active = false;

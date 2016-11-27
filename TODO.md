@@ -9,14 +9,16 @@ I **MUST** do this to get a correct grade.
 - [x] Remove unneeded draw overrides
 - [ ] Javadoc
     - [ ] animations
-    - [ ] gui
-    - [ ] sounds
+    - [x] gui
+    - [x] sounds
 - [ ] Optimization and bugshooting
 - [ ] Uniformiser l'ordre de traitement des interractions
 - [ ] Check particle system
-- [ ] Recheck :
+- [x] Recheck :
     - [x] Fireballs
-    - [ ] Door
+    - [x] Door
+
+- [ ] Write the CONCEPTION document
     
 When everything works :
 - [ ] Create a new branch `stable`

@@ -7,6 +7,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A simple particle effect that is displayed a short defined amount of time, with the ability to
+ * add a fade-in and fade-out animation
  */
 public class SimpleParticle extends ParticleActor {
 	private double fadeIn;

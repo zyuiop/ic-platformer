@@ -5,6 +5,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A simple actor only displaying a texture without being solid, for decoration elements
+ * (signs, flowers, grass...)
  */
 public class Decoration extends DisplayableActor {
 	private double rotation = 0D;

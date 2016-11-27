@@ -10,14 +10,34 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * Represents an actor that can be thrown or shot by an other actor (the sender)
  */
 public abstract class Projectile extends MovableActor {
 	private Actor sender;
 
+	/**
+	 * Create a projectile
+	 * @param texture the texture of the projectile
+	 * @param position the position of the projectile (center)
+	 * @param velocity the velocity to apply to this projectile
+	 * @param sender the sender of the projectile (the actor who sent it)
+	 * @param size the size of the projectile
+	 */
 	public Projectile(String texture, Vector position, Vector velocity, Actor sender, double size) {
 		super(position, size, texture, velocity);
 		this.sender = sender;
 	}
+
+	/**
+	 * Create a projectile
+	 * @param texture the texture of the projectile
+	 * @param position the position of the projectile (center)
+	 * @param velocity the velocity to apply to this projectile
+	 * @param sender the sender of the projectile (the actor who sent it)
+	 * @param sizeX the width of the projectile
+	 * @param sizeY the height of the projectile
+	 */
 	public Projectile(String texture, Vector position, Vector velocity, Actor sender, double sizeX, double sizeY) {
 		super(position, sizeX, sizeY, texture, velocity);
 		this.sender = sender;

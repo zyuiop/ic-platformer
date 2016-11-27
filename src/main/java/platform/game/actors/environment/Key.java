@@ -9,6 +9,8 @@ import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
+ *
+ * An item that is activated when the player has "picked it up" (i.e. when it has walked on it)
  */
 public class Key extends DisplayableActor implements Signal {
 	private boolean taken = false;

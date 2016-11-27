@@ -13,6 +13,8 @@ import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
+ *
+ * A button that calls a function when it's clicked
  */
 public class ButtonActor extends TextBox {
 	private final ClickHandler clickHandler;

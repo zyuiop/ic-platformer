@@ -91,9 +91,12 @@ public abstract class LivingActor extends MovableActor {
 	@Override
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
 		if (amount > 0 && (damageType.isHealing() || damageType.isHarming())) {
-			if (damageType.isHealing())
+			if (damageType.isHealing()) {
 				amount = -amount; // heal : we add the damage instead of removing it
-			else if (!isVulnerable()) {
+
+				if (this.health >= this.getMaxHealth())
+					return false; // cannot be healed at it's full
+			} else if (!isVulnerable()) {
 				return false; // prend pas les dégats
 			} else {
 				invulnerability = 1.5D;

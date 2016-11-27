@@ -9,6 +9,7 @@ import platform.game.actors.Direction;
 import platform.game.actors.Orientation;
 import platform.game.actors.Side;
 import platform.game.actors.blocks.Block;
+import platform.game.actors.blocks.Door;
 import platform.game.particles.ParticleEffect;
 import platform.game.particles.SimpleParticleEffect;
 import platform.util.Box;

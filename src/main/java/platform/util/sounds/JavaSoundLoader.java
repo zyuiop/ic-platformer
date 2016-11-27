@@ -6,14 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
- * Loads sprites from specified folder, guessing necessary file extensions.
+ * Loads a sound from a wav file
  */
 public class JavaSoundLoader implements SoundLoader {
 	private String prefix;
 	private SoundLoader fallback;
 
 	/**
-	 * Creates a new file loader, with a default always-null fallback.
+	 * Creates a new file loader, with a default always-empty fallback.
 	 *
 	 * @param prefix path prefix used to form absolute or relative path when concatenated with an identifier, not null
 	 */

@@ -8,6 +8,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A special particle that is compound of successive different particles. Not used yet as it seems
+ * to be quite laggy.
  */
 public class ParticleAnimation extends ParticleActor {
 	private Queue<ParticleActor> particles = new ArrayDeque<>();

@@ -10,6 +10,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * The health overlay that follows the player everywhere to display its life
  */
 public class Overlay extends Actor {
 	private final LivingActor parent;

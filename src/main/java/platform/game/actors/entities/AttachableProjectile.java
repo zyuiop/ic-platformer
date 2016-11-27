@@ -9,6 +9,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * Represents a projectile that can be attached to an other actor
  */
 public abstract class AttachableProjectile extends Projectile implements IAttachable {
 	private AttachLink attachLink;

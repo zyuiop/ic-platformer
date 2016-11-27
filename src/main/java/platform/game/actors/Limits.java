@@ -1,4 +1,4 @@
-package platform.game.actors.environment;
+package platform.game.actors;
 
 import platform.game.Actor;
 import platform.game.Effect;
@@ -7,6 +7,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * An actor that kills anything that goes out of it
  */
 public class Limits extends Actor {
 	private final Box allowedBounds;

@@ -9,6 +9,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * An item a player can pick up to gain some health
  */
 public class Heart extends DisplayableActor {
 	private final double healthBonus;
@@ -35,8 +37,9 @@ public class Heart extends DisplayableActor {
 			return;
 
 		if (getBox().isColliding(other.getBox())) {
-			other.hurt(this, Effect.HEAL, healthBonus, getPosition());
-			this.cooldown = 10D;
+			if (other.hurt(this, Effect.HEAL, healthBonus, getPosition())) {
+				this.cooldown = 10D;
+			}
 		}
 	}
 

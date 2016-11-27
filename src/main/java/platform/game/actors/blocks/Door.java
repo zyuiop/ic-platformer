@@ -1,4 +1,4 @@
-package platform.game.actors.environment;
+package platform.game.actors.blocks;
 
 import platform.game.Signal;
 import platform.game.actors.Direction;

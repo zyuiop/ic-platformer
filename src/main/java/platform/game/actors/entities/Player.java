@@ -112,6 +112,7 @@ public class Player extends LivingActor implements IAttachable {
 			}
 		}
 
+		// Play the nice walk sound
 		if (walking && isOnFloor) {
 			footStepTime += input.getDeltaTime();
 			if (footStepTime >= .25) {
@@ -138,6 +139,9 @@ public class Player extends LivingActor implements IAttachable {
 			}
 		}
 
+		// Attack also use the mouse (more convenient)
+		// TODO : add a super cool sound
+		// TODO : make possible to change weapon
 		if (bindings.isPressed(input, Key.ATTACK) || input.getMouseButton(MouseEvent.BUTTON1).isPressed()) {
 			Vector vector = input.getMouseLocation().sub(getPosition());
 			if (vector.getLength() > 7D) {
@@ -150,11 +154,13 @@ public class Player extends LivingActor implements IAttachable {
 			getWorld().register(new Fireball(getPosition(), vector, this));
 		}
 
+		// Some useless debug screen
 		if (input.getKeyboardButton(KeyEvent.VK_F3).isPressed()) {
 			this.debug = !this.debug;
 			System.out.println("Debug toggled to " + debug);
 		}
 
+		// TODO : add a super cool sound
 		if (bindings.isPressed(input, Key.BLOW)) {
 			getWorld().hurt(getBox(), this, Effect.AIR, 1.0, getPosition());
 			getWorld().register(new BlowAnimation(getPosition()));
@@ -181,6 +187,7 @@ public class Player extends LivingActor implements IAttachable {
 			if (delta != null) {
 				setPosition(getPosition().add(delta));
 
+				// We find the side we interacted with
 				Side direction = Side.compute(delta);
 
 				if (delta.getX() != 0D) {
@@ -190,14 +197,13 @@ public class Player extends LivingActor implements IAttachable {
 				if (delta.getY() != 0D) {
 					setVelocity(new Vector(getVelocity().getX(), 0D));
 					if (delta.getY() > 0) {
+						// We are on the top of the block ==> we are on the floor
 						this.isOnFloor = true;
 						this.remainingAirJumps = this.maxAirJumps;
-						if (direction != Side.TOP) {
-							System.err.println("Wrong side " + direction + " / " + delta);
-						}
 					}
 				}
 
+				// I did this to avoid having to send a ""damage"" to the block
 				other.onCollide(this, direction);
 				this.isColliding = true;
 			}
@@ -221,6 +227,7 @@ public class Player extends LivingActor implements IAttachable {
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
 		switch (damageType) {
 			case AIR:
+				// TODO : let the jumper do it by itself ?
 				setVelocity(getPosition().sub(location).resized(amount));
 				return true;
 			default:

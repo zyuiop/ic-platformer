@@ -11,6 +11,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A box displaying text on the screen with an optional background texture
  */
 public class TextBox extends DisplayableActor {
 	private String[] lines;

@@ -10,6 +10,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A simple bounding box that reports the presence of players in it
  */
 public class InvisiblePlayerDetector extends PositionedActor implements Signal {
 	private boolean isPresent = false;

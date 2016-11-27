@@ -7,6 +7,9 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A moving platform that moves from its first to its second position when it's activated, and move
+ * the other way when it's disactivated
  */
 public class OneWayMovingPlatform extends MovingPlatform {
 	private double speed = 1D;

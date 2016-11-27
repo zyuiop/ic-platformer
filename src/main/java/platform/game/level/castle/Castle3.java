@@ -12,7 +12,7 @@ import platform.game.actors.blocks.Jumper;
 import platform.game.actors.blocks.OneWayMovingPlatform;
 import platform.game.actors.blocks.Spikes;
 import platform.game.actors.environment.Decoration;
-import platform.game.actors.environment.Exit;
+import platform.game.actors.blocks.Exit;
 import platform.game.actors.environment.Torch;
 import platform.game.actors.ui.SlowingAdapter;
 import platform.game.actors.ui.TriggerableTextbox;
@@ -21,7 +21,6 @@ import platform.game.logic.And;
 import platform.game.logic.Not;
 import platform.util.Box;
 import platform.util.Vector;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop

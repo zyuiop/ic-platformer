@@ -7,6 +7,8 @@ import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
+ *
+ * An adapter for {@link TextBox} that shows the text letter by letter at a given speed.
  */
 public class SlowingAdapter implements BiFunction<String[], Double, String[]> {
 	private final double secondsPerCharacter;

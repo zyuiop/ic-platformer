@@ -8,6 +8,8 @@ import platform.util.Vector;
 
 /**
  * @author zyuiop
+ *
+ * A {@link TextBox} that is displayed only when a given signal is active
  */
 public class TriggerableTextbox extends TextBox {
 	private final Signal signal;
