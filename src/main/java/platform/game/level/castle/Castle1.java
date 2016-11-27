@@ -70,17 +70,16 @@ public class Castle1 extends PlayableLevel {
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
 
 		KeyBindings kb = KeyBindings.getInstance();
-		Sound sound = getWorld().getSoundLoader().getSound("beep-07");
 		world.register(new DismissableTextBox(startPosition().add(new Vector(0, -3)),
 				"text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Déplacez vous avec " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.LEFT) + "] et " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.RIGHT) + "] et sautez avec " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) +"]")
-				.setLinesAdapter(new SlowingAdapter(.05, sound)));
+				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.register(new TriggerableTextbox(detector.getPosition().add(new Vector(0, -3)),
 				"text.background", font, 0, 0.3, 6, .4, .2, .25, .3, detector, "Utilisez la touche" +
 				" [" +  kb.getFirstConfiguredKey(KeyBindings.Key.USE) + "] pour intéragir.", "Attention, les lasers ça pique !")
-				.setLinesAdapter(new SlowingAdapter(.05, sound)));
+				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.setViewRadius(5D);
 	}
 }

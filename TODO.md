@@ -42,7 +42,7 @@ I **CAN** do this for the swaaag. (Sorted in descending feasibility order)
 - [ ] Weapon System
     - [ ] Rendering
     - [ ] Switching
-    - [ ] Targeting
+    - [x] Targeting
     - [ ] Teeworlds hook ? (neeed !)
 - [ ] More particles
 - [x] More sounds

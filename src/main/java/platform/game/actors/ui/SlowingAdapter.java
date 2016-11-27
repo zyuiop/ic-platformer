@@ -10,14 +10,9 @@ import platform.util.sounds.Sound;
  */
 public class SlowingAdapter implements BiFunction<String[], Double, String[]> {
 	private final double secondsPerCharacter;
-	private int prevShown = 0;
-	private Sound sound;
 
-	public SlowingAdapter(double secondsPerCharacter) {this(secondsPerCharacter, null);}
-
-	public SlowingAdapter(double secondsPerCharacter, Sound typingSound) {
+	public SlowingAdapter(double secondsPerCharacter) {
 		this.secondsPerCharacter = secondsPerCharacter;
-		this.sound = typingSound;
 	}
 
 	@Override
@@ -38,12 +33,6 @@ public class SlowingAdapter implements BiFunction<String[], Double, String[]> {
 				stringList.add(line.substring(0, remaining));
 				break;
 			}
-		}
-
-		if (readChars > prevShown) {
-			if (sound != null) { sound.play(.25); }
-
-			prevShown = charactersToShow;
 		}
 
 		return stringList.toArray(new String[stringList.size()]);
