@@ -5,8 +5,9 @@ java -jar script/proguard.jar @script/config.pro
 
 echo "No changes." > CHANGES.txt
 
-if [ -n "$TRAVIS_COMMIT_RANGE" ]
-	then echo ${git log $TRAVIS_COMMIT_RANGE} > CHANGES.txt
+if [[ $TRAVIS_COMMIT_RANGE ]]
+then 
+	echo ${git log $TRAVIS_COMMIT_RANGE} > CHANGES.txt
 	cat CHANGES.txt
 fi
 
