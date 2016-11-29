@@ -37,7 +37,7 @@ public class MainMenuLevel extends Level {
 			world.register(new TextBox(new Vector(0, 2), null, font, Color.BLACK, 0, 1, 4, 0, "IC Platformer"));
 
 			world.register(new ButtonActor(() -> {
-				getWorld().setNextLevel(getWorld().getLevelManager().restartGroup());
+				getWorld().setNextLevel(getWorld().getLevelManager().restartGroup(null));
 				getWorld().nextLevel();
 			}, new Vector(0, 0), font, Color.BLACK, "Jouer", "grey_button14", "grey_button00", 4, 1, .5, .5));
 

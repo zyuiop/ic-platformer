@@ -12,7 +12,6 @@ import platform.game.level.castle.Castle3;
  */
 public class LevelManager {
 	private List<LevelGroup> levelGroups = new ArrayList<>();
-	private LevelGroup currentGroup;
 	private double playerLife;
 
 	/**
@@ -41,11 +40,24 @@ public class LevelManager {
 	}
 
 	/**
+	 * Get the group a level corresponds to
+	 * @param level the level to check
+	 * @return the group of this level or null
+	 */
+	private LevelGroup getLevelGroup(PlayableLevel level) {
+		for (LevelGroup group : levelGroups)
+			if (group.hasLevel(level))
+				return group;
+		return null;
+	}
+
+	/**
 	 * Restart the whole level group, usually when the player dies or restarts the game
 	 * @return the new level to start
 	 */
-	public PlayableLevel restartGroup() {
+	public PlayableLevel restartGroup(PlayableLevel currentLevel) {
 		setPlayerLife(10D); // reset life
+		LevelGroup currentGroup = currentLevel == null ? null : getLevelGroup(currentLevel);
 
 		if (currentGroup == null) {
 			currentGroup = levelGroups.get(0);
@@ -64,30 +76,32 @@ public class LevelManager {
 			throw new IllegalStateException("The LevelManager is not initialized yet.");
 		}
 
+		LevelGroup currentGroup = getLevelGroup(currentLevel);
 		if (currentGroup == null) {
 			currentGroup = levelGroups.get(0);
 		}
 
 		PlayableLevel next = currentGroup.getNextLevel(currentLevel);
-		if (next == null)
-			if (!nextGroup())
+		if (next == null) {
+			LevelGroup nextGroup = nextGroup(currentGroup);
+			if (nextGroup == null)
 				return currentGroup.getLastLevel(); // no more levels : play in loop
 			else
-				next = currentGroup.getFirstLevel();
+				next = nextGroup.getFirstLevel();
+		}
 
 		return next;
 	}
 
-	private boolean nextGroup() {
+	private LevelGroup nextGroup(LevelGroup currentGroup) {
 		int index = levelGroups.indexOf(currentGroup) + 1;
 		if (index < levelGroups.size()) {
 			// remaining groups
-			currentGroup = levelGroups.get(index);
-			return true;
+			return levelGroups.get(index);
 		}
 
 		// no remaining group !
-		return false;
+		return null;
 	}
 
 	/**

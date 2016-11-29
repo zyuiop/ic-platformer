@@ -3,17 +3,17 @@ package platform.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import platform.game.level.Level;
 import platform.game.level.LevelManager;
+import platform.game.level.PlayableLevel;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Loader;
 import platform.util.Output;
 import platform.util.SortedCollection;
-import platform.util.sounds.SoundLoader;
 import platform.util.Vector;
 import platform.util.View;
+import platform.util.sounds.SoundLoader;
 
 /**
  * Basic implementation of world, managing a complete collection of actors.
@@ -26,6 +26,7 @@ public class Simulator implements World {
 	private final SoundLoader soundLoader;
 	private LevelManager levelManager = LevelManager.init();
 	private Level nextLevel = Level.createDefaultLevel();
+	private Level currentLevel = null;
 	private boolean passLevel = true; // when true, the level must be changed
 	private Vector center = Vector.ZERO;
 	private Vector expectedCenter = Vector.ZERO;
@@ -36,7 +37,8 @@ public class Simulator implements World {
 
 	/**
 	 * Create a new simulator.
-	 *  @param loader associated loader, not null
+	 *
+	 * @param loader associated loader, not null
 	 * @param soundLoader
 	 * @param args level arguments, not null
 	 */
@@ -59,8 +61,7 @@ public class Simulator implements World {
 		radius = radius * (1.0 - factor) + expectedRadius * factor;
 
 		View view = new View(input, output);
-		if (!isRaw)
-			view.setTarget(center, radius);
+		if (!isRaw) { view.setTarget(center, radius); }
 
 		// Compute pre-updates
 		actors.descending().forEach(actor -> actor.preUpdate(view));
@@ -105,8 +106,20 @@ public class Simulator implements World {
 		isRaw = raw;
 	}
 
+	@Override
+	public Level getCurrentLevel() {
+		return currentLevel;
+	}
+
 	private void passLevel() {
-		if (nextLevel == null) { nextLevel = Level.createDefaultLevel(); }
+		if (nextLevel == null) {
+			if (currentLevel == null || !(currentLevel instanceof PlayableLevel)) {
+				nextLevel = Level.createDefaultLevel();
+			} else {
+				// Auto switch to next level
+				nextLevel = levelManager.getNextLevel((PlayableLevel) currentLevel);
+			}
+		}
 
 		// Reset the state
 		Level level = nextLevel;
@@ -123,6 +136,7 @@ public class Simulator implements World {
 		setViewRadius(5D); // default
 
 		// register the new level
+		currentLevel = level;
 		register(level);
 	}
 
@@ -134,8 +148,7 @@ public class Simulator implements World {
 	@Override
 	public void setView(Vector center) {
 		if (center == null) { throw new NullPointerException(); }
-		if (isViewFixed)
-			return;
+		if (isViewFixed) { return; }
 
 
 		Logger.getGlobal().fine("Changed view to center " + center.getX() + "," + center.getY());
@@ -147,8 +160,7 @@ public class Simulator implements World {
 		if (radius <= 0D) {
 			throw new IllegalArgumentException("radius must be strictly positive");
 		}
-		if (isViewFixed)
-			return;
+		if (isViewFixed) { return; }
 
 		this.expectedRadius = radius;
 	}

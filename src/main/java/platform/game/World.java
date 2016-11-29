@@ -14,6 +14,12 @@ import platform.util.Vector;
 public interface World {
 
 	/**
+	 * Get the level currently played
+	 * @return the level played
+	 */
+	Level getCurrentLevel();
+
+	/**
 	 * @return associated loader, not null
 	 */
 	Loader getLoader();

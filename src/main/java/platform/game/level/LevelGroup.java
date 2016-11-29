@@ -75,4 +75,13 @@ public final class LevelGroup {
 	public PlayableLevel getLastLevel() {
 		return getLevel(countLevels() - 1);
 	}
+
+	/**
+	 * Check if a level group contains a given level
+	 * @param level the level to check, not null
+	 * @return true if the given level belongs to this group
+	 */
+	public boolean hasLevel(PlayableLevel level) {
+		return levels.contains(level.getClass());
+	}
 }

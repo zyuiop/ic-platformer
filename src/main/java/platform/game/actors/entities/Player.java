@@ -11,6 +11,7 @@ import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
 import platform.game.actors.interfaces.IAttachable;
 import platform.game.actors.interfaces.IPositioned;
+import platform.game.level.PlayableLevel;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
 import platform.util.Input;
@@ -230,6 +231,26 @@ public class Player extends LivingActor implements IAttachable {
 				// TODO : let the jumper do it by itself ?
 				setVelocity(getPosition().sub(location).resized(amount));
 				return true;
+			case VOID:
+				if (super.hurt(damageFrom, damageType, 2D, location)) {
+					if (!this.isDead()) {
+						getWorld().getLevelManager().setPlayerLife(getHealth());
+						try {
+							getWorld().setNextLevel(getWorld().getCurrentLevel().getClass().newInstance());
+						} catch (InstantiationException | IllegalAccessException e) {
+							e.printStackTrace();
+
+							// Fallback to restart group
+							// This should never happen whatever.
+							getWorld().setNextLevel(getWorld().getLevelManager()
+									.restartGroup((PlayableLevel) getWorld().getCurrentLevel()));
+						}
+
+						getWorld().nextLevel();
+					}
+					return true;
+				}
+				return false;
 			default:
 				boolean ret = super.hurt(damageFrom, damageType, amount, location);
 				if (ret && amount > 0 && damageType.isHarming()) {
@@ -250,13 +271,17 @@ public class Player extends LivingActor implements IAttachable {
 	@Override
 	public void die() {
 		super.die();
-		getWorld().setNextLevel(getWorld().getLevelManager().restartGroup());
+		// The current level must be playable as there is a player in it
+		getWorld().setNextLevel(getWorld().getLevelManager().restartGroup((PlayableLevel) getWorld().getCurrentLevel()));
 		getWorld().nextLevel();
 	}
 
 	@Override
 	public void register(World world) {
 		super.register(world);
+		if (!(world.getCurrentLevel() instanceof PlayableLevel))
+			throw new IllegalStateException("Cannot add a player in a non playable level !");
+
 		crosshair = new Crosshair(this);
 		world.register(crosshair);
 		world.register(new Overlay(this));
