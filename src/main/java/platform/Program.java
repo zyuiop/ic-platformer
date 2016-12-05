@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.CopyOption;
 import java.nio.file.FileSystem;
@@ -33,44 +34,10 @@ public class Program {
 	private static double fps;
 
 	public static void main(String[] args) throws Exception {
+		extractResouces();
 
-		// Create components
-		Path resourcePath = Paths.get("resources");
-		if (!Files.exists(resourcePath)) {
-			Files.createDirectory(resourcePath);
-		}
-
-		if (!Files.isDirectory(resourcePath)) {
-			System.out.println("Resources path " + resourcePath + " is not a directory !");
-			return;
-		}
-
-		URI uri = Program.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-		Path path = Paths.get(uri.getPath());
-
-		if (uri.getPath().endsWith(".jar") && Files.exists(path)) {
-			FileSystem system = FileSystems.newFileSystem(path, ClassLoader.getSystemClassLoader());
-			Path p = system.getPath("/resources/");
-			if (Files.exists(p) && Files.isDirectory(p)) {
-				Files.list(p).forEach((f) -> {
-					Path target = Paths.get("resources", f.getFileName().toString());
-					if (!Files.exists(target)) {
-						System.out.println("- Extracting " + f.getFileName());
-						try {
-							Files.copy(f, target);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		}
-
-
-
-		SoundLoader sl = new JavaSoundLoader("resources/");
-
-		BufferedLoader loader = new BufferedLoader(new FileLoader("resources/", DefaultLoader.INSTANCE), sl);
+		SoundLoader sl = new JavaSoundLoader("res/");
+		BufferedLoader loader = new BufferedLoader(new FileLoader("res/", DefaultLoader.INSTANCE), sl);
 		KeyBindings bindings = new KeyBindings(new File("keyboard.properties"));
 		bindings.load();
 
@@ -101,6 +68,40 @@ public class Program {
 			// Close window
 		} finally {
 			display.close();
+		}
+	}
+
+	private static void extractResouces() throws IOException, URISyntaxException {
+		// Create components
+		Path resourcePath = Paths.get("res");
+		if (!Files.exists(resourcePath)) {
+			Files.createDirectory(resourcePath);
+		}
+
+		if (!Files.isDirectory(resourcePath)) {
+			System.out.println("Resources path " + resourcePath + " is not a directory !");
+			return;
+		}
+
+		URI uri = Program.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+		Path path = Paths.get(uri.getPath());
+
+		if (uri.getPath().endsWith(".jar") && Files.exists(path)) {
+			FileSystem system = FileSystems.newFileSystem(path, ClassLoader.getSystemClassLoader());
+			Path p = system.getPath("/res/");
+			if (Files.exists(p) && Files.isDirectory(p)) {
+				Files.list(p).forEach((f) -> {
+					Path target = Paths.get("res", f.getFileName().toString());
+					if (!Files.exists(target)) {
+						System.out.println("- Extracting " + f.getFileName());
+						try {
+							Files.copy(f, target);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
 		}
 	}
 

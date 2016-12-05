@@ -35,8 +35,8 @@
     <build>
         <resources>
             <resource>
-                <directory>${pom.basedir}/resources</directory>
-                <targetPath>resources/</targetPath>
+                <directory>${pom.basedir}/res</directory>
+                <targetPath>res/</targetPath>
             </resource>
         </resources>
         <pluginManagement>
