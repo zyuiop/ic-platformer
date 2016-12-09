@@ -46,3 +46,7 @@ Pour finir le niveau, il faut désactiver le laser et activer les plateformes. C
 ### Niveau 1-3
 
 Il faut souffler la torche puis utiliser les plateformes pour traverser (un double saut est nécessaire pour traverser entre les deux plateformes). Ensuite, il faut viser la torche et lancer une boule de feu pour ouvrir la porte de sortie.
+
+## Mot de la fin
+
+Je souhaitais initialement aller beaucoup plus loin dans la création du jeu pour participer au concours, comme peuvent en témoigner certains TODOS présents dans le code. Des sons avaient été ajoutés, et pas mal d'autres acteurs. Mais en raison du manque de temps, j'ai supprimé ceux ci de la version "finale" que vous avez entre les mains. 

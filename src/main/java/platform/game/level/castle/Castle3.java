@@ -8,7 +8,7 @@ import platform.game.actors.environment.Background;
 import platform.game.Direction;
 import platform.game.RepeatBehaviour;
 import platform.game.actors.blocks.Block;
-import platform.game.actors.blocks.InvisiblePlayerDetector;
+import platform.game.actors.technical.InvisiblePlayerDetector;
 import platform.game.actors.blocks.Jumper;
 import platform.game.actors.blocks.OneWayMovingPlatform;
 import platform.game.actors.blocks.Spikes;

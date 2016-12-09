@@ -11,7 +11,7 @@ import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.blocks.Exit;
-import platform.game.actors.environment.LaserDoor;
+import platform.game.actors.blocks.LaserDoor;
 import platform.game.actors.environment.Lever;
 import platform.game.level.PlayableLevel;
 import platform.game.logic.And;

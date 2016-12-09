@@ -17,4 +17,9 @@ public abstract class ParticleActor extends DisplayableActor {
 	protected ParticleActor(Vector position, double sizeX, double sizeY, String spriteName) {
 		super(position, sizeX, sizeY, spriteName);
 	}
+
+	@Override
+	public int getPriority() {
+		return 5000; // au dessus de pas mal de choses
+	}
 }

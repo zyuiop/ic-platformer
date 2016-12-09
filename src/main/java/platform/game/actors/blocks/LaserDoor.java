@@ -1,4 +1,4 @@
-package platform.game.actors.environment;
+package platform.game.actors.blocks;
 
 import java.util.Random;
 import platform.game.actors.Actor;

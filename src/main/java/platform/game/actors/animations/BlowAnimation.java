@@ -33,9 +33,4 @@ public class BlowAnimation extends ParticleActor {
 	public double getOpacity() {
 		return 0.8 - time;
 	}
-
-	@Override
-	public int getPriority() {
-		return 50;
-	}
 }

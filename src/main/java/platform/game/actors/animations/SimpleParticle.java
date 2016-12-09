@@ -33,11 +33,6 @@ public class SimpleParticle extends ParticleActor {
 	}
 
 	@Override
-	public int getPriority() {
-		return 5000; // au dessus de pas mal de choses
-	}
-
-	@Override
 	public void update(Input input) {
 		super.update(input);
 		time += input.getDeltaTime();

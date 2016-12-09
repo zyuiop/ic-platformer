@@ -1,4 +1,4 @@
-package platform.game.actors.blocks;
+package platform.game.actors.technical;
 
 import platform.game.actors.Actor;
 import platform.game.Signal;
