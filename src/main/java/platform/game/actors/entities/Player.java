@@ -17,8 +17,8 @@ import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.animations.Crosshair;
 import platform.game.actors.animations.Overlay;
 import platform.game.actors.basic.LivingActor;
-import platform.game.actors.interfaces.IAttachable;
-import platform.game.actors.interfaces.IPositioned;
+import platform.game.actors.IAttachable;
+import platform.game.actors.basic.PositionedActor;
 import platform.game.level.PlayableLevel;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
@@ -37,7 +37,7 @@ public class Player extends LivingActor implements IAttachable {
 	private final int maxAirJumps = 1;
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
-	private AttachLink attachLink;
+	private AttachLink<Player> attachLink;
 	private Crosshair crosshair;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
@@ -267,10 +267,9 @@ public class Player extends LivingActor implements IAttachable {
 		world.register(new Overlay(this));
 	}
 
-	@Override
-	public void attachTo(IPositioned attachedTo, Vector positionDifference) {
+	public void attachTo(PositionedActor attachedTo, Vector positionDifference) {
 		detach(Vector.ZERO); // detach and set velocity
-		this.attachLink = new AttachLink(attachedTo, this, positionDifference);
+		this.attachLink = new AttachLink<>(attachedTo, this, positionDifference);
 		getWorld().register(attachLink);
 	}
 
@@ -282,7 +281,6 @@ public class Player extends LivingActor implements IAttachable {
 	 * @implNote This implementation tries to remove the link then it sets the velocity of the
 	 * player, even if it was not attached.
 	 */
-	@Override
 	public void detach(Vector velocity) {
 		if (attachLink != null) { attachLink.detach(); }
 		this.attachLink = null;

@@ -2,8 +2,8 @@ package platform.game.actors.entities;
 
 import platform.game.Actor;
 import platform.game.actors.AttachLink;
-import platform.game.actors.interfaces.IAttachable;
-import platform.game.actors.interfaces.IPositioned;
+import platform.game.actors.IAttachable;
+import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -47,19 +47,17 @@ public abstract class AttachableProjectile extends Projectile implements IAttach
 		return attachAngle;
 	}
 
-	@Override
-	public void attachTo(IPositioned attachedTo, Vector positionDifference) {
+	public void attachTo(PositionedActor attachedTo, Vector positionDifference) {
 		attachTo(attachedTo, positionDifference, 0D);
 	}
 
-	public void attachTo(IPositioned attachedTo, Vector positionDifference, double attachAngle) {
+	public void attachTo(PositionedActor attachedTo, Vector positionDifference, double attachAngle) {
 		this.detach(Vector.ZERO); // detach & reset velocity
-		this.attachLink = new AttachLink(attachedTo, this, positionDifference);
+		this.attachLink = new AttachLink<>(attachedTo, this, positionDifference);
 		this.getWorld().register(this.attachLink);
 		this.attachAngle = attachAngle;
 	}
 
-	@Override
 	public void detach(Vector velocity) {
 		if (attachLink != null)
 			attachLink.detach();

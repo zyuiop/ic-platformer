@@ -1,7 +1,6 @@
 package platform.game;
 
 import platform.game.actors.Side;
-import platform.game.actors.interfaces.IActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Loader;
@@ -12,7 +11,7 @@ import platform.util.Vector;
 /**
  * Base class of all simulated actors, attached to a world.
  */
-public abstract class Actor implements Comparable<Actor>, IActor {
+public abstract class Actor implements Comparable<Actor> {
 	private World world;
 
 	/**

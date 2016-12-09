@@ -2,8 +2,8 @@ package platform.game.actors;
 
 import platform.game.Actor;
 import platform.game.World;
-import platform.game.actors.interfaces.IAttachable;
-import platform.game.actors.interfaces.IPositioned;
+import platform.game.actors.basic.MovableActor;
+import platform.game.actors.basic.PositionedActor;
 import platform.util.Input;
 import platform.util.Vector;
 
@@ -12,10 +12,12 @@ import platform.util.Vector;
  *         This class represents a link between two actors, one attached to the other. This class computes
  *         the physics needed to make this attach link. In general, this class is used directly from
  *         {@link IAttachable} implementations.
+ *
+ *         The type parameter is a workaround to allow multiple types on the same object
  */
-public class AttachLink extends Actor {
-	private final IPositioned attachedTo;
-	private final IAttachable attachedActor;
+public class AttachLink<T extends MovableActor & IAttachable> extends Actor {
+	private final PositionedActor attachedTo;
+	private final T attachedActor;
 	private final Vector difference;
 
 	/**
@@ -25,7 +27,7 @@ public class AttachLink extends Actor {
 	 * @param attachedActor the actor to attach to the previous actor
 	 * @param difference the position of the attached actor relative to the attach
 	 */
-	public AttachLink(IPositioned attachedTo, IAttachable attachedActor, Vector difference) {
+	public AttachLink(PositionedActor attachedTo, T attachedActor, Vector difference) {
 		this.attachedTo = attachedTo;
 		this.difference = difference;
 		this.attachedActor = attachedActor;
@@ -63,8 +65,7 @@ public class AttachLink extends Actor {
 	}
 
 	/**
-	 * Unregister this attach. Please note that this method DOESN'T call
-	 * {@link IAttachable#detach(Vector)}.
+	 * Unregister this attach
 	 */
 	public void detach() {
 		if (isRegistered()) { getWorld().unregister(this); }

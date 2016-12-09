@@ -1,7 +1,6 @@
 package platform.game.actors.basic;
 
 import java.util.function.Function;
-import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
@@ -13,7 +12,7 @@ import platform.util.Vector;
  *         <p>
  *         An actor that has a position and can be displayed
  */
-public abstract class DisplayableActor extends PositionedActor implements IPositioned {
+public abstract class DisplayableActor extends PositionedActor {
 	private boolean reloadSprite = false;
 	private String spriteName;
 	private Sprite sprite;

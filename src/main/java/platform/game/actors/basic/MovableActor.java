@@ -1,6 +1,5 @@
 package platform.game.actors.basic;
 
-import platform.game.actors.interfaces.IMovable;
 import platform.util.*;
 
 /**
@@ -9,7 +8,7 @@ import platform.util.*;
  * This class defines a common base for different actors that can move, and that are moved
  * automatically by different forces of the world
  */
-public abstract class MovableActor extends DisplayableActor implements IMovable {
+public abstract class MovableActor extends DisplayableActor {
 	private Vector velocity;
 
 	public MovableActor(Box box, String spriteName, Vector velocity) {
@@ -49,7 +48,6 @@ public abstract class MovableActor extends DisplayableActor implements IMovable 
 	 * Get the current velocity of the actor
 	 * @return the velocity of the actor
 	 */
-	@Override
 	public Vector getVelocity() {
 		return velocity;
 	}
@@ -58,7 +56,6 @@ public abstract class MovableActor extends DisplayableActor implements IMovable 
 	 * Set the velocity of the actor.
 	 * @param velocity the new velocity vector
 	 */
-	@Override
 	public void setVelocity(Vector velocity) {
 		this.velocity = velocity;
 	}
