@@ -2,9 +2,9 @@ package platform.game.actors.blocks;
 
 import java.util.function.Function;
 import platform.game.Effect;
-import platform.game.actors.Direction;
-import platform.game.actors.Orientation;
-import platform.game.actors.basic.MovableActor;
+import platform.game.Direction;
+import platform.game.Orientation;
+import platform.game.actors.MovableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Vector;

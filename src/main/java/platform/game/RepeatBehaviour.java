@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,13 @@
 package platform.game.level;
 
+import java.awt.Font;
 import platform.game.World;
 import platform.game.actors.entities.Player;
 import platform.game.KeyBindings;
-import platform.game.actors.Limits;
+import platform.game.actors.environment.Limits;
+import platform.game.actors.ui.TextBox;
 import platform.util.Box;
+import platform.util.Input;
 import platform.util.Vector;
 
 /**

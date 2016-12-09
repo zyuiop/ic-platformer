@@ -1,4 +1,4 @@
-package platform.game.actors;
+package platform.game;
 
 /**
  * @author zyuiop

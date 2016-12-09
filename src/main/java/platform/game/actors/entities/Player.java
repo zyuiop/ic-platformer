@@ -5,20 +5,20 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import platform.Program;
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Effect;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.Simulator;
 import platform.game.World;
-import platform.game.actors.AttachLink;
-import platform.game.actors.Side;
+import platform.game.actors.technical.AttachLink;
+import platform.game.Side;
 import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.animations.Crosshair;
 import platform.game.actors.animations.Overlay;
-import platform.game.actors.basic.LivingActor;
+import platform.game.actors.LivingActor;
 import platform.game.actors.IAttachable;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.PositionedActor;
 import platform.game.level.PlayableLevel;
 import platform.game.menus.main.MainMenuLevel;
 import platform.game.particles.ParticleEffect;
@@ -34,11 +34,10 @@ public class Player extends LivingActor implements IAttachable {
 	private boolean debug = false;
 	private final KeyBindings bindings;
 	private boolean isColliding = false;
-	private final int maxAirJumps = 1;
+	private final int maxAirJumps = 1; // hardcoded constant
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
 	private AttachLink<Player> attachLink;
-	private Crosshair crosshair;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
 		super(position, .5, "blocker.happy", velocity, 10);
@@ -262,8 +261,7 @@ public class Player extends LivingActor implements IAttachable {
 			throw new IllegalStateException("Cannot add a player in a non playable level !");
 		}
 
-		crosshair = new Crosshair(this);
-		world.register(crosshair);
+		world.register(new Crosshair(this));
 		world.register(new Overlay(this));
 	}
 

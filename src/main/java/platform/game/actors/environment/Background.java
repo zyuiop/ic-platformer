@@ -1,8 +1,8 @@
-package platform.game.actors;
+package platform.game.actors.environment;
 
 import java.util.ArrayList;
 import java.util.List;
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;

@@ -1,8 +1,8 @@
 package platform.game.actors.environment;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Effect;
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
@@ -15,11 +15,20 @@ import platform.util.Vector;
 public class Heart extends DisplayableActor {
 	private final double healthBonus;
 	private double cooldown = 0D;
+	private double cooldownTime = 10D;
 
 	public Heart(Vector position, double healthBonus) {
 		super(position, .5, "heart.full");
 		this.healthBonus = healthBonus;
 	}
+
+	public Heart(Vector position, double healthBonus, double cooldown, double cooldownTime) {
+		super(position, .5, "heart.full");
+		this.healthBonus = healthBonus;
+		this.cooldown = cooldown;
+		this.cooldownTime = cooldownTime;
+	}
+
 
 	@Override
 	public void update(Input input) {
@@ -38,7 +47,7 @@ public class Heart extends DisplayableActor {
 
 		if (getBox().isColliding(other.getBox())) {
 			if (other.hurt(this, Effect.HEAL, healthBonus, getPosition())) {
-				this.cooldown = 10D;
+				this.cooldown = cooldownTime;
 			}
 		}
 	}

@@ -2,8 +2,8 @@ package platform.game.level;
 
 import platform.game.Signal;
 import platform.game.World;
-import platform.game.actors.Background;
-import platform.game.actors.Direction;
+import platform.game.actors.environment.Background;
+import platform.game.Direction;
 import platform.game.actors.blocks.AlwaysMovingPlatform;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.ProjectileLauncher;

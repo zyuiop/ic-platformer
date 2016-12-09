@@ -1,8 +1,9 @@
 package platform.game.actors.blocks;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Signal;
-import platform.game.actors.Side;
+import platform.game.Side;
+import platform.game.actors.MovableActor;
 import platform.game.actors.entities.Player;
 import platform.util.Box;
 import platform.util.Vector;
@@ -14,7 +15,7 @@ import platform.util.Vector;
  * moving platforms implementations.
  *
  * Although this actor can move, its movements are not controlled by anything else than itself, so
- * it doesn't extend {@link platform.game.actors.basic.MovableActor} or {@link platform.game.actors.interfaces.IMovable}
+ * it doesn't extend {@link MovableActor} or {@link platform.game.actors.interfaces.IMovable}
  */
 public abstract class MovingPlatform extends Block {
 	private final Vector first;

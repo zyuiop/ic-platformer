@@ -4,7 +4,7 @@ package platform.game.menus.main;
 import java.awt.Color;
 import java.awt.Font;
 import platform.game.World;
-import platform.game.actors.Background;
+import platform.game.actors.environment.Background;
 import platform.game.actors.ui.ButtonActor;
 import platform.game.actors.ui.TextBox;
 import platform.game.level.Level;

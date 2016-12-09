@@ -1,8 +1,8 @@
 package platform.game.actors.environment;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Signal;
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.game.actors.entities.Player;
 import platform.util.Vector;
 

@@ -1,8 +1,7 @@
 package platform.game.actors.blocks;
 
 import platform.game.Signal;
-import platform.game.actors.Direction;
-import platform.game.actors.blocks.Block;
+import platform.game.Direction;
 import platform.game.particles.ParticleEffect;
 import platform.util.Box;
 import platform.util.Input;

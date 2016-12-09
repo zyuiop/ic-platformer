@@ -1,10 +1,9 @@
 package platform.game.actors.blocks;
 
-import platform.game.Actor;
-import platform.game.actors.Direction;
-import platform.game.actors.Side;
-import platform.game.actors.basic.MovableActor;
-import platform.game.actors.blocks.Block;
+import platform.game.actors.Actor;
+import platform.game.Direction;
+import platform.game.Side;
+import platform.game.actors.MovableActor;
 import platform.util.Box;
 import platform.util.Vector;
 

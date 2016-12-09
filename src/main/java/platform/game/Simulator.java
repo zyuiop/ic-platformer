@@ -3,6 +3,7 @@ package platform.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import platform.game.actors.Actor;
 import platform.game.level.Level;
 import platform.game.level.LevelManager;
 import platform.game.level.PlayableLevel;

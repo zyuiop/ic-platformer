@@ -1,7 +1,7 @@
-package platform.game.actors;
+package platform.game.actors.environment;
 
-import platform.game.Actor;
 import platform.game.Effect;
+import platform.game.actors.Actor;
 import platform.util.Box;
 import platform.util.Vector;
 

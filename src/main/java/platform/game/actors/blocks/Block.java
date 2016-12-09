@@ -1,15 +1,14 @@
 package platform.game.actors.blocks;
 
-import platform.game.actors.Direction;
-import platform.game.actors.Orientation;
-import platform.game.actors.RepeatBehaviour;
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.Direction;
+import platform.game.Orientation;
+import platform.game.RepeatBehaviour;
+import platform.game.actors.DisplayableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;
 import platform.util.Vector;
-import platform.util.View;
 
 /**
  * Simple solid actor that does nothing more than being solid.

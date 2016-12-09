@@ -3,7 +3,7 @@ package platform.game.actors.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.function.BiFunction;
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;

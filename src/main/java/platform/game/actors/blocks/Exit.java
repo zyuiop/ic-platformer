@@ -1,9 +1,9 @@
 package platform.game.actors.blocks;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Signal;
 import platform.game.World;
-import platform.game.actors.Side;
+import platform.game.Side;
 import platform.game.actors.entities.Player;
 import platform.game.level.Level;
 import platform.util.Input;

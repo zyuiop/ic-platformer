@@ -1,9 +1,9 @@
 package platform.game.actors.environment;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.util.Input;
 import platform.util.Vector;
 

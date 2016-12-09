@@ -4,9 +4,9 @@ import java.awt.Font;
 import java.util.function.Function;
 import platform.game.KeyBindings;
 import platform.game.World;
-import platform.game.actors.Background;
-import platform.game.actors.Direction;
-import platform.game.actors.RepeatBehaviour;
+import platform.game.actors.environment.Background;
+import platform.game.Direction;
+import platform.game.RepeatBehaviour;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.InvisiblePlayerDetector;
 import platform.game.actors.blocks.Jumper;
@@ -14,6 +14,7 @@ import platform.game.actors.blocks.OneWayMovingPlatform;
 import platform.game.actors.blocks.Spikes;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.blocks.Exit;
+import platform.game.actors.environment.Heart;
 import platform.game.actors.environment.Torch;
 import platform.game.actors.ui.SlowingAdapter;
 import platform.game.actors.ui.TriggerableTextbox;
@@ -79,6 +80,8 @@ public class Castle3 extends PlayableLevel {
 			world.register(new Spikes(new Vector(x + 0.25, -3.75), .5, Direction.UP, 1D));
 		}
 
+		world.register(new Heart(new Vector(0, 1.5), 2D, 0, Double.POSITIVE_INFINITY));
+
 		// Contours
 		Block leftStone = new Block(new Vector(-12.5, -3.5), 1, 18, "stone.7");
 		leftStone.setRepeatBehaviour(new RepeatBehaviour(1, 3, false, true));
@@ -95,7 +98,7 @@ public class Castle3 extends PlayableLevel {
 		Torch torch = new Torch(new Vector(-8, 1.5), true);
 		world.register(torch);
 
-		world.register(new Exit(new Vector(10, 1.5), torch)); // todo : add key up ?
+		world.register(new Exit(new Vector(10, 1.5), torch));
 		world.register(new Decoration(new Vector(9.8, 1.2), .5, "exit", Math.PI / 8));
 		world.register(new Decoration(new Vector(-5.3, 1.2), .5, "exit", Math.PI / 8));
 

@@ -1,7 +1,7 @@
 package platform.game.actors.blocks;
 
 import platform.game.Signal;
-import platform.game.actors.Direction;
+import platform.game.Direction;
 import platform.game.actors.entities.Arrow;
 import platform.game.actors.entities.Fireball;
 import platform.game.actors.entities.Projectile;

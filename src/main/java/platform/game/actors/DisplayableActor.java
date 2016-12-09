@@ -1,4 +1,4 @@
-package platform.game.actors.basic;
+package platform.game.actors;
 
 import java.util.function.Function;
 import platform.util.Box;

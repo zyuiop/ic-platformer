@@ -1,8 +1,8 @@
 package platform.game.actors.entities;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Effect;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.PositionedActor;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;

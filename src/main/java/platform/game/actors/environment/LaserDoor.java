@@ -1,13 +1,13 @@
 package platform.game.actors.environment;
 
 import java.util.Random;
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
 import platform.game.World;
-import platform.game.actors.Direction;
-import platform.game.actors.Orientation;
-import platform.game.actors.Side;
+import platform.game.Direction;
+import platform.game.Orientation;
+import platform.game.Side;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.Door;
 import platform.game.particles.ParticleEffect;

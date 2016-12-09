@@ -1,6 +1,6 @@
 package platform.game.actors.environment;
 
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.util.Vector;
 
 /**

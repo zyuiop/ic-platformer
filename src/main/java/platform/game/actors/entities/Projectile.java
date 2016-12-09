@@ -1,8 +1,8 @@
 package platform.game.actors.entities;
 
-import platform.game.Actor;
-import platform.game.actors.Side;
-import platform.game.actors.basic.MovableActor;
+import platform.game.actors.Actor;
+import platform.game.Side;
+import platform.game.actors.MovableActor;
 import platform.util.Vector;
 
 /**

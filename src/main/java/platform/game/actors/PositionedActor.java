@@ -1,6 +1,5 @@
-package platform.game.actors.basic;
+package platform.game.actors;
 
-import platform.game.Actor;
 import platform.util.Box;
 import platform.util.Vector;
 

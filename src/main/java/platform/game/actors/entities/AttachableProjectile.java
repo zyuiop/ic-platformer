@@ -1,9 +1,9 @@
 package platform.game.actors.entities;
 
-import platform.game.Actor;
-import platform.game.actors.AttachLink;
+import platform.game.actors.Actor;
+import platform.game.actors.technical.AttachLink;
 import platform.game.actors.IAttachable;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.PositionedActor;
 import platform.util.Input;
 import platform.util.Vector;
 

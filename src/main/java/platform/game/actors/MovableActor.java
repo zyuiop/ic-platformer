@@ -1,4 +1,4 @@
-package platform.game.actors.basic;
+package platform.game.actors;
 
 import platform.util.*;
 

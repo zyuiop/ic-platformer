@@ -1,9 +1,10 @@
-package platform.game.actors;
+package platform.game.actors.technical;
 
-import platform.game.Actor;
 import platform.game.World;
-import platform.game.actors.basic.MovableActor;
-import platform.game.actors.basic.PositionedActor;
+import platform.game.actors.Actor;
+import platform.game.actors.IAttachable;
+import platform.game.actors.MovableActor;
+import platform.game.actors.PositionedActor;
 import platform.util.Input;
 import platform.util.Vector;
 

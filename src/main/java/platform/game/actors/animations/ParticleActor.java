@@ -1,6 +1,6 @@
 package platform.game.actors.animations;
 
-import platform.game.actors.basic.DisplayableActor;
+import platform.game.actors.DisplayableActor;
 import platform.util.Vector;
 
 /**

@@ -1,6 +1,8 @@
-package platform.game;
+package platform.game.actors;
 
-import platform.game.actors.Side;
+import platform.game.Effect;
+import platform.game.Side;
+import platform.game.World;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Loader;

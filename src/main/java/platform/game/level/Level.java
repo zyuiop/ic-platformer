@@ -1,6 +1,6 @@
 package platform.game.level;
 
-import platform.game.Actor;
+import platform.game.actors.Actor;
 import platform.game.menus.main.MainMenuLevel;
 import platform.util.Input;
 import platform.util.Output;
