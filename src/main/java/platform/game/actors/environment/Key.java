@@ -5,7 +5,6 @@ import platform.game.Signal;
 import platform.game.actors.basic.DisplayableActor;
 import platform.game.actors.entities.Player;
 import platform.util.Vector;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
@@ -35,10 +34,6 @@ public class Key extends DisplayableActor implements Signal {
 
 	private void take() {
 		this.taken = true;
-
-		Sound sound = getWorld().getSoundLoader().getSound("handleCoins2");
-		sound.play();
-
 		getWorld().unregister(this);
 	}
 

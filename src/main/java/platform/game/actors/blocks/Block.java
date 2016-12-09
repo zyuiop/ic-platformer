@@ -3,7 +3,6 @@ package platform.game.actors.blocks;
 import platform.game.actors.Direction;
 import platform.game.actors.Orientation;
 import platform.game.actors.basic.DisplayableActor;
-import platform.game.actors.environment.LaserDoor;
 import platform.util.Box;
 import platform.util.Vector;
 

@@ -1,8 +1,16 @@
 package platform.game.actors.entities;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import platform.Program;
-import platform.game.*;
+import platform.game.Actor;
+import platform.game.Effect;
+import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
+import platform.game.Simulator;
+import platform.game.World;
 import platform.game.actors.AttachLink;
 import platform.game.actors.Side;
 import platform.game.actors.animations.BlowAnimation;
@@ -18,11 +26,6 @@ import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
 import platform.util.View;
-import platform.util.sounds.Sound;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 /**
  * @author zyuiop
@@ -35,8 +38,6 @@ public class Player extends LivingActor implements IAttachable {
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
 	private AttachLink attachLink;
-	private int footstep = 0;
-	private double footStepTime = 0D;
 	private Crosshair crosshair;
 
 	public Player(Vector position, Vector velocity, KeyBindings bindings) {
@@ -59,8 +60,7 @@ public class Player extends LivingActor implements IAttachable {
 		super.draw(input, output);
 
 		if (debug) {
-			if (output instanceof View)
-				output = ((View) output).getOutput();
+			if (output instanceof View) { output = ((View) output).getOutput(); }
 			Vector top = output.getBox().getMin().add(new Vector(0, output.getBox().getHeight()));
 			Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 15);
 			output.drawText("Position : " + getPosition(), top.add(new Vector(10, -20)), font, Color.BLACK);
@@ -70,8 +70,9 @@ public class Player extends LivingActor implements IAttachable {
 			output.drawText("health : " + getHealth() + " / " + getMaxHealth(), top.add(new Vector(10, -100)), font, Color.BLACK);
 
 			int actors = 0;
-			if (getWorld() instanceof Simulator)
+			if (getWorld() instanceof Simulator) {
 				actors = ((Simulator) getWorld()).countActors();
+			}
 
 			output.drawText("FPS : " + Math.round(Program.getFps()), output.getBox().getMin().add(new Vector(10, 5)), font, Color.BLACK);
 			output.drawText("Actors : " + actors, output.getBox().getMin().add(new Vector(10, 25)), font, Color.BLACK);
@@ -86,7 +87,6 @@ public class Player extends LivingActor implements IAttachable {
 		}
 
 		double maxSpeed = 4.0;
-		boolean walking = false;
 		if (bindings.isDown(input, Key.RIGHT)) {
 			if (getVelocity().getX() < maxSpeed) {
 				double increase = 60.0 * input.getDeltaTime();
@@ -97,7 +97,6 @@ public class Player extends LivingActor implements IAttachable {
 
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(speed, getVelocity().getY()));
-				walking = true;
 			}
 		} else if (bindings.isDown(input, Key.LEFT)) {
 			if (getVelocity().getX() > -maxSpeed) {
@@ -109,19 +108,6 @@ public class Player extends LivingActor implements IAttachable {
 
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(speed, getVelocity().getY()));
-				walking = true;
-			}
-		}
-
-		// Play the nice walk sound
-		if (walking && isOnFloor) {
-			footStepTime += input.getDeltaTime();
-			if (footStepTime >= .25) {
-				Sound sound = getWorld().getSoundLoader().getSound("footstep0" + footstep++);
-				if (footstep == 9)
-					footstep = 0;
-				sound.play(.5);
-				footStepTime = 0D;
 			}
 		}
 
@@ -129,9 +115,6 @@ public class Player extends LivingActor implements IAttachable {
 			if (isOnFloor || remainingAirJumps > 0) {
 				// We call detach because it moves but also frees the player from a moving platform
 				detach(new Vector(getVelocity().getX(), 5D));
-
-				Sound sound = getWorld().getSoundLoader().getSound("jump");
-				sound.play(2);
 
 				if (!isOnFloor) {
 					remainingAirJumps--;
@@ -252,11 +235,7 @@ public class Player extends LivingActor implements IAttachable {
 				}
 				return false;
 			default:
-				boolean ret = super.hurt(damageFrom, damageType, amount, location);
-				if (ret && amount > 0 && damageType.isHarming()) {
-					getWorld().getSoundLoader().getSound("hurt").play(.8);
-				}
-				return ret;
+				return super.hurt(damageFrom, damageType, amount, location);
 		}
 	}
 
@@ -279,8 +258,9 @@ public class Player extends LivingActor implements IAttachable {
 	@Override
 	public void register(World world) {
 		super.register(world);
-		if (!(world.getCurrentLevel() instanceof PlayableLevel))
+		if (!(world.getCurrentLevel() instanceof PlayableLevel)) {
 			throw new IllegalStateException("Cannot add a player in a non playable level !");
+		}
 
 		crosshair = new Crosshair(this);
 		world.register(crosshair);

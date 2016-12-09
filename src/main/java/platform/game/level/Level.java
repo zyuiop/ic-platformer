@@ -2,7 +2,6 @@ package platform.game.level;
 
 import platform.game.Actor;
 import platform.game.menus.main.MainMenuLevel;
-import platform.game.menus.settings.KeyBindingsLevel;
 import platform.util.Input;
 import platform.util.Output;
 import platform.util.Sprite;

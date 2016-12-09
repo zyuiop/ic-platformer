@@ -2,13 +2,10 @@ package platform.game.actors.blocks;
 
 import platform.game.Signal;
 import platform.game.actors.Direction;
-import platform.game.actors.Orientation;
-import platform.game.actors.animations.BlowAnimation;
 import platform.game.actors.blocks.Block;
 import platform.game.particles.ParticleEffect;
 import platform.util.Box;
 import platform.util.Input;
-import platform.util.Output;
 import platform.util.Vector;
 
 /**

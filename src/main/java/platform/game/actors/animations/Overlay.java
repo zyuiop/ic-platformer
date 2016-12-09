@@ -1,7 +1,6 @@
 package platform.game.actors.animations;
 
 import platform.game.Actor;
-import platform.game.World;
 import platform.game.actors.basic.LivingActor;
 import platform.util.Box;
 import platform.util.Input;

@@ -5,8 +5,6 @@ import platform.game.Effect;
 import platform.game.Signal;
 import platform.util.Box;
 import platform.util.Input;
-import platform.util.Output;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**

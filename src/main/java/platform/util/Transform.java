@@ -2,7 +2,6 @@ package platform.util;
 
 import java.awt.*;
 import java.util.Collection;
-import platform.util.sounds.Sound;
 
 /**
  * Applies a simple coordinate transform.

@@ -11,6 +11,6 @@ public interface Loader {
      * @param name identifier, not null
      * @return valid sprite, not null
      */
-    public Sprite getSprite(String name);
+	Sprite getSprite(String name);
     
 }

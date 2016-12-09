@@ -1,8 +1,6 @@
 package platform.game.actors.animations;
 
 import platform.util.Input;
-import platform.util.Output;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**

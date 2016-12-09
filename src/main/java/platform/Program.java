@@ -5,17 +5,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.CopyOption;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Enumeration;
-import java.util.HashMap;
-import com.sun.nio.zipfs.ZipFileSystem;
-import com.sun.nio.zipfs.ZipFileSystemProvider;
 import platform.game.KeyBindings;
 import platform.game.Simulator;
 import platform.util.BufferedLoader;
@@ -23,8 +17,6 @@ import platform.util.DefaultLoader;
 import platform.util.Display;
 import platform.util.FileLoader;
 import platform.util.SwingDisplay;
-import platform.util.sounds.JavaSoundLoader;
-import platform.util.sounds.SoundLoader;
 
 /**
  * Provides main entry point.
@@ -36,8 +28,7 @@ public class Program {
 	public static void main(String[] args) throws Exception {
 		extractResouces();
 
-		SoundLoader sl = new JavaSoundLoader("res/");
-		BufferedLoader loader = new BufferedLoader(new FileLoader("res/", DefaultLoader.INSTANCE), sl);
+		BufferedLoader loader = new BufferedLoader(new FileLoader("res/", DefaultLoader.INSTANCE));
 		KeyBindings bindings = new KeyBindings(new File("keyboard.properties"));
 		bindings.load();
 
@@ -46,7 +37,7 @@ public class Program {
 		try {
 
 			// Game loop
-			Simulator simulator = new Simulator(loader, loader, args);
+			Simulator simulator = new Simulator(loader, args);
 			double avg = 0.02;
 			double last = display.getTime();
 			while (!display.isCloseRequested()) {
@@ -108,7 +99,7 @@ public class Program {
 	/**
 	 * Get the number of frames per second
 	 *
-	 * @return
+	 * @return the number of frames per second (FPS)
 	 */
 	public static double getFps() {
 		return fps;

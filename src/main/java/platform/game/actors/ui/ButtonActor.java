@@ -3,18 +3,13 @@ package platform.game.actors.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import platform.game.actors.basic.DisplayableActor;
-import platform.game.actors.ui.TextBox;
-import platform.util.Box;
 import platform.util.Input;
-import platform.util.Output;
 import platform.util.Vector;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
- *
- * A button that calls a function when it's clicked
+ *         <p>
+ *         A button that calls a function when it's clicked
  */
 public class ButtonActor extends TextBox {
 	private final ClickHandler clickHandler;
@@ -40,10 +35,6 @@ public class ButtonActor extends TextBox {
 		if (getBox().isColliding(input.getMouseLocation())) {
 			sprite = hoverSprite;
 			if (input.getMouseButton(MouseEvent.BUTTON1).isPressed()) {
-
-				Sound sound = getWorld().getSoundLoader().getSound("switch5");
-				sound.play();
-
 				clickHandler.onClick();
 			}
 		}

@@ -3,9 +3,6 @@ package platform.game.actors.entities;
 import platform.game.Actor;
 import platform.game.actors.Side;
 import platform.game.actors.basic.MovableActor;
-import platform.util.Input;
-import platform.util.Output;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**

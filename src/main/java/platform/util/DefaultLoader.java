@@ -13,7 +13,7 @@ public enum DefaultLoader implements Loader {
     
     private final Sprite sprite;
     
-    private DefaultLoader() {
+    DefaultLoader() {
         BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         image.setRGB(0, 0, Color.RED.getRGB());
         sprite = new Sprite(image);

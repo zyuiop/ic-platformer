@@ -3,16 +3,14 @@ package platform.game.actors.environment;
 import platform.game.Actor;
 import platform.game.Effect;
 import platform.game.Signal;
-import platform.game.actors.Direction;
 import platform.game.actors.basic.DisplayableActor;
 import platform.util.Input;
 import platform.util.Vector;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
- *
- * A basic lever that can be either enabled or disabled, and transmits the corresponding signal
+ *         <p>
+ *         A basic lever that can be either enabled or disabled, and transmits the corresponding signal
  */
 public class Lever extends DisplayableActor implements Signal {
 	private boolean active = false;
@@ -66,11 +64,6 @@ public class Lever extends DisplayableActor implements Signal {
 		return active;
 	}
 
-	@Override
-	public double getRotation() {
-		return rotation;
-	}
-
 	private void setActive(boolean state) {
 		this.active = state;
 
@@ -80,10 +73,11 @@ public class Lever extends DisplayableActor implements Signal {
 		} else {
 			setSpriteName(active ? enabledSprite : disabledSprite);
 		}
+	}
 
-		Sound sound = getWorld().getSoundLoader().getSound("chop");
-		sound.play();
-
+	@Override
+	public double getRotation() {
+		return rotation;
 	}
 
 	@Override

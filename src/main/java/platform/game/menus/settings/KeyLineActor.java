@@ -1,10 +1,8 @@
 package platform.game.menus.settings;
 
-import platform.game.Actor;
 import platform.game.KeyBindings.Key;
 import platform.game.actors.ui.TextBox;
 import platform.util.Input;
-import platform.util.Output;
 import platform.util.Vector;
 
 import java.awt.*;

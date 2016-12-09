@@ -13,17 +13,17 @@ public interface Display extends Output, Input {
      * Sets background color.
      * @param color any color, not null
      */
-    public void setBackground(Color color);
+	void setBackground(Color color);
     
     /** Initiates new frame rendering */
-    public void begin();
+	void begin();
     
     /** Finalizes the current frame and displays the result on the screen */
-    public void end();
+	void end();
     
     /** Closes window and releases resources */
-    public void close();
+	void close();
     
     /** @return whether the user requested to close the window */
-    public boolean isCloseRequested();
+	boolean isCloseRequested();
 }

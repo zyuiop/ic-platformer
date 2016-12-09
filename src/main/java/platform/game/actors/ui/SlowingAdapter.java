@@ -3,7 +3,6 @@ package platform.game.actors.ui;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import platform.util.sounds.Sound;
 
 /**
  * @author zyuiop
@@ -31,7 +30,6 @@ public class SlowingAdapter implements BiFunction<String[], Double, String[]> {
 			} else if (remaining <= 0) {
 				break;
 			} else {
-				readChars += remaining;
 				stringList.add(line.substring(0, remaining));
 				break;
 			}

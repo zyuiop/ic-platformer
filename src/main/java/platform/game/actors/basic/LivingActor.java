@@ -5,7 +5,6 @@ import platform.game.Effect;
 import platform.util.Box;
 import platform.util.Input;
 import platform.util.Output;
-import platform.util.Sprite;
 import platform.util.Vector;
 
 /**
@@ -70,7 +69,7 @@ public abstract class LivingActor extends MovableActor {
 	@Override
 	public void update(Input input) {
 		super.update(input);
-		if (!isVulnerable()) {
+		if (isInvulnerable()) {
 			blink += input.getDeltaTime();
 			this.invulnerability = Math.max(0, invulnerability - input.getDeltaTime());
 
@@ -96,7 +95,7 @@ public abstract class LivingActor extends MovableActor {
 
 				if (this.health >= this.getMaxHealth())
 					return false; // cannot be healed at it's full
-			} else if (!isVulnerable()) {
+			} else if (isInvulnerable()) {
 				return false; // prend pas les dégats
 			} else {
 				invulnerability = 1.5D;
@@ -124,10 +123,11 @@ public abstract class LivingActor extends MovableActor {
 	}
 
 	/**
-	 * Check if this actor can be damaged
-	 * @return true if the actor can be damaged
+	 * Check if this actor is invulnerable
+	 * An invulnerable actor cannot take any damage
+	 * @return true if this actor is invulnerable and cannot be damaged
 	 */
-	public boolean isVulnerable() {
-		return invulnerability <= 0;
+	public boolean isInvulnerable() {
+		return invulnerability > 0;
 	}
 }

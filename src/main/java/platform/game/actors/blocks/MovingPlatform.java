@@ -4,10 +4,7 @@ import platform.game.Actor;
 import platform.game.Signal;
 import platform.game.actors.Side;
 import platform.game.actors.entities.Player;
-import platform.game.actors.interfaces.IPositioned;
 import platform.util.Box;
-import platform.util.Input;
-import platform.util.Output;
 import platform.util.Vector;
 
 /**

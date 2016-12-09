@@ -64,10 +64,6 @@ public class LaserDoor extends Door {
 				Vector position = center.add(unit.mul(i + .5)).add(norm.mul(diff));
 				effect.play(getWorld(), position);
 			}
-
-			getWorld().getSoundLoader().getSound("highDown").play();
-		} else {
-			getWorld().getSoundLoader().getSound("highUp").play();
 		}
 	}
 

@@ -13,7 +13,6 @@ import platform.util.Output;
 import platform.util.SortedCollection;
 import platform.util.Vector;
 import platform.util.View;
-import platform.util.sounds.SoundLoader;
 
 /**
  * Basic implementation of world, managing a complete collection of actors.
@@ -23,7 +22,6 @@ public class Simulator implements World {
 	private final List<Actor> toAdd = new ArrayList<>();
 	private final List<Actor> toRemove = new ArrayList<>();
 	private final Loader loader;
-	private final SoundLoader soundLoader;
 	private LevelManager levelManager = LevelManager.init();
 	private Level nextLevel = Level.createDefaultLevel();
 	private Level currentLevel = null;
@@ -39,11 +37,9 @@ public class Simulator implements World {
 	 * Create a new simulator.
 	 *
 	 * @param loader associated loader, not null
-	 * @param soundLoader
 	 * @param args level arguments, not null
 	 */
-	public Simulator(Loader loader, SoundLoader soundLoader, String[] args) {
-		this.soundLoader = soundLoader;
+	public Simulator(Loader loader, String[] args) {
 		if (loader == null) { throw new NullPointerException(); }
 		this.loader = loader;
 		this.center = Vector.ZERO;
@@ -208,10 +204,5 @@ public class Simulator implements World {
 			}
 		}
 		return victims;
-	}
-
-	@Override
-	public SoundLoader getSoundLoader() {
-		return soundLoader;
 	}
 }
