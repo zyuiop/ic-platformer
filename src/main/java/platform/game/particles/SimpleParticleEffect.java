@@ -11,7 +11,7 @@ public class SimpleParticleEffect implements ParticleEffect {
 	protected double fadeIn = 0D;
 	protected double fadeOut = 0D;
 	protected double stay = 1D;
-	protected String particle;
+	protected final String particle;
 	protected double transparency = 1;
 	protected double sizeX = .8;
 	protected double sizeY = .8;

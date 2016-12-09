@@ -32,9 +32,9 @@ import platform.util.View;
  */
 public class Player extends LivingActor implements IAttachable {
 	private boolean debug = false;
-	private KeyBindings bindings;
+	private final KeyBindings bindings;
 	private boolean isColliding = false;
-	private int maxAirJumps = 1;
+	private final int maxAirJumps = 1;
 	private int remainingAirJumps = 1;
 	private boolean isOnFloor = false;
 	private AttachLink attachLink;

@@ -14,9 +14,9 @@ import platform.util.View;
  * @author zyuiop
  */
 public class AddKeyActor extends ButtonActor {
-	private KeyLineActor parent;
+	private final KeyLineActor parent;
 	private boolean isActive;
-	private Key key;
+	private final Key key;
 
 	public AddKeyActor(KeyLineActor parent, Key key) {
 		super(() -> {

@@ -12,7 +12,7 @@ import platform.util.Vector;
  * An actor which has a life and which can loose it.
  */
 public abstract class LivingActor extends MovableActor {
-	private double maxHealth;
+	private final double maxHealth;
 	private double health;
 	private double invulnerability = 0D;
 	private double blink = 0D;

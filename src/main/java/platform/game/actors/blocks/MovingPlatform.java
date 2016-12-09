@@ -20,7 +20,7 @@ public abstract class MovingPlatform extends Block {
 	private final Vector first;
 	private final Vector second;
 	private double current = 0;
-	private Signal signal;
+	private final Signal signal;
 
 	/**
 	 * Create a moving platform. The platform will move between first and second positions.

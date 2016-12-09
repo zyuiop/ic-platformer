@@ -14,9 +14,9 @@ import platform.util.Vector;
  *         {@link IAttachable} implementations.
  */
 public class AttachLink extends Actor {
-	private IPositioned attachedTo;
-	private IAttachable attachedActor;
-	private Vector difference;
+	private final IPositioned attachedTo;
+	private final IAttachable attachedActor;
+	private final Vector difference;
 
 	/**
 	 * Create an attach link between two actors with a relative position difference.

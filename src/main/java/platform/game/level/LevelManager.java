@@ -11,7 +11,7 @@ import platform.game.level.castle.Castle3;
  * This class manages the different levels of the game
  */
 public class LevelManager {
-	private List<LevelGroup> levelGroups = new ArrayList<>();
+	private final List<LevelGroup> levelGroups = new ArrayList<>();
 	private double playerLife;
 
 	/**

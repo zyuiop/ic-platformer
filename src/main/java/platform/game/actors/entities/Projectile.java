@@ -11,7 +11,7 @@ import platform.util.Vector;
  * Represents an actor that can be thrown or shot by an other actor (the sender)
  */
 public abstract class Projectile extends MovableActor {
-	private Actor sender;
+	private final Actor sender;
 
 	/**
 	 * Create a projectile

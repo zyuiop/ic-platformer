@@ -20,11 +20,11 @@ import platform.util.Vector;
  * @author zyuiop
  */
 public class LaserDoor extends Door {
-	private double angle;
-	private double length;
-	private Vector center;
+	private final double angle;
+	private final double length;
+	private final Vector center;
 	private double time = 0D;
-	private ParticleEffect effect;
+	private final ParticleEffect effect;
 
 	public LaserDoor(Vector center, double length, Orientation direction, String color, Signal listenSignal) {
 		super(new Box(center, length, .3), "laser." + color, direction == Orientation.VERICAL ? Direction.LEFT : Direction.UP, listenSignal);
@@ -93,7 +93,7 @@ public class LaserDoor extends Door {
 	}
 
 	private static class LaserPower extends Block {
-		private double angle;
+		private final double angle;
 
 		LaserPower(Vector position, double angle) {
 			super(position, .4, "laserDown");

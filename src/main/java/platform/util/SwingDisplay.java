@@ -23,8 +23,8 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 	// Encapsulates a collection of buttons
 	private static class ButtonManager {
 
-		private Map<Integer, Button> current;
-		private Map<Integer, Boolean> buffer;
+		private final Map<Integer, Button> current;
+		private final Map<Integer, Boolean> buffer;
 
 		private ButtonManager() {
 			current = new HashMap<>();
@@ -53,8 +53,8 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 	}
 
 	// Rendering-related objects
-	private JFrame frame;
-	private Canvas canvas;
+	private final JFrame frame;
+	private final Canvas canvas;
 	private BufferStrategy strategy;
 	private Graphics2D graphics;
 	private Graphics2D textGraphics;
@@ -64,8 +64,8 @@ public class SwingDisplay implements Display, KeyListener, MouseListener, MouseW
 	private double deltaTime, time;
 	private long before;
 	private Vector mouseLocation;
-	private ButtonManager keyboardButtons;
-	private ButtonManager mouseButtons;
+	private final ButtonManager keyboardButtons;
+	private final ButtonManager mouseButtons;
 	private int mouseScroll;
 	private int mouseScrollBuffer;
 	private Button focus;

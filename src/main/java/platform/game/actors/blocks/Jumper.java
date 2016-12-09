@@ -16,7 +16,7 @@ import platform.util.Vector;
  */
 public class Jumper extends InteractableBlock {
 	private double cooldown = 0;
-	private double power;
+	private final double power;
 
 	public Jumper(Vector position, double sizeX, double sizeY, Direction direction, double power) {
 		super(position, sizeX, sizeY, "jumper.normal", direction);

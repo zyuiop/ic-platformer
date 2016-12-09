@@ -13,7 +13,7 @@ import platform.util.Vector;
  * to be quite laggy.
  */
 public class ParticleAnimation extends ParticleActor {
-	private Queue<ParticleActor> particles = new ArrayDeque<>();
+	private final Queue<ParticleActor> particles = new ArrayDeque<>();
 	private ParticleActor currentParticle;
 
 	public ParticleAnimation(Vector position) {

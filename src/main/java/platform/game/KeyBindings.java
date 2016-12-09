@@ -16,9 +16,9 @@ import java.util.Map.Entry;
  * This class manages used-configured key bindings
  */
 public class KeyBindings {
-	private File file;
-	private Properties properties = new Properties();
-	private Map<Key, Collection<Integer>> keyBinds = new HashMap<>();
+	private final File file;
+	private final Properties properties = new Properties();
+	private final Map<Key, Collection<Integer>> keyBinds = new HashMap<>();
 	private static KeyBindings instance;
 
 	/**
@@ -260,7 +260,7 @@ public class KeyBindings {
 		 */
 		MENU("Menu", KeyEvent.VK_ESCAPE);
 
-		private int[] defaultKeys;
+		private final int[] defaultKeys;
 		private String description;
 
 		Key(int... defaultKeys) {

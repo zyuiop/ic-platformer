@@ -12,7 +12,7 @@ import java.util.ListIterator;
  */
 public class SortedCollection<E extends Comparable<? super E>> extends AbstractCollection<E> {
 
-    private LinkedList<E> list;
+    private final LinkedList<E> list;
     
     /**
      * Creates a new empty ordered collection.

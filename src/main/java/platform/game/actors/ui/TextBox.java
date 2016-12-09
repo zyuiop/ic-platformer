@@ -15,13 +15,13 @@ import platform.util.Vector;
  * A box displaying text on the screen with an optional background texture
  */
 public class TextBox extends DisplayableActor {
-	private String[] lines;
-	private Color color;
-	private double lineSpacing;
-	private double lineHeight;
-	private double paddingLeft;
-	private double paddingTop;
-	private Font font;
+	private final String[] lines;
+	private final Color color;
+	private final double lineSpacing;
+	private final double lineHeight;
+	private final double paddingLeft;
+	private final double paddingTop;
+	private final Font font;
 
 	private double elapsedTime = 0D;
 	private BiFunction<String[], Double, String[]> linesAdapter = (in, u1) -> in;

@@ -10,10 +10,10 @@ import platform.util.Vector;
  * add a fade-in and fade-out animation
  */
 public class SimpleParticle extends ParticleActor {
-	private double fadeIn;
-	private double fadeOut;
-	private double stay;
-	private double transparency;
+	private final double fadeIn;
+	private final double fadeOut;
+	private final double stay;
+	private final double transparency;
 	private double time = 0;
 
 	public SimpleParticle(Vector position, double size, String spriteName, double fadeIn, double fadeOut, double stay, double transparency) {

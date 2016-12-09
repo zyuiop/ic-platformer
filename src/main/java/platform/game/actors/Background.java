@@ -21,7 +21,7 @@ public class Background extends Actor {
 	private final boolean repeatY;
 	private Sprite sprite;
 
-	private List<Box> computedBoxes = new ArrayList<>();
+	private final List<Box> computedBoxes = new ArrayList<>();
 	private Box computeBase = null;
 
 	/**

@@ -10,7 +10,7 @@ import platform.util.Vector;
  * @author zyuiop
  */
 public class ParticleEffectAnimation implements ParticleEffect {
-	private Collection<ParticleEffect> effects = new ArrayList<>();
+	private final Collection<ParticleEffect> effects = new ArrayList<>();
 
 	public ParticleEffectAnimation add(ParticleEffect effect) {
 		effects.add(effect);

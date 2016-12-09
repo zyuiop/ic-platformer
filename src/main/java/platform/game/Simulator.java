@@ -22,7 +22,7 @@ public class Simulator implements World {
 	private final List<Actor> toAdd = new ArrayList<>();
 	private final List<Actor> toRemove = new ArrayList<>();
 	private final Loader loader;
-	private LevelManager levelManager = LevelManager.init();
+	private final LevelManager levelManager = LevelManager.init();
 	private Level nextLevel = Level.createDefaultLevel();
 	private Level currentLevel = null;
 	private boolean passLevel = true; // when true, the level must be changed
