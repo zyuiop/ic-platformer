@@ -1,107 +1,47 @@
 # Conception
 
+Ce document liste les modifications et ajouts réalisés par rapport à la base proposée dans le sujet.
 
+## Intéractions entre acteurs
 
-# Listing des classes et packages
+Le système tel que proposait ne me convenait pas totalement, notament pour la gestion des collisions des spikes et du jumper, que je voulais être des blocks.
+Ainsi une nouvelle méthode a été ajoutée dans `Actor`, permettant à un acteur de priorité supérieure collisionnant avec un bloc de signaler à celui ci la collision. Par exemple si un joueur tombe sur un jumper, il appelle une méthode du jumper en indiquant la face du jumper sur laquelle il est tombé.
 
-Des détails concernant les modifications effectuées sont présents en bas de document.
+Un second ajout a été réalisé, pour gérer l'animation de dégats et l'immunité à ceux ci. Il s'agit de paramètres dans l'enumération `Effect` qui permetttent de savoir si un effet donné effectue des dommages ou restitue de la vie.
 
-## `platform.game`
+## Gestion du jumper et des spikes
 
-Ce package représente toujours les classes liées au jeu.
+Comme indiqué ci dessus, le jumper et les spikes sont des blocks. Lorsqu'un bloc effectue une collision avec eux, la `Side` de collision est calculée et la méthode correspondante est appelée. Le bloc détermine ensuite si la `Side` est la bonne en fonction de la `Direction` de celui ci (par exemple, si le jumper est en direction `UP` et que la side est `LEFT` le joueur ne doit pas ètre envoyé dans les airs).
 
-- `Direction` : la direction d'un bloc
-- `Effect` : les effets de dégats d'un acteur envers un autre
-- `KeyBindings` : gestion des touches
-- `Orientation` : direction d'un bloc sans tenir compte du sens
-- `RepeatBehaviour` : un système de répétage des sprites au sein d'un bloc
-- `Side` : le côté d'un bloc lors d'une collision
-- `Signal` : un signal tel que demandé dans le PDF
-- `Simulator` : la classe de gestion du monde
-- `World` : l'interface du monde
+## Signaux par défaut
 
-### `actors`
+L'interface `Signal` pouvant être considérée comme une interface fonctionnelle, les deux implémentations "constantes" (toujours vrai et toujours faux) ont été écrites directement dans celle ci sous forme d'expressions lambda.
 
-Ce package contient l'ensemble des acteurs et classes abstraites qui leur sont liés.
+## Autres modifications relatives aux blocs
 
-- `Actor` : la classe de base d'acteur
-- `DisplayableActor` : un acteur pouvant être affiché
-- `PositionedActor` : un acteur affichage disposant d'une position
-- `MovableActor` : un acteur auquel on peut donner une vélocité pour qu'il se déplace
-- `LivingActor` : un acteur disposant d'une barre de vie et pouvant mourir
-- `IAttachable` : une interface représentant une "chose" (dans les faits, toujours un acteur) pouvant être attaché
+- Un bloc dispose d'une direction. La direction est utilisée pour recalculer si nécessaire la box de l'affichage ainsi que la rotation de la sprite. Il est aussi utile pour les `Spikes`, `Jumper`, notament.
+- Un bloc peut afficher plusieurs fois sa sprite pour ne pas avoir à la redimentionner, via l'utilisation d'un `RepeatBehaviour`.
 
-#### `animations`
+## Modification de la hiérarchie des acteurs
 
-Ce package contient les effets de particules et overlays qui sont affichés par dessus la scène.
+Plusieurs classes abstraites ont été introduites pour gérer les acteurs :
 
-- `BlowAnimation` et `SimpleParticle` : Deux effets de particules basiques. Le premier représente un effet de souffle tandis que le second représente une particule quelconque dont la sprite est fournie à la création.
-Ces deux classes héritent de `ParticleActor`, une classe abstraite "vide" utilisée seulement pour différencier les particules des autres acteurs.
+- Au premier rang, `Actor`, avec les méthodes exigées ainsi qu'un `onCollide` décrit plus haut
+- En dessous, `PositionedActor` qui représente un acteur positionné via une box (l'acteur `Level` n'hérite par exemple pas de cette classe)
+- En dessous, `DisplayableActor` qui représente un acteur affichable. Cette classe gère toutes les modalités de l'affichage, et notament la recherche de la sprite. Elle définit plusieurs méthodes qui peuvent être surchargées pour modifier l'angle de la sprite et sa box d'affichage. L'acteur `InvisiblePlayerDetector` n'hérite par exemple pas de cette classe.
+- En dessous, `MovableActor` qui représente un acteur à qui on peut appliquer une vitesse, laquelle modifiera dynamiquement sa position à chaque update. Tous les acteurs déplaçables sont affichables, ainsi cette classe hérite de `DisplayableActor`. Les blocs n'héritent pas de cette classe.
+- En dessous, `LivingActor` qui représente un acteur vivant (qui a une barre de vie). Seul le `Player` hérite de cette classe.
 
-- `Crosshair` et `Overlay` : Le premier représente la cible (assistant à la visée). Cette cible ne peut pas être éloignée de plus de 7 unités du joueur, ce qui nécessite certains calculs pour la positionner. Le `Overlay` représente la barre de vie flotant au dessus du jeu, telle que demandée dans le PDF.
+En outre, l'interface `IAttachable` a été ajoutée pour décrire un acteur pouvant être attaché à un autre. Le lien d'attache est géré via `AttachLink`, une classe qui se charge de déplacer l'acteur attaché (toujours `Movable`) en fonction de la position de l'acteur sur lequel il est attaché.
 
-#### `blocks`
+## Modification de la gestion des Input
 
-Ce package contient des objets solides agissant comme des blocks.
+Les touches ne sont plus écrites en dur dans le code mais gérées par la classe `KeyBindings`. 
 
-- `Block` : un block basique, solide, avec une sprite et une direction. Le concept de direction permet d'orienter la sprite différement selon la direction du block. Il est exploité notament avec le laser.
-- `MovingPlatform` (et `AlwaysMovingPlatform`, `OneWayMovingPlatform`) : des plateformes amovibles. La première effectue des allez retour entre ses deux positions tandis que la seconde se déplace de la position 1 à la 2 quand son signal est actif, et effectue le chemin inverse quand le signal est innactif.
-- `Door` : un block qui disparait lorsque son signal est activé
-- `LaserDoor` : une `Door` spéciale composée de plusieurs sous blocs représentant un laser
-- `Exit` : un block qui n'est pas solide lorsque son signal est activé. Lorsque le joueur passe dessus il change alors de niveau.
-- `Jumper` et `Spikes` : tels que demandés dans le PDF, mais la gestion du sens de collision est différente selon la direction du bloc, ce qui permet de sauter dans la direction que l'on veut selon le level design
-- `ProjectileLauncher` : un bloc lançant des projectiles. Il utilise pour cela une interface fonctionnelle qui instancie le projectile à lancer.
+Cette dernière gère la sauvegarde et la lecture des touches depuis un fichier `.properties`, ainsi que la détection des touches via un appel à une méthode.
 
-#### `entities`
+## Gestion des niveaux
 
-Ce package contient des entités, à savoir des acteurs qui se déplacent dans le monde et intéragissent avec.
+Un système se charge de gérer les niveaux, qui ne sont donc plus passés directement à la porte de sortie. Le noyau de ce système est le `LevelManager`. Il fonctionne selon un concept simple de `LevelGroup` et `PlayableLevel` : les niveaux sont organisés par groupe. Perdre toutes ses vies nécessite de recommencer le groupe depuis le début. En outre, tomber dans le vide retire seulement une vie, pour ne pas trop pénaliser la chute des plateformes.
 
-- `Projectile` : la classe de base d'un projectile, pour certaines méthodes communes à la flèche et à la boule de feu, notament la notion de collision.
-- `AttachableProjectile` : un projectile pouvant rester attaché à un bloc. Seule la flèche dispose de cette capacité dans le jeu final.
-- `Fireball` et `Arrow` : deux projectiles demandés dans le PDF
-- `Player` : le joueur tel que demandé dans le PDF. Les détails d'implémentation sont en commentaire dans le code.
-
-#### `environment`
-
-Ce package contient des éléments de décors, qui s'affichent mais ne constituent pas des blocs et ne sont donc pas solides.
-
-- `Background` : le fond du niveau. Il dispose d'une capacité de redimensionnement ou de repeat de l'image pour éviter sa déformation.
-- `Decoration` : un simple élément de décor, caractérisé par une sprite, une position, et une taille (exemple du panneau de sortie)
-- `Heart`, `Key`, `Lever`, `Limits`, `Torch` : éléments demandés dans le PDF. Les limites ne tuent pas mais retirent une vie.
-
-#### `technical`
-
-Des éléments "techniques" divers.
-
-- `AttachLink` : un acteur qui relie deux acteurs entre eux (une flèche à un bloc, un joueur à une plateforme)
-- `InvisiblePlayerDetector` : un signal qui est actif si un joueur se trouve dans sa boite
-
-#### `ui`
-
-Des éléments d'interface graphique.
-
-- `TextBox` : une zone de texte, avec éventuellement une sprite en fond
-- `SlowingAdapter` : un adaptateur d'affichage de texte qui affiche le texte lettre par lettre
-- `TriggerableTextBox` : une zone de texte qui ne s'affiche que si un signal est actif
-- `DismissableTextBox` : une zone de texte qui disparait lorsqu'une touche du clavier est pressée
-- `ButtonActor` : un bouton (une zone de texte cliquable)
-
-### `level`
-
-Système de gestion des niveaux.
-
-- `Level` : classe basique modifiée seulement pour changer le niveau par défaut
-- `LevelGroup` : un groupe de niveau : lorsqu'un joueur meurt il recommence le groupe depuis le début
-- `LevelManager` : le système de gestion du niveau qui détermine quel niveau le joueur doit jouer en fonction des circonstances
-
-### `logic`
-
-Des portes logiques pour les signaux, telles que demandées.
-
-### `menus`
-
-Différentes interfaces graphiques
-
-### `particles`
-
-Un système de création de particules, permettant de stoquer une particule et de la faire apparaître dans le monde autant de fois que désiré
+## 
