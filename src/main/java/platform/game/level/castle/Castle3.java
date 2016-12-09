@@ -6,8 +6,9 @@ import platform.game.KeyBindings;
 import platform.game.World;
 import platform.game.actors.Background;
 import platform.game.actors.Direction;
+import platform.game.actors.RepeatBehaviour;
 import platform.game.actors.blocks.Block;
-import platform.game.actors.environment.InvisiblePlayerDetector;
+import platform.game.actors.blocks.InvisiblePlayerDetector;
 import platform.game.actors.blocks.Jumper;
 import platform.game.actors.blocks.OneWayMovingPlatform;
 import platform.game.actors.blocks.Spikes;
@@ -42,28 +43,34 @@ public class Castle3 extends PlayableLevel {
 
 		world.setNextLevel(world.getLevelManager().getNextLevel(this));
 
-		for (double x = -11.5; x <= -5.5; ++x) {
-			for (double y = -15.5; y <= -0.5; ++y) {
-				world.register(new Block(new Vector(x, y), 1, "castle.center"));
-			}
+		// LEFT SIDE
+		Block middle = new Block(new Vector(-8.5, .5), 7, 1, "castle.middle");
+		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
+		world.register(middle);
 
-			world.register(new Block(new Vector(x, .5), 1, "castle.middle"));
-		}
+		Block center = new Block(new Vector(-8.5, -7.5), 7, 15, "castle.center");
+		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
+		world.register(center);
 
-		for (double x = 5.5; x <= 11.5; ++x) {
-			for (double y = -15.5; y <= -0.5; ++y) {
-				world.register(new Block(new Vector(x, y), 1, "castle.center"));
-			}
+		// RIGHT SIDE
+		middle = new Block(new Vector(8.5, .5), 7, 1, "castle.middle");
+		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
+		world.register(middle);
 
-			world.register(new Block(new Vector(x, .5), 1, "castle.middle"));
-		}
+		center = new Block(new Vector(8.5, -7.5), 7, 15, "castle.center");
+		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
+		world.register(center);
+
+		// CENTER
+		middle = new Block(new Vector(0, -4.5), 10, 1, "castle.middle");
+		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
+		world.register(middle);
+
+		center = new Block(new Vector(0, -9.5), 10, 10, "castle.center");
+		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
+		world.register(center);
 
 		for (double x = -4.5; x <= 4.5; ++x) {
-			for (double y = -15.5; y <= -5.5; ++y) {
-				world.register(new Block(new Vector(x, y), 1, "castle.center"));
-			}
-
-			world.register(new Block(new Vector(x, -4.5), 1, "castle.middle"));
 			if (x > -4.5) {
 				world.register(new Spikes(new Vector(x - 0.25, -3.75), .5, Direction.UP, 1D));
 			} else {
@@ -72,15 +79,18 @@ public class Castle3 extends PlayableLevel {
 			world.register(new Spikes(new Vector(x + 0.25, -3.75), .5, Direction.UP, 1D));
 		}
 
-		// Contours de la map
-		for (double y = 4; y >= -15.5; y -= 3) {
-			world.register(new Block(new Vector(-12.5, y), 1, 3, "stone.7"));
-			world.register(new Block(new Vector(12.5, y), 1, 3, "stone.7"));
-		}
+		// Contours
+		Block leftStone = new Block(new Vector(-12.5, -3.5), 1, 18, "stone.7");
+		leftStone.setRepeatBehaviour(new RepeatBehaviour(1, 3, false, true));
+		world.register(leftStone);
 
-		for (double x = -11.5; x <= 11.5; x += 1) {
-			world.register(new Block(new Vector(x, 5), 1, 1, "stone.4"));
-		}
+		Block rightStone = new Block(new Vector(12.5, -3.5), 1, 18, "stone.7");
+		rightStone.setRepeatBehaviour(new RepeatBehaviour(1, 3, false, true));
+		world.register(rightStone);
+
+		Block topStone = new Block(new Vector(0, 5), 24, 1, "stone.3");
+		topStone.setRepeatBehaviour(new RepeatBehaviour(3, 1, true, false));
+		world.register(topStone);
 
 		Torch torch = new Torch(new Vector(-8, 1.5), true);
 		world.register(torch);

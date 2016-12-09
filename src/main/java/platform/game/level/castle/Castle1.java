@@ -7,9 +7,9 @@ import platform.game.actors.Background;
 import platform.game.actors.Orientation;
 import platform.game.actors.RepeatBehaviour;
 import platform.game.actors.blocks.Block;
-import platform.game.actors.environment.InvisiblePlayerDetector;
-import platform.game.actors.environment.Decoration;
 import platform.game.actors.blocks.Exit;
+import platform.game.actors.blocks.InvisiblePlayerDetector;
+import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.LaserDoor;
 import platform.game.actors.environment.Lever;
 import platform.game.actors.ui.DismissableTextBox;
@@ -75,11 +75,11 @@ public class Castle1 extends PlayableLevel {
 				"text.background", font, 0, 0.3, 8, .4, .2, .25, .3, "Déplacez vous avec " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.LEFT) + "] et " +
 				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.RIGHT) + "] et sautez avec " +
-				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) +"]")
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) + "]")
 				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.register(new TriggerableTextbox(detector.getPosition().add(new Vector(0, -3)),
 				"text.background", font, 0, 0.3, 6, .4, .2, .25, .3, detector, "Utilisez la touche" +
-				" [" +  kb.getFirstConfiguredKey(KeyBindings.Key.USE) + "] pour intéragir.", "Attention, les lasers ça pique !")
+				" [" + kb.getFirstConfiguredKey(KeyBindings.Key.USE) + "] pour intéragir.", "Attention, les lasers ça pique !")
 				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.setViewRadius(5D);
 	}
