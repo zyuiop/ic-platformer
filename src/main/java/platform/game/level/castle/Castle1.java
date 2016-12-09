@@ -5,8 +5,9 @@ import platform.game.KeyBindings;
 import platform.game.World;
 import platform.game.actors.Background;
 import platform.game.actors.Orientation;
+import platform.game.actors.RepeatBehaviour;
 import platform.game.actors.blocks.Block;
-import platform.game.actors.blocks.InvisiblePlayerDetector;
+import platform.game.actors.environment.InvisiblePlayerDetector;
 import platform.game.actors.environment.Decoration;
 import platform.game.actors.blocks.Exit;
 import platform.game.actors.environment.LaserDoor;
@@ -38,13 +39,14 @@ public class Castle1 extends PlayableLevel {
 
 		world.setNextLevel(world.getLevelManager().getNextLevel(this));
 
-		for (double x = -2.5; x <= 2.5; ++x) {
-			for (double y = -15.5; y <= -0.5; ++y) {
-				world.register(new Block(new Vector(x, y), 1, "castle.center"));
-			}
+		Block middle = new Block(new Vector(0, .5), 6, 1, "castle.middle");
+		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
 
-			world.register(new Block(new Vector(x, .5), 1, "castle.middle"));
-		}
+		Block center = new Block(new Vector(0, -7.5), 6, 15, "castle.center");
+		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
+
+		world.register(middle);
+		world.register(center);
 
 		world.register(new Block(new Vector(-3.5, .5), 1, "castle.left"));
 		world.register(new Block(new Vector(3.5, .5), 1, "castle.right"));
