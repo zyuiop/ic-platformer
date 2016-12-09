@@ -234,11 +234,11 @@ public class KeyBindings {
 		/**
 		 * A key used to jump
 		 */
-		JUMP("Sauter", KeyEvent.VK_UP, KeyEvent.VK_Z),
+		JUMP("Sauter", KeyEvent.VK_UP, KeyEvent.VK_W),
 		/**
 		 * A key used to go left
 		 */
-		LEFT("Gauche", KeyEvent.VK_LEFT, KeyEvent.VK_Q),
+		LEFT("Gauche", KeyEvent.VK_LEFT, KeyEvent.VK_A),
 		/**
 		 * A key used to go right
 		 */
