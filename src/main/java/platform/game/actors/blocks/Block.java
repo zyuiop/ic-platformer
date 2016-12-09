@@ -2,9 +2,14 @@ package platform.game.actors.blocks;
 
 import platform.game.actors.Direction;
 import platform.game.actors.Orientation;
+import platform.game.actors.RepeatBehaviour;
 import platform.game.actors.basic.DisplayableActor;
 import platform.util.Box;
+import platform.util.Input;
+import platform.util.Output;
+import platform.util.Sprite;
 import platform.util.Vector;
+import platform.util.View;
 
 /**
  * Simple solid actor that does nothing more than being solid.
@@ -12,6 +17,7 @@ import platform.util.Vector;
 public class Block extends DisplayableActor {
 	// direction of the box
 	private Direction direction = Direction.UP;
+	private RepeatBehaviour repeatBehaviour;
 
 	public Block(Box box, String spriteName) {
 		super(box.getCenter(), box.getWidth(), box.getHeight(), spriteName);
@@ -55,6 +61,22 @@ public class Block extends DisplayableActor {
 
 	}
 
+	@Override
+	public void draw(Input input, Output output) {
+		if (repeatBehaviour == null) {
+			super.draw(input, output);
+			return;
+		}
+
+		// Repeat sprite
+		Sprite sprite = getCurrentSprite();
+		Box box = getDisplayBox();
+
+		if (sprite != null && box != null) {
+			repeatBehaviour.computeBoxes(box).forEach(b -> output.drawSprite(sprite, b));
+		}
+	}
+
 	/**
 	 * Create a block using its center and its size
 	 * @param position the center of the block
@@ -95,5 +117,9 @@ public class Block extends DisplayableActor {
 
 		// if orientation is horizontal, we invert the coordinates.
 		return new Box(box.getCenter(), box.getHeight(), box.getWidth());
+	}
+
+	public void setRepeatBehaviour(RepeatBehaviour repeatBehaviour) {
+		this.repeatBehaviour = repeatBehaviour;
 	}
 }
