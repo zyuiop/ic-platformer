@@ -19,9 +19,7 @@ public class AddKeyActor extends ButtonActor {
 	private final Key key;
 
 	public AddKeyActor(KeyLineActor parent, Key key) {
-		super(() -> {
-			// oseeeef
-		}, parent.getNextAvailablePosition().sub(new Vector(35, 0)), null, null, null, "green_button04", "yellow_button04", 40, 40, 0, 0);
+		super(parent.getNextAvailablePosition().sub(new Vector(35, 0)), null, null, null, "green_button04", "yellow_button04", 40, 40, 0, 0);
 		this.parent = parent;
 		this.key = key;
 	}
@@ -34,24 +32,28 @@ public class AddKeyActor extends ButtonActor {
 	}
 
 	@Override
-	public void update(Input input) {
-		String sprite = null;
-		if (input.getMouseButton(MouseEvent.BUTTON1).isPressed() && getBox().isColliding(input.getMouseLocation())) {
-			if (!isActive) {
-				this.isActive = true;
-				parent.getParent().setActiveKeyAdd(this);
-				sprite = "red_button02";
-			} else {
-				this.isActive = false;
-				parent.getParent().setActiveKeyAdd(null);
-				sprite = "green_button04";
-			}
-
-		} else if (getBox().isColliding(input.getMouseLocation()) && !isActive) {
-			sprite = "yellow_button04";
-		} else if (!isActive) {
-			sprite = "green_button04";
+	protected String getSprite(boolean hover) {
+		if (isActive) {
+			return "red_button02";
 		}
+
+		return super.getSprite(hover);
+	}
+
+	@Override
+	protected void onClick() {
+		if (!isActive) {
+			this.isActive = true;
+			parent.getParent().setActiveKeyAdd(this);
+		} else {
+			this.isActive = false;
+			parent.getParent().setActiveKeyAdd(null);
+		}
+	}
+
+	@Override
+	public void update(Input input) {
+		super.update(input);
 
 		if (isActive) {
 			Collection<Integer> pressed = ((View) input).getInput().getPressedKeys();
@@ -61,8 +63,6 @@ public class AddKeyActor extends ButtonActor {
 				this.getWorld().nextLevel();
 			}
 		}
-
-		if (sprite != null) { setSpriteName(sprite); }
 	}
 
 	@Override

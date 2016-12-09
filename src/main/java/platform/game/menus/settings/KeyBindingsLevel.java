@@ -8,9 +8,9 @@ import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.Simulator;
 import platform.game.World;
+import platform.game.actors.ui.ButtonActor;
 import platform.game.actors.ui.TextBox;
 import platform.game.level.Level;
-import platform.game.actors.ui.ButtonActor;
 import platform.game.menus.main.MainMenuLevel;
 import platform.util.Input;
 import platform.util.Output;
@@ -45,35 +45,44 @@ public class KeyBindingsLevel extends Level {
 			KeyLineActor kla = new KeyLineActor(font, vector, this, key);
 			world.register(kla);
 			for (int val : bindings.getKeys(key)) {
-				world.register(new ButtonActor(() -> {
-					bindings.removeKey(key, val);
-					getWorld().setNextLevel(new KeyBindingsLevel());
-					getWorld().nextLevel();
-				}, kla.getNextAvailablePosition(), font, Color.WHITE, KeyEvent.getKeyText(val), "green_button04", "yellow_button04"));
+				world.register(new ButtonActor(kla.getNextAvailablePosition(), font, Color.WHITE, KeyEvent.getKeyText(val), "green_button04", "yellow_button04") {
+					@Override
+					protected void onClick() {
+						bindings.removeKey(key, val);
+						getWorld().setNextLevel(new KeyBindingsLevel());
+						getWorld().nextLevel();
+					}
+				});
 			}
 			world.register(new AddKeyActor(kla, key));
 			pos += 45;
 		}
 
-		world.register(new ButtonActor(() -> {
-			try {
-				bindings.save();
-			} catch (IOException e) {
-				e.printStackTrace();
+		world.register(new ButtonActor(new Vector(105, 50), font, Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 100, 30, 10, 10) {
+			@Override
+			protected void onClick() {
+				try {
+					bindings.save();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				getWorld().setNextLevel(new MainMenuLevel());
+				getWorld().nextLevel();
 			}
-			getWorld().setNextLevel(new MainMenuLevel());
-			getWorld().nextLevel();
-		}, new Vector(105, 50), font, Color.WHITE, "Sauvegarder", "green_button04", "yellow_button04", 100, 30, 10, 10));
+		});
 
-		world.register(new ButtonActor(() -> {
-			try {
-				bindings.load();
-			} catch (IOException e) {
-				e.printStackTrace();
+		world.register(new ButtonActor(new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 100, 30, 10, 10) {
+			@Override
+			protected void onClick() {
+				try {
+					bindings.load();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				getWorld().setNextLevel(new MainMenuLevel());
+				getWorld().nextLevel();
 			}
-			getWorld().setNextLevel(new MainMenuLevel());
-			getWorld().nextLevel();
-		}, new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 100, 30, 10, 10));
+		});
 
 		world.register(new TextBox(new Vector(125, pos + 15), null, font.deriveFont(Font.BOLD, 20), Color.BLACK, 0D, 30, 150, 0, "Configuration des touches"));
 

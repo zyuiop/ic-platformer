@@ -11,45 +11,45 @@ import platform.util.Vector;
  *         <p>
  *         A button that calls a function when it's clicked
  */
-public class ButtonActor extends TextBox {
-	private final ClickHandler clickHandler;
+public abstract class ButtonActor extends TextBox {
 	private final String sprite;
 	private final String hoverSprite;
 
-	public ButtonActor(ClickHandler handler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite) {
-		this(handler, position, font, color, text, sprite, hoverSprite, 100, 30, 10, 10);
+	public ButtonActor(Vector position, Font font, Color color, String text, String sprite, String hoverSprite) {
+		this(position, font, color, text, sprite, hoverSprite, 100, 30, 10, 10);
 	}
 
-	public ButtonActor(ClickHandler clickHandler, Vector position, Font font, Color color, String text, String sprite, String hoverSprite, double width, double heigth, double paddingLeft, double paddingBot) {
+	public ButtonActor(Vector position, Font font, Color color, String text, String sprite, String hoverSprite, double width, double heigth, double paddingLeft, double paddingBot) {
 		super(position, sprite, font, color, 0D, heigth, width, paddingLeft, 0, 0, paddingBot, text);
 
 		this.sprite = sprite;
-		this.clickHandler = clickHandler;
 		this.hoverSprite = hoverSprite;
 	}
 
 	@Override
 	public void update(Input input) {
-		String sprite = this.sprite;
+		String sprite = getSprite(false);
 
 		if (getBox().isColliding(input.getMouseLocation())) {
-			sprite = hoverSprite;
+			sprite = getSprite(true);
 			if (input.getMouseButton(MouseEvent.BUTTON1).isPressed()) {
-				clickHandler.onClick();
+				onClick();
 			}
 		}
 
 		setSpriteName(sprite);
 	}
 
+	protected String getSprite(boolean hover) {
+		if (hover)
+			return hoverSprite;
+		return sprite;
+	}
+
+	protected abstract void onClick();
 
 	@Override
 	public int getPriority() {
 		return 100;
 	}
-
-	public interface ClickHandler {
-		void onClick();
-	}
-
 }
