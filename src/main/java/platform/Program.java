@@ -26,7 +26,12 @@ public class Program {
 	private static double fps;
 
 	public static void main(String[] args) throws Exception {
-		extractResouces();
+		try {
+			extractResouces();
+		} catch (Exception e) {
+			System.err.println("Cannot extract resources !");
+			e.printStackTrace();
+		}
 
 		BufferedLoader loader = new BufferedLoader(new FileLoader("res/", DefaultLoader.INSTANCE));
 		KeyBindings bindings = new KeyBindings(new File("keyboard.properties"));
