@@ -18,6 +18,7 @@ import platform.game.actors.environment.Heart;
 import platform.game.actors.environment.Torch;
 import platform.game.actors.ui.SlowingAdapter;
 import platform.game.actors.ui.TriggerableTextbox;
+import platform.game.level.EndGameLevel;
 import platform.game.level.PlayableLevel;
 import platform.game.logic.And;
 import platform.game.logic.Not;
@@ -98,7 +99,7 @@ public class Castle3 extends PlayableLevel {
 		Torch torch = new Torch(new Vector(-8, 1.5), true);
 		world.register(torch);
 
-		world.register(new Exit(new Vector(10, 1.5), torch));
+		world.register(new Exit(new Vector(10, 1.5), torch, new EndGameLevel()));
 		world.register(new Decoration(new Vector(9.8, 1.2), .5, "exit", Math.PI / 8));
 		world.register(new Decoration(new Vector(-5.3, 1.2), .5, "exit", Math.PI / 8));
 
