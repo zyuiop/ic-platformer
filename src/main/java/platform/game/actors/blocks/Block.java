@@ -30,6 +30,11 @@ public class Block extends DisplayableActor {
 		super(position, sizeX, sizeY, spriteName);
 	}
 
+	public Block(Vector position, double sizeX, double sizeY, String spriteName, RepeatBehaviour behaviour) {
+		super(position, sizeX, sizeY, spriteName);
+		this.setRepeatBehaviour(behaviour);
+	}
+
 	/**
 	 * Create a block using a box, a sprite, and a direction
 	 * @param box the box of the block

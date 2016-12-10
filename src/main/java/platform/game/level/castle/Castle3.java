@@ -63,38 +63,17 @@ public class Castle3 extends PlayableLevel {
 		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
 		world.register(center);
 
-		// CENTER
-		middle = new Block(new Vector(0, -4.5), 10, 1, "castle.middle");
-		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
-		world.register(middle);
-
-		center = new Block(new Vector(0, -9.5), 10, 10, "castle.center");
-		center.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, true));
-		world.register(center);
-
-		for (double x = -4.5; x <= 4.5; ++x) {
-			if (x > -4.5) {
-				world.register(new Spikes(new Vector(x - 0.25, -3.75), .5, Direction.UP, 1D));
-			} else {
-				world.register(new Jumper(new Vector(x - 0.25, -3.75), .5, .5, Direction.UP, 10.8D));
-			}
-			world.register(new Spikes(new Vector(x + 0.25, -3.75), .5, Direction.UP, 1D));
-		}
 
 		world.register(new Heart(new Vector(0, 1.5), 2D, 0, Double.POSITIVE_INFINITY));
 
 		// Contours
-		Block leftStone = new Block(new Vector(-12.5, -3.5), 1, 18, "stone.7");
+		Block leftStone = new Block(new Vector(-12.5, -3.5), 1, 30, "stone.7");
 		leftStone.setRepeatBehaviour(new RepeatBehaviour(1, 3, false, true));
 		world.register(leftStone);
 
-		Block rightStone = new Block(new Vector(12.5, -3.5), 1, 18, "stone.7");
+		Block rightStone = new Block(new Vector(12.5, -3.5), 1, 30, "stone.7");
 		rightStone.setRepeatBehaviour(new RepeatBehaviour(1, 3, false, true));
 		world.register(rightStone);
-
-		Block topStone = new Block(new Vector(0, 5), 24, 1, "stone.3");
-		topStone.setRepeatBehaviour(new RepeatBehaviour(3, 1, true, false));
-		world.register(topStone);
 
 		Torch torch = new Torch(new Vector(-8, 1.5), true);
 		world.register(torch);
@@ -119,11 +98,11 @@ public class Castle3 extends PlayableLevel {
 		double startY = -4 - spriteRatio / 2D; // center y position
 		double endY = 1 - spriteRatio / 2D;
 
-		world.register(new OneWayMovingPlatform(new Box(new Vector(-3.5, startY), 1.5, spriteRatio),
-				"metalPlatform", new Vector(4.5, startY), new Vector(4.5, endY), elevators, .35)
+		world.register(new OneWayMovingPlatform(new Box(new Vector(-6, startY), 1.5, spriteRatio),
+				"metalPlatform", new Vector(-6, startY), new Vector(-3.5, endY), elevators, .35)
 				.boxTransformer(transformer));
-		world.register(new OneWayMovingPlatform(new Box(new Vector(3.5, startY), 1.5, spriteRatio),
-				"metalPlatform", new Vector(4.5, startY), new Vector(4.5, endY), elevators, .35)
+		world.register(new OneWayMovingPlatform(new Box(new Vector(6, startY), 1.5, spriteRatio),
+				"metalPlatform", new Vector(6, startY), new Vector(3.5, endY), elevators, .35)
 				.boxTransformer(transformer));
 
 		InvisiblePlayerDetector djumpDetector = new InvisiblePlayerDetector(new Vector(-2, 1), 4, 6);
