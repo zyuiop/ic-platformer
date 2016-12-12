@@ -13,6 +13,8 @@ Ceux ci sont obfusqués pour éviter la copie.
 Pour lancer le jeu à partir du binaire, un ```java -jar <nom du binaire>``` suffit. Double-cliquer sur le jar devrait également faire l'affaire sur la majorité des gestionnaires de fichier existants.
 Le jeu va alors extraire ses ressources dans le dossier ```./res/``` si celui ci n'est pas présent ou incomplet, puis se lancer.
 
+Vous pouvez fournir en argument le nom de la classe d'un niveau (exemple : `platform.game.level.cave.Cave1`) pour jouer directement sur ce niveau.
+
 ## Jouer au jeu
 
 Le menu principal vous permet de configurer vos touches de jeu. Par défaut, les touches sont les suivantes :
@@ -33,7 +35,7 @@ Les touches peuvent être modifiées depuis le menu Touches.
 
 ## Niveaux
 
-Les 3 premiers niveaux représentent des "tutoriaux" basiques. 
+Les 2 premiers niveaux représentent des "tutoriaux" basiques. 
 
 ### Niveau 1-1
 
@@ -43,9 +45,13 @@ Pour finir le niveau, il faut actionner le levier et traverser jusqu'à la porte
 
 Pour finir le niveau, il faut désactiver le laser et activer les plateformes. Cela se fait simplement en inversant chacun des leviers. 
 
-### Niveau 1-3
+### Niveau 2-1
 
 Il faut souffler la torche puis utiliser les plateformes pour traverser (un double saut est nécessaire pour traverser entre les deux plateformes). Ensuite, il faut viser la torche et lancer une boule de feu pour ouvrir la porte de sortie.
+
+### Niveau 2-2
+
+Il n'y a pas de puzzle spécifique à résoudre, il faut simplement utiliser les jumpers tout en évitant les piques, les flèches et les boules de feu.
 
 ## Mot de la fin
 
