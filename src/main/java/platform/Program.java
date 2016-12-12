@@ -82,10 +82,10 @@ public class Program {
 		}
 
 		URI uri = Program.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-		String p = uri.getPath();
-		if (p.startsWith("\\"))
-			p = p.substring(1); // windows fix
-		Path path = Paths.get(p);
+		String filePath = uri.getPath();
+		if (filePath.startsWith("\\"))
+			filePath = filePath.substring(1); // windows fix
+		Path path = Paths.get(filePath);
 
 		if (uri.getPath().endsWith(".jar") && Files.exists(path)) {
 			FileSystem system = FileSystems.newFileSystem(path, ClassLoader.getSystemClassLoader());
