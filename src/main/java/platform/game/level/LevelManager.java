@@ -1,28 +1,33 @@
 package platform.game.level;
 
-import java.util.ArrayList;
-import java.util.List;
 import platform.game.level.castle.Castle1;
 import platform.game.level.castle.Castle2;
-import platform.game.level.castle.Castle3;
+import platform.game.level.cave.Cave1;
+import platform.game.level.cave.Cave2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zyuiop
- * This class manages the different levels of the game
+ *         This class manages the different levels of the game
  */
 public class LevelManager {
 	private final List<LevelGroup> levelGroups = new ArrayList<>();
-	private double playerLife;
+	private double playerLife = 10D;
 
 	/**
 	 * Register all available levels and level groups
+	 *
 	 * @return a new Level Manager filled with all the levels
 	 */
 	public static LevelManager init() {
 		return new LevelManager().add(new LevelGroup()
 				.addLevel(Castle1.class)
 				.addLevel(Castle2.class)
-				.addLevel(Castle3.class)
+		).add(new LevelGroup()
+				.addLevel(Cave1.class)
+				.addLevel(Cave2.class)
 		);
 	}
 
@@ -31,6 +36,7 @@ public class LevelManager {
 
 	/**
 	 * Add a level group at the end of the existing ones
+	 *
 	 * @param group the new group to add
 	 * @return the current level manager, for chained calls
 	 */
@@ -41,6 +47,7 @@ public class LevelManager {
 
 	/**
 	 * Get the group a level corresponds to
+	 *
 	 * @param level the level to check
 	 * @return the group of this level or null
 	 */
@@ -53,6 +60,7 @@ public class LevelManager {
 
 	/**
 	 * Restart the whole level group, usually when the player dies or restarts the game
+	 *
 	 * @return the new level to start
 	 */
 	public PlayableLevel restartGroup(PlayableLevel currentLevel) {
@@ -68,6 +76,7 @@ public class LevelManager {
 
 	/**
 	 * Get the level following the current level
+	 *
 	 * @param currentLevel the current played level
 	 * @return the next level to play
 	 */
@@ -107,6 +116,7 @@ public class LevelManager {
 	/**
 	 * Get the current player life.
 	 * Player life is kept between levels.
+	 *
 	 * @return the current player life
 	 */
 	public double getPlayerLife() {
@@ -115,6 +125,7 @@ public class LevelManager {
 
 	/**
 	 * Defines the current player life, to keep it to the next level
+	 *
 	 * @param playerLife the current player life
 	 */
 	public void setPlayerLife(double playerLife) {

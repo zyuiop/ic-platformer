@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import platform.game.KeyBindings;
 import platform.game.Simulator;
+import platform.game.level.Level;
 import platform.util.BufferedLoader;
 import platform.util.DefaultLoader;
 import platform.util.Display;
@@ -39,6 +40,7 @@ public class Program {
 
 		Display display = new SwingDisplay();
 		display.setBackground(Color.WHITE);
+
 		try {
 
 			// Game loop

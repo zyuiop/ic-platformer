@@ -18,7 +18,7 @@ public class ProjectileLauncher extends Block {
 	private final LaunchPolicy launchPolicy;
 	private final ProjectileCreator projectileCreator;
 	private boolean lastState = false;
-	private double sinceLastTime = 0D;
+	private double sinceLastTime = Double.POSITIVE_INFINITY;
 
 	/**
 	 * Create a projectile launcher

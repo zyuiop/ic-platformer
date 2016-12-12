@@ -40,10 +40,20 @@ public class Simulator implements World {
 	 * @param loader associated loader, not null
 	 * @param args level arguments, not null
 	 */
-	public Simulator(Loader loader, String[] args) {
+	public Simulator(Loader loader, String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 		if (loader == null) { throw new NullPointerException(); }
 		this.loader = loader;
 		this.center = Vector.ZERO;
+
+		if (args.length > 0) {
+			// argument is classpath
+			Class<?> clazz = Class.forName(args[0]);
+			if (Level.class.isAssignableFrom(clazz)) {
+				setNextLevel((Level) clazz.newInstance());
+			} else {
+				throw new IllegalArgumentException("given class is not a level");
+			}
+		}
 	}
 
 	/**

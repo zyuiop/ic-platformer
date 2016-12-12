@@ -37,8 +37,6 @@ public class Castle2 extends PlayableLevel {
 	public void register(World world) {
 		super.register(world);
 
-		world.setNextLevel(world.getLevelManager().getNextLevel(this));
-
 		Block middle = new Block(new Vector(0, .5), 6, 1, "castle.middle");
 		middle.setRepeatBehaviour(new RepeatBehaviour(1, 1, true, false));
 		world.register(middle);

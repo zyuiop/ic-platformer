@@ -35,6 +35,12 @@ public class Block extends DisplayableActor {
 		this.setRepeatBehaviour(behaviour);
 	}
 
+
+	public Block(Box box, String spriteName, RepeatBehaviour behaviour) {
+		this(box, spriteName);
+		this.setRepeatBehaviour(behaviour);
+	}
+
 	/**
 	 * Create a block using a box, a sprite, and a direction
 	 * @param box the box of the block
@@ -47,7 +53,6 @@ public class Block extends DisplayableActor {
 	public Block(Box box, String spriteName, Direction direction) {
 		super(box, spriteName);
 		this.direction = direction;
-
 	}
 
 	/**

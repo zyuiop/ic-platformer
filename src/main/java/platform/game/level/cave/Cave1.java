@@ -1,21 +1,16 @@
-package platform.game.level.castle;
+package platform.game.level.cave;
 
-import java.awt.Font;
-import java.util.function.Function;
 import platform.game.KeyBindings;
-import platform.game.World;
-import platform.game.actors.environment.Background;
-import platform.game.Direction;
 import platform.game.RepeatBehaviour;
+import platform.game.World;
 import platform.game.actors.blocks.Block;
-import platform.game.actors.technical.InvisiblePlayerDetector;
-import platform.game.actors.blocks.Jumper;
-import platform.game.actors.blocks.OneWayMovingPlatform;
-import platform.game.actors.blocks.Spikes;
-import platform.game.actors.environment.Decoration;
 import platform.game.actors.blocks.Exit;
+import platform.game.actors.blocks.OneWayMovingPlatform;
+import platform.game.actors.environment.Background;
+import platform.game.actors.environment.Decoration;
 import platform.game.actors.environment.Heart;
 import platform.game.actors.environment.Torch;
+import platform.game.actors.technical.InvisiblePlayerDetector;
 import platform.game.actors.ui.SlowingAdapter;
 import platform.game.actors.ui.TriggerableTextbox;
 import platform.game.level.EndGameLevel;
@@ -25,10 +20,13 @@ import platform.game.logic.Not;
 import platform.util.Box;
 import platform.util.Vector;
 
+import java.awt.*;
+import java.util.function.Function;
+
 /**
  * @author zyuiop
  */
-public class Castle3 extends PlayableLevel {
+public class Cave1 extends PlayableLevel {
 	@Override
 	protected Vector startPosition() {
 		return new Vector(-10, 2);
@@ -42,8 +40,6 @@ public class Castle3 extends PlayableLevel {
 	@Override
 	public void register(World world) {
 		super.register(world);
-
-		world.setNextLevel(world.getLevelManager().getNextLevel(this));
 
 		// LEFT SIDE
 		Block middle = new Block(new Vector(-8.5, .5), 7, 1, "castle.middle");
@@ -78,7 +74,7 @@ public class Castle3 extends PlayableLevel {
 		Torch torch = new Torch(new Vector(-8, 1.5), true);
 		world.register(torch);
 
-		world.register(new Exit(new Vector(10, 1.5), torch, new EndGameLevel()));
+		world.register(new Exit(new Vector(10, 1.5), torch));
 		world.register(new Decoration(new Vector(9.8, 1.2), .5, "exit", Math.PI / 8));
 		world.register(new Decoration(new Vector(-5.3, 1.2), .5, "exit", Math.PI / 8));
 
@@ -122,7 +118,7 @@ public class Castle3 extends PlayableLevel {
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7, torchDetector, "Eteindre " +
 				"cette torche permet peut être de traverser...", "Utilisez la touche " +
-				"[" +  kb.getFirstConfiguredKey(KeyBindings.Key.BLOW) + "] pour souffler sur la torche")
+				"[" + kb.getFirstConfiguredKey(KeyBindings.Key.BLOW) + "] pour souffler sur la torche")
 				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7,
