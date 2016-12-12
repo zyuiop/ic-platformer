@@ -208,6 +208,9 @@ public class Player extends LivingActor implements IAttachable {
 
 	@Override
 	public boolean hurt(Actor damageFrom, Effect damageType, double amount, Vector location) {
+		if (damageFrom == this)
+			return false;
+
 		switch (damageType) {
 			case AIR:
 				// TODO : let the jumper do it by itself ?

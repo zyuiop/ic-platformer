@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -82,13 +83,10 @@ public class Program {
 		}
 
 		URI uri = Program.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-		String filePath = uri.getPath();
-		if (filePath.startsWith("\\"))
-			filePath = filePath.substring(1); // windows fix
-		Path path = Paths.get(filePath);
+		File jarFile = new File(URLDecoder.decode(uri.getPath(), "UTF-8"));
 
-		if (uri.getPath().endsWith(".jar") && Files.exists(path)) {
-			FileSystem system = FileSystems.newFileSystem(path, ClassLoader.getSystemClassLoader());
+		if (jarFile.getName().endsWith(".jar") && jarFile.exists()) {
+			FileSystem system = FileSystems.newFileSystem(jarFile.toPath(), ClassLoader.getSystemClassLoader());
 			Path p = system.getPath("/res/");
 			if (Files.exists(p) && Files.isDirectory(p)) {
 				Files.list(p).forEach((f) -> {
