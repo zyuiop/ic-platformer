@@ -1,7 +1,5 @@
 package platform.game.menus.settings;
 
-import java.awt.event.MouseEvent;
-import java.util.Collection;
 import platform.game.KeyBindings;
 import platform.game.KeyBindings.Key;
 import platform.game.actors.ui.ButtonActor;
@@ -9,6 +7,8 @@ import platform.util.Input;
 import platform.util.Output;
 import platform.util.Vector;
 import platform.util.View;
+
+import java.util.Collection;
 
 /**
  * @author zyuiop

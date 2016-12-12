@@ -4,7 +4,7 @@ Un moteur basique de jeux de plateformes en 2D ainsi que quelques niveaux pour d
 
 ## Compiler et lancer :
 
-Pour compiler le jeu, il faut se placer dans le dossier racine et exécuter ```mvn package```. Le binaire se trouvera dans le dossier ```target/``` . 
+Pour compiler le jeu, il faut se placer dans le dossier racine et exécuter ```mvn package``` (si le pom.xml est présent). Le binaire se trouvera dans le dossier ```target/``` . 
 
 Des binaires compilés en continu via Travis-CI sont disponibles ici : https://archive.zyuiop.net/Platformer
 
