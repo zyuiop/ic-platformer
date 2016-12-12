@@ -71,7 +71,7 @@ public class KeyBindingsLevel extends Level {
 			}
 		});
 
-		world.register(new ButtonActor(new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button_02", "yellow_button04", 100, 30, 10, 10) {
+		world.register(new ButtonActor(new Vector(225, 50), font, Color.WHITE, "Abandonner", "red_button02", "yellow_button04", 100, 30, 10, 10) {
 			@Override
 			protected void onClick() {
 				try {

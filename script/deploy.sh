@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # As this project is still private, we obfuscate it strongly first
-java -jar script/proguard.jar @script/config.pro
+wget https://files.zyuiop.net/proguard.jar -O proguard.jar
+java -jar proguard.jar @script/config.pro
 
 echo "No changes." > CHANGES.txt
 
