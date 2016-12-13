@@ -2,13 +2,25 @@
 
 Un moteur basique de jeux de plateformes en 2D ainsi que quelques niveaux pour démontrer son fonctionnement.
 
-## Compiler et lancer :
+## Compiler :
 
-Pour compiler le jeu, il faut se placer dans le dossier racine et exécuter ```mvn package``` (si le pom.xml est présent). Le binaire se trouvera dans le dossier ```target/``` . 
+### Avec Maven
+
+Un pom.xml est disponible ici : https://archive.zyuiop.net/Platformer/pom.xml
+
+Pour compiler le jeu, il faut se placer dans le dossier racine et exécuter ```mvn package``` (si le pom.xml est présent). Le binaire se trouvera dans le dossier ```target/```. 
+
+### Télécharger le binaire
 
 Des binaires compilés en continu via Travis-CI sont disponibles ici : https://archive.zyuiop.net/Platformer
 
 Ceux ci sont obfusqués pour éviter la copie.
+
+### Compiler depuis un IDE ou javac :
+
+Compilez simplement en un jar en définissant la classe principale sur `platform.Program`.
+
+## Lancer
 
 Pour lancer le jeu à partir du binaire, un ```java -jar <nom du binaire>``` suffit. Double-cliquer sur le jar devrait également faire l'affaire sur la majorité des gestionnaires de fichier existants.
 Le jeu va alors extraire ses ressources dans le dossier ```./res/``` si celui ci n'est pas présent ou incomplet, puis se lancer.

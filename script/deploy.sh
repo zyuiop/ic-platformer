@@ -8,7 +8,7 @@ echo "No changes." > CHANGES.txt
 
 if [[ $TRAVIS_COMMIT_RANGE ]]
 then 
-	echo ${git log $TRAVIS_COMMIT_RANGE} > CHANGES.txt
+	echo ${git log "$TRAVIS_COMMIT_RANGE"} > CHANGES.txt
 	cat CHANGES.txt
 fi
 
@@ -16,4 +16,5 @@ fi
 targetName=Platformer-$TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}.jar
 scp -oStrictHostKeyChecking=no platformer.jar deploy@ks.zyuiop.net:/srv/archive.zyuiop.net/Platformer/$targetName
 scp -oStrictHostKeyChecking=no CHANGES.txt deploy@ks.zyuiop.net:/srv/archive.zyuiop.net/Platformer/
+scp -oStrictHostKeyChecking=no pom.xml deploy@ks.zyuiop.net:/srv/archive.zyuiop.net/Platformer/
 ssh -oStrictHostKeyChecking=no deploy@ks.zyuiop.net cp /srv/archive.zyuiop.net/Platformer/$targetName /srv/archive.zyuiop.net/Platformer/Platformer-LATEST.jar
