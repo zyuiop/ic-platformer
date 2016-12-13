@@ -49,19 +49,33 @@ Les touches peuvent être modifiées depuis le menu Touches.
 
 Les 2 premiers niveaux représentent des "tutoriaux" basiques. 
 
-### Niveau 1-1
+### Niveau 1-1 (levier et porte)
 
 Pour finir le niveau, il faut actionner le levier et traverser jusqu'à la porte.
 
-### Niveau 1-2
+### Niveau 1-2 (leviers et plateformes)
 
 Pour finir le niveau, il faut désactiver le laser et activer les plateformes. Cela se fait simplement en inversant chacun des leviers. 
 
-### Niveau 2-1
+### Niveau 2-1 (torches et tir)
 
 Il faut souffler la torche puis utiliser les plateformes pour traverser (un double saut est nécessaire pour traverser entre les deux plateformes). Ensuite, il faut viser la torche et lancer une boule de feu pour ouvrir la porte de sortie.
 
-### Niveau 2-2
+### Niveau 2-2 (clés, leviers, portes logiques)
+
+1. Actionnez le levier jaune
+2. Prenez la clé orange 
+3. Désactivez le levier jaune
+4. Actionnez les leviers rouge et vert
+5. Actionnez le levier jaune 
+6. Prenez la clé bleue
+7. Désactivez le levier vert
+8. Activez le levier bleu
+9. Désactivez le levier jaune
+10. Désactivez le levier rouge
+11. Sortez
+
+### Niveau 2-3
 
 Il n'y a pas de puzzle spécifique à résoudre, il faut simplement utiliser les jumpers tout en évitant les piques, les flèches et les boules de feu.
 

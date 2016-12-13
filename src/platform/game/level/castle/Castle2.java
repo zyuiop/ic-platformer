@@ -61,7 +61,7 @@ public class Castle2 extends PlayableLevel {
 		Lever lever2 = new Lever(new Vector(1.5, 1.25), .5, 30D, true);
 		world.register(lever);
 		world.register(lever2);
-		Signal elevators = new And(lever, new Not(lever2));
+		Signal elevators = lever.and(lever2.not());
 		world.register(new LaserDoor(new Vector(0, 3), 14, Orientation.HORIZONTAL, "green", lever));
 
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);

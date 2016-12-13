@@ -2,6 +2,7 @@ package platform.game.level.cave;
 
 import platform.game.KeyBindings;
 import platform.game.RepeatBehaviour;
+import platform.game.Signal;
 import platform.game.World;
 import platform.game.actors.blocks.Block;
 import platform.game.actors.blocks.Exit;
@@ -79,7 +80,7 @@ public class Cave1 extends PlayableLevel {
 		world.register(new Decoration(new Vector(-5.3, 1.2), .5, "exit", Math.PI / 8));
 
 
-		Not elevators = new Not(torch);
+		Signal elevators = torch.not();
 
 		// Platforms
 		double spriteRatio = 18D / 70D; // the ratio of the sprite
@@ -122,7 +123,7 @@ public class Cave1 extends PlayableLevel {
 				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),
 				"text.background", font, 0.05, .7, 15, .7, .2, .25, .7,
-				new And(djumpDetector, elevators), "Il faut parfois utiliser un double saut pour " +
+				djumpDetector.and(elevators), "Il faut parfois utiliser un double saut pour " +
 				"traverser", "Utilisez la touche [" + kb.getFirstConfiguredKey(KeyBindings.Key.JUMP) + "] en l'air pour faire un double saut")
 				.setLinesAdapter(new SlowingAdapter(.05)));
 		world.register(new TriggerableTextbox(view.add(new Vector(0, -5)),

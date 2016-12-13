@@ -4,6 +4,7 @@ import platform.game.level.castle.Castle1;
 import platform.game.level.castle.Castle2;
 import platform.game.level.cave.Cave1;
 import platform.game.level.cave.Cave2;
+import platform.game.level.cave.Cave3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class LevelManager {
 		).add(new LevelGroup()
 				.addLevel(Cave1.class)
 				.addLevel(Cave2.class)
+				.addLevel(Cave3.class)
 		);
 	}
 

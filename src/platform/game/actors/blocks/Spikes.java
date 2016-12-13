@@ -30,8 +30,17 @@ public class Spikes extends InteractableBlock {
 
 		this.setBoxTransformer((box) -> {
 			// we add a useless zone in the top
-			Vector max = box.getMin().add(new Vector(size, size));
-			return new Box(box.getMin(), max);
+
+			Vector min, max;
+			if (direction == Direction.RIGHT || direction == Direction.UP) {
+				min = box.getMin();
+				max = box.getMin().add(new Vector(size, size));
+			} else {
+				max = box.getMax();
+				min = box.getMax().sub(new Vector(size, size));
+			}
+
+			return new Box(min, max);
 		});
 	}
 
