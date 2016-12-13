@@ -25,6 +25,8 @@ Compilez simplement en un jar en définissant la classe principale sur `platform
 Pour lancer le jeu à partir du binaire, un ```java -jar <nom du binaire>``` suffit. Double-cliquer sur le jar devrait également faire l'affaire sur la majorité des gestionnaires de fichier existants.
 Le jeu va alors extraire ses ressources dans le dossier ```./res/``` si celui ci n'est pas présent ou incomplet, puis se lancer.
 
+L'argument ` -Dsun.java2d.opengl=true` peut être ajouté à Java (avant le ` -jar`) pour forcer l'utilisation d'OpenGL. Cela peut améliorer les performances du rendu.
+
 Vous pouvez fournir en argument le nom de la classe d'un niveau (exemple : `platform.game.level.cave.Cave1`) pour jouer directement sur ce niveau.
 
 ## Jouer au jeu
@@ -78,6 +80,11 @@ Il faut souffler la torche puis utiliser les plateformes pour traverser (un doub
 ### Niveau 2-3
 
 Il n'y a pas de puzzle spécifique à résoudre, il faut simplement utiliser les jumpers tout en évitant les piques, les flèches et les boules de feu.
+
+## Problèmes connus :
+
+- Sur les faibles configurations où le jeu est lent, les jumpers peuvent ne pas fournir assez de force pour franchir le niveau 5
+- Les ordinateurs linux (et seulement eux) semblent parfois avoir des problèmes de rendu graphique. En outre, le joueur a tendance à rester collé sur les MovingPlatform sur cet OS. 
 
 ## Mot de la fin
 
